@@ -1,0 +1,38 @@
+﻿@model AmritsarClub.Models.Pager
+
+<div>
+
+    @if (Model.TotalPages > 0)
+    {
+        <ul class="pagination">
+            @if (Model.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    @Html.ActionLink("First", Model.Action, Model.Controller, new { page = 1, sortCol = ViewData["sortCol"], sortDir = ViewData["sortDir"] }, new { @class = "page-link" })
+                </li>
+                <li class="page-item">
+                    @Html.ActionLink("Previous", Model.Action, Model.Controller, new { page = Model.CurrentPage - 1, sortCol = ViewData["sortCol"], sortDir = ViewData["sortDir"] }, new { @class = "page-link" })
+                </li>
+            }
+
+            @for (var pageNo = Model.StartPage; pageNo <= Model.EndPage; pageNo++)
+            {
+                <li class="page-item @(pageNo == Model.CurrentPage ? "active" : "")">
+                    @Html.ActionLink(pageNo.ToString(), Model.Action, Model.Controller, new { page = pageNo, sortCol = ViewData["sortCol"], sortDir = ViewData["sortDir"] }, new { @class = "page-link" })
+                </li>
+            }
+
+            @if (Model.CurrentPage < Model.TotalPages)
+            {
+                <li class="page-item">
+                    @Html.ActionLink("Next", Model.Action, Model.Controller, new { page = Model.CurrentPage + 1, sortCol = ViewData["sortCol"], sortDir = ViewData["sortDir"] }, new { @class = "page-link" })
+                </li>
+                <li class="page-item">
+                    @Html.ActionLink("Last", Model.Action, Model.Controller, new { page = Model.TotalPages, sortCol = ViewData["sortCol"], sortDir = ViewData["sortDir"] }, new { @class = "page-link" })
+                </li>
+            }
+        </ul>
+    }
+
+</div>
+

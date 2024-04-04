@@ -1,0 +1,202 @@
+﻿﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gymkhana Club Exclusive Amritsar</title>
+
+    <link href="~/Content/Images/gymkhanna png1.png" rel="icon" />
+
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+
+    @* <script src="https://kit.fontawesome.com/5f5b6f2668.js" crossorigin="anonymous"></script>*@
+    <script src="https://kit.fontawesome.com/4fb9a32ece.js" crossorigin="anonymous"></script>
+    <link href="~/Content/css/main.css" rel="stylesheet" />
+
+    <link href="~/Content/css/navbarbackground.css" rel="stylesheet" />
+    <style>
+        .nav-link {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .nav-item {
+            margin: 0 20px 0 20px;
+        }
+    </style>
+    <style>
+        .active_button {
+            background-color: #ADE792;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="navbar navbar-expand-lg background" style="max-width:100%;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+
+                <img src="~/Content/Images/gymkhanna png1.png" style="width:150px;" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-md-auto">
+                    <li class="nav-item">
+                        <a class="butn nav-link" id="Home" aria-current="page" style="margin-top:10px;" href="~/Home/Index">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="butn nav-link" style="margin-top:10px;" href="~/Home/About">ABOUT US</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="butn nav-link" style="margin-top:10px;" href="~/Home/Gallery">GALLERY</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="butn nav-link" style="margin-top:10px;" href="~/Home/Facilities">FACILITIES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="butn nav-link" style="margin-top:10px;" href="~/Home/Membership">MEMBERSHIP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="butn nav-link" style="margin-top:10px;" href="~/Home/Contact">CONTACT US</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="butn nav-link" href="/Login/Login"><button class="btn btn-inv btn-secondary" style="background-color: #e3722e; border-radius: 0%; border: 7px solid #ADE792"><i class="fa fa-user"> </i> MEMBER LOGIN</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+    @RenderBody()
+
+
+
+    <footer class="footer-classic" style="background:#2d3246;">
+        <div class="container">
+            <div class="row" style="padding:2% 5%;">
+
+                <div class="col-lg-3" style="margin-right:15%;">
+                    <div class="pr-xl-4" style="color:#fff;">
+
+                        <img class="brand-logo-light col-sm-12 col-xs-12" src="~/Content/Images/gymkhanna png1.png" width="200" height="150" />
+
+                        <p style="margin-top:20px;">
+                            We are the best Gymkhana Club across Amritsar,
+                            dedicated to the best service in club,
+                            promotion, business consulting, and marketing.
+                        </p>
+                        <!-- Rights-->
+                    </div>
+                </div>
+
+                <div class="col-lg-3" style="margin-right:8%; color:#fff;">
+                    <h5>Contacts</h5>
+                    <dl class="contact-list">
+                        <dt>Address:</dt>
+                        <dd>AD Green, Opposite <br />Doon International School, <br />Adjoining Divya Jyoti Bhawan,<br />Amritsar Pathankot Road,<br />Verka,Amritsar-143501(PB)</dd>
+                    </dl>
+                    <dl class="contact-list">
+                        <dt>email:</dt>
+                        <dd><a href="mailto:#">info@kwalitypharma.co.in</a></dd>
+                    </dl>
+                    <dl class="contact-list">
+                        <dt>phones:</dt>
+                        <dd>
+                            <span>+91 9877003731 (CEO)</span><br />
+                            <span>+91 9814052314 (Director)</span>
+                        </dd>
+                    </dl>
+                </div>
+
+                <div class="col-lg-3" style="margin-left:2%;color:#fff;">
+                    <h5>Links</h5>
+                    <ul class="nav-list">
+                        <li><a href="~/Home/About">About</a></li>
+                        <li><a href="~/Home/Gallery">Gallery</a></li>
+                        <li><a href="~/Home/Facilities">Facilities</a></li>
+                        <li><a href="~/Home/Contact">Contacts</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Apply for Membership</a></li>
+                        <li><a href="#">Admin Login</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div id="foot">
+
+
+
+                <i class="margin1 fa fa-twitter"></i>
+                <i class="margin1 fa fa-facebook"></i>
+                <i class="margin1 fa fa-instagram"></i>
+                <i class="margin1 fa fa-envelope"></i>
+                <i class="margin1 fa fa-linkedin"></i>
+                <i class="margin1 fa fa-youtube"></i>
+                <i class="margin1 fa fa-whatsapp"></i>
+
+
+            </div>
+            <hr style="color:#fff;" />
+        </div>
+
+
+
+        <div class="row no-gutters social-container" style="text-align:center;color:#fff;">
+            <p class="rights"><span>©</span><span class="copyright-year">2023</span><span> </span><span>Gymkhana Club Exclusive, Amritsar</span><span>. </span><span>All Rights Reserved.</span></p>
+        </div>
+    </footer>
+
+
+
+
+
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#Home').addClass('active-button');
+
+        });
+        $('.butn').on('click', function () {
+            console.log("Hi I am Active");
+            $('.butn').removeClass('active_button');
+            $(this).addClass('active_button');
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+
+            $(".filter-button").click(function () {
+                var value = $(this).attr('data-filter');
+
+                if (value == "all") {
+                    //$('.filter').removeClass('hidden');
+                    $('.filter').show('1000');
+                }
+                else {
+                    //            $('.filter[filter-item="'+value+'"]').removeClass('hidden');
+                    //            $(".filter").not('.filter[filter-item="'+value+'"]').addClass('hidden');
+                    $(".filter").not('.' + value).hide('3000');
+                    $('.filter').filter('.' + value).show('3000');
+
+                }
+            });
+
+            if ($(".filter-button").removeClass("active")) {
+                $(this).removeClass("active");
+            }
+            $(this).addClass("active");
+
+        });
+    </script>
+
+
+    <script src="~/Content/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

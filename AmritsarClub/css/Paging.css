@@ -1,0 +1,27 @@
+
+
+.active_page {
+background: maroon;
+color: white !important;
+box-shadow: 3px 3px 1px #888888;
+}
+
+#page_navigation a {
+padding: 3px;
+border: 1px solid gray;
+margin: 2px;
+color: maroon;
+text-decoration: none;
+}
+
+.PagingRow
+{
+    background-color:whitesmoke;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    text-align:left;
+    height:20px;
+    
+}

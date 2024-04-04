@@ -1,0 +1,1575 @@
+﻿body {
+    overflow-x: hidden !important;
+    /*overflow-y: hidden !important;*/
+    background-color: #e6c6c633;
+    margin: 0;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+@media(max-width:768px) {
+    body {
+        overflow-x: hidden;
+        overflow-y: auto;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+.textbox {
+    background-color: wheat;
+    height: 30px;
+    width: 100%;
+    max-width: 200px;
+    box-shadow: 2px 2px 5px #888888;
+}
+
+@media (max-width: 768px) {
+    .textbox {
+        max-width: none;
+        box-shadow: 4px 4px 6px #888888;
+    }
+}
+
+
+@media (min-width: 769px) {
+    /* styles for desktop devices */
+    .textbox {
+        height: 30px;
+        width: 8%;
+        box-shadow: 4px 4px 6px #888888;
+    }
+}
+/*.custom-button-width {
+    width: 10%;*/ /* add your desired width value here */
+/*}*/
+.container, .container-fluid {
+    padding: 0;
+    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#party {
+    color: darkred;
+}
+
+#img {
+    color: red;
+    max-height: 20%;
+    max-width: 50%;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#imgbox {
+    height: 80px;
+    width: 60%;
+    box-shadow: 4px 4px 6px #888888;
+    display: inline;
+    padding: 0;
+    margin: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+
+.wrapper {
+    overflow-x: scroll;
+    width: 100%;
+}
+
+
+
+/*=========start: Login=========*/
+/*========================Style form Logo Start==========================*/
+.logo-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100px;
+    margin-left: 30%;
+    border-radius: 50%;
+    background: 50% 50% no-repeat scroll;
+}
+
+@media (max-width: 768px) {
+    /* Adjust the size and position of the image for smaller screens */
+    .logo-image {
+        height: 15%;
+        width: 40%;
+        margin-left: 30%; /* Adjust as needed */
+    }
+}
+/*=====Style form Logo End============*/
+/*=======Css for login Page start=======*/
+.form-signin-wrapper {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #0b8bedf0 !important;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+/*@media (max-width: 768px) {
+    .form-signin {
+        max-width: 100%;
+    }
+
+    .btnLogin {
+        width: 100% !important;
+        height: 2% !important;
+        padding: 0 !important;
+    }
+
+        .btnLogin:hover {
+            background-color: #e6c6c6 !important;
+            color: black !important;
+        }
+}*/
+
+.card-title {
+    background-color: #0697f624 !important;
+    font-size: 25px;
+    color: white;
+}
+
+/*.btnLogin{
+    height:5%;
+    width:100%
+}
+    .btnLogin:hover {
+        background-color: #e6c6c633;
+        color: black;
+    }*/
+
+.form-signin a {
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.form-signin .btn {
+    margin-top: 30px;
+}
+
+.form-signin .form-group {
+    margin-bottom: 20px !important;
+}
+
+.form-signin .panel {
+    background: #4a0fa300;
+    color: #fff;
+    padding: 10px;
+    border: none !important;
+    box-shadow: 0 7px 16px #0a070f, 0 4px 5px #09051d;
+}
+
+.form-signin .panel-body {
+    padding-bottom: 50px;
+    padding-top: 30px;
+}
+
+.form-signin .atomic-number {
+    font-size: 20px;
+}
+
+.form-signin .atomic-symbol {
+    font-size: 10em !important;
+    font-weight: 500;
+    padding-bottom: 20px;
+}
+
+.form-signin .element-name, .form-signin .atomic-mass {
+    font-size: 18px;
+    margin-top: -10px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+.form-signin label {
+    color: #fff !important;
+}
+
+.form-signin .bar:before, .form-signin .bar:after {
+    background-color: #fff !important;
+}
+
+/*=============end: login===============*/
+
+
+/*====css form Latest News start====*/
+.topbarx {
+    background: #0b8af300;
+    padding: 5px 0px;
+}
+
+.navbar {
+    flex-basis: 100%;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.top {
+    color: #d24e01;
+    padding: 0px 10px 0px 0px;
+    font-size: 20px;
+    font-weight: 600;
+}
+/*====css form Latest News End====*/
+
+
+/*=====css for utube video start =====*/
+/*.welcome{
+    color: black;
+    display: flex;
+    background-color: skyblue;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height:50%;
+}*/
+/*=====css for utube video end =====*/
+
+/* styles.css */
+
+/*===============CSS for Card Start===================*/
+.card {
+    background-color: #e6c6c633;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+    /*  box-shadow: 4px 4px 6px #97c9f0;*/
+    height: 400px;
+}
+
+@media (max-width: 768px) {
+    .col-md-4,
+    .col-md-8 {
+        flex-basis: 100%;
+    }
+
+    .margin {
+        margin: 5px;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    overflow: auto;
+}
+/*===============CSS for Card End ===================*/
+
+/*=======Css for Picture Box Start======== */
+.picture-box {
+    width: 100%;
+    height: 85%;
+    border: 1px ridge;
+    cursor: pointer;
+    box-shadow: 4px 4px 6px #97c9f0;
+    background-color: white;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+    .picture-box:hover {
+        border-color: dodgerblue; /* Add hover effect on the border */
+    }
+
+/* Media query for smaller screens */
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .picture-box {
+        width: 60% !important;
+        height: 150px !important;
+    }
+
+    .labl {
+        margin-left: auto; /* Reset the left margin */
+        margin-right: 0; /* Reset the right margin */
+        position: relative; /* Enable positioning */
+        right: 15%;
+    }
+}
+
+@media(max-width: 768px) {
+    .real,
+    .different {
+        margin-left: auto; /* Reset the left margin */
+        margin-right: 0; /* Reset the right margin */
+        position: relative; /* Enable positioning */
+        right: 15%;
+    }
+}
+
+@media(max-width:768px) {
+    .different {
+        margin-left: auto; /* Reset the left margin */
+        margin-right: 0; /* Reset the right margin */
+        position: relative; /* Enable positioning */
+        right: 25%;
+    }
+}
+/*=======Css for Picture Box End======== */
+/*===============CSS for Input Start===================*/
+
+.inpu {
+    background-color: white;
+    height: 80%;
+    width: 100%;
+    flex: 20;
+    margin-top: 8%;
+    cursor: pointer;
+    box-shadow: 4px 4px 6px #97c9f0;
+    border: 1px solid transparent; /* Add a transparent border initially */
+    transition: border-color 0.3s ease, border-width 0.3s ease; /* Add transition for both border-color and border-width */
+    outline: none; /* This removes the default focus outline */
+    border-radius: 8px;
+}
+
+    .inpu:hover,
+    .inpu:active {
+        border-color: dodgerblue;
+    }
+
+    .inpu:focus {
+        border-color: #9ec5fe; /* Set the border color to dodgerblue on hover, focus, and click */
+        border-width: 3px; /* Set the border width to 2px on hover, focus, and click */
+    }
+
+    .inpu::placeholder {
+        font-size: 70%;
+    }
+
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .inpu {
+        /* Adjust the styles here for smaller screens */
+        font-size: 12px; /* For example, reduce the font size */
+        height: 90%; /* Adjust the height */
+        margin-top: 5%; /* Adjust the margin */
+        width: 80% !important;
+    }
+
+        .inpu::placeholder {
+            font-size: 60%; /* Adjust placeholder font size */
+        }
+}
+/*===============CSS for Input End===================*/
+
+
+/*=========css for party wise search Start ===========*/
+.partywisesearch {
+    background-color: white;
+    /* margin-left: 3%;*/
+    height: 80%;
+    width: 100%;
+    /* flex: 20;*/
+    margin-top: 1%;
+    box-shadow: 4px 4px 6px #97c9f0;
+    cursor: pointer;
+}
+
+    .partywisesearch:hover {
+        border-color: dodgerblue;
+    }
+
+
+
+
+
+.datsearch {
+    background-color: white;
+    height: 80%;
+    width: 100%;
+    margin-top: 1%;
+    box-shadow: 4px 4px 6px #97c9f0;
+    border: 1px solid transparent;
+    transition: border-color 0.3s ease, border-width 0.3s ease;
+    outline: none;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+    .datsearch:hover,
+    .datsearch:active {
+        border-color: dodgerblue;
+    }
+
+    .datsearch:focus {
+        border-color: #9ec5fe;
+        border-width: 3px;
+    }
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .datsearch {
+        /* Adjust the styles here for smaller screens */
+        font-size: 12px; /* For example, reduce the font size */
+        height: 85%; /* Adjust the height */
+        margin-top: 5px; /* Adjust the margin */
+    }
+
+        .datsearch:hover {
+            border-color: dodgerblue; /* You can keep the hover effect */
+        }
+}
+
+.datsearchTo {
+    background-color: white;
+    /* margin-left: 3%;*/
+    height: 80%;
+    width: 100%;
+    /* flex: 20;*/
+    margin-top: 1%;
+    box-shadow: 4px 4px 6px #97c9f0;
+    cursor: pointer;
+}
+
+    .datsearchTo:hover {
+        border-color: dodgerblue;
+    }
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .datsearchTo {
+        /* Adjust the styles here for smaller screens */
+        font-size: 12px; /* For example, reduce the font size */
+        height: 70%; /* Adjust the height */
+        margin-top: 5px; /* Adjust the margin */
+    }
+
+        .datsearchTo:hover {
+            border-color: dodgerblue; /* You can keep the hover effect */
+        }
+}
+/*=========css form party wise search Start ===========*/
+/*===css for party LABEL wise search===*/
+.party {
+    font-size: 80%;
+    font-weight: bold;
+    margin-top: 10%;
+    /*box-shadow: 4px 4px 6px #97c9f0;*/
+}
+
+    .party:hover {
+        color: cornflowerblue;
+    }
+
+.btn {
+    box-shadow: 4px 4px 6px #97c9f0;
+    /*  width: 100%;
+            height: 100%;*/
+}
+
+#dob {
+    box-shadow: 4px 4px 6px #97c9f0;
+    cursor: pointer;
+}
+
+a {
+    /* box-shadow: 4px 4px 6px #97c9f0;*/
+}
+
+
+
+
+/*===========css for welcome to KPL Start===================*/
+#about {
+    position: relative;
+    padding: 10px 0;
+    background-color: #ece5dc1f !important;
+    display: block;
+}
+
+p:hover {
+    color: dodgerblue;
+}
+
+.rows {
+    margin-bottom: -40px;
+}
+
+.fadeInRight {
+    visibility: visible;
+    animation-name: fadeInRight;
+}
+
+.imag {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.wow {
+    visibility: visible;
+    animation-name: fadeInRight;
+    -webkit-animation-name: fadeInRight;
+}
+
+.heads {
+    font-size: 26px;
+    margin: 25px 0px -5px 0px;
+    padding: 0;
+    font-weight: 400;
+    font-weight: 700 !important;
+    line-height: 1.5;
+    color: black;
+    text-shadow: #1876b7eb;
+    text-transform: uppercase;
+}
+
+.custom-container {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 100%;
+}
+/*===========css for welcome to KPL End============*/
+
+/*===========CSS for video Start=============*/
+.rounded-2xl {
+    border-radius: 1rem;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.mt-10 {
+    margin-top: 2.5rem;
+}
+
+
+.w-\[100\%\] {
+    width: 100%;
+}
+
+video {
+    max-width: 100%;
+}
+
+audio, canvas, embed, iframe, object, video {
+    display: block;
+    vertical-align: middle;
+}
+/*===========CSS for video End=============*/
+
+
+
+/*==============================css for nav menu start====================*/
+
+ul, li {
+    list-style: none outside none;
+}
+
+.nav-menu {
+    display: block;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+
+    .nav-menu {
+        width: 751px;
+    }
+}
+
+
+
+
+/* .nav-menu {
+          display: block;
+          background: light purple;
+          width:751px;
+          width:90%;
+          margin: 50px auto 150px;
+        }*/
+.nav-menu > li {
+    display: inline;
+    float: left;
+    border-right: 1px solid #58309c;
+    position: relative;
+}
+
+    .nav-menu > li:last-child {
+        border-right: none;
+    }
+
+.nav-menu li a {
+    color: #fff;
+    display: block;
+    text-decoration: none;
+    font-family: 'sansationregular';
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    text-transform: capitalize;
+    overflow: visible;
+    line-height: 20px;
+    font-size: 20px;
+    padding: 15px 30px 15px 31px;
+}
+
+/* animation domination */
+.three-d {
+    -webkit-perspective: 200px;
+    -moz-perspective: 200px;
+    -ms-perspective: 200px;
+    -o-perspective: 200px;
+    perspective: 200px;
+    -webkit-transition: all .07s linear;
+    -moz-transition: all .07s linear;
+    -ms-transition: all .07s linear;
+    -o-transition: all .07s linear;
+    transition: all .07s linear;
+    position: relative;
+}
+
+    .three-d:not(.active):hover {
+        cursor: pointer;
+    }
+
+        .three-d:not(.active):hover .three-d-box,
+        .three-d:not(.active):focus .three-d-box {
+            -wekbit-transform: translateZ(-25px) rotateX(90deg);
+            -moz-transform: translateZ(-25px) rotateX(90deg);
+            -o-transform: translateZ(-25px) rotateX(90deg);
+            -ms-transform: translateZ(-25px) rotateX(90deg);
+            transform: translateZ(-25px) rotateX(90deg);
+        }
+
+.three-d-box {
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+    -webkit-transform: translatez(-25px);
+    -moz-transform: translatez(-25px);
+    -ms-transform: translatez(-25px);
+    -o-transform: translatez(-25px);
+    transform: translatez(-25px);
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-pointer-events: none;
+    -moz-pointer-events: none;
+    -ms-pointer-events: none;
+    -o-pointer-events: none;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.front {
+    -webkit-transform: rotatex(0deg) translatez(25px);
+    -moz-transform: rotatex(0deg) translatez(25px);
+    -ms-transform: rotatex(0deg) translatez(25px);
+    -o-transform: rotatex(0deg) translatez(25px);
+    transform: rotatex(0deg) translatez(25px);
+}
+
+.back {
+    -webkit-transform: rotatex(-90deg) translatez(25px);
+    -moz-transform: rotatex(-90deg) translatez(25px);
+    -ms-transform: rotatex(-90deg) translatez(25px);
+    -o-transform: rotatex(-90deg) translatez(25px);
+    transform: rotatex(-90deg) translatez(25px);
+    color: #FFE7C4;
+}
+
+.front, .back {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*  background: #411873; */ /*=====Backgroun color for nav2===*/
+    /* fallback for old browsers */
+    background: #6a11cb;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9));
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(106, 17, 203, 0.9), rgba(37, 117, 252, 0.9));
+    padding: 15px 30px 15px 31px;
+    color: white;
+    -webkit-pointer-events: none;
+    -moz-pointer-events: none;
+    -ms-pointer-events: none;
+    -o-pointer-events: none;
+    pointer-events: none;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.nav-menu li .active .front,
+.nav-menu li .active .back,
+.nav-menu li a:hover .front,
+.nav-menu li a:hover .back {
+    background-color: #4e46e8;
+    -webkit-background-size: 5px 5px;
+    background-size: 5px 5px;
+    background-position: 0 0, 30px 30px;
+    background-image: -webit-linear-gradient(45deg, #478480 25%, transparent 25%, transparent 75%, #478480 75%, #478480), linear-gradient(45deg, #478480 25%, transparent 25%, transparent 75%, #478480 75%, #478480);
+    background-image: -moz-linear-gradient(45deg, #478480 25%, transparent 25%, transparent 75%, #478480 75%, #478480), linear-gradient(45deg, #478480 25%, transparent 25%, transparent 75%, #478480 75%, #478480);
+    background-image: -ms-linear-gradient(45deg, #478480 25%, transparent 25%, transparent 75%, #478480 75%, #478480), linear-gradient(45deg, #478480 25%, transparent 25%, transparent 75%, #478480 75%, #478480);
+    background-image: -o-linear-gradient(45deg, #478480 25%, transparent 25%, transparent 75%, #478480 75%, #478480), linear-gradient(45deg, #478480 25%, transparent 25%, transparent 75%, #478480 75%, #478480);
+    background-image: linear-gradient(45deg, #478480 25%, transparent 25%, transparent 75%, #478480 75%, #478480), linear-gradient(45deg, #478480 25%, transparent 25%, transparent 75%, #478480 75%, #478480);
+}
+
+.nav-menu ul {
+    position: absolute;
+    left: -40px;
+    text-align: left;
+    line-height: 40px;
+    font-size: 14px;
+    width: 200px;
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -ms-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
+    -webkit-transform-origin: 0px 0px;
+    -moz-transform-origin: 0px 0px;
+    -ms-transform-origin: 0px 0px;
+    -o-transform-origin: 0px 0px;
+    transform-origin: 0px 0px;
+    -webkit-transform: rotateX(-90deg);
+    -moz-transform: rotateX(-90deg);
+    -ms-transform: rotateX(-90deg);
+    -o-transform: rotateX(-90deg);
+    transform: rotateX(-90deg);
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.nav-menu > li:hover ul {
+    display: block;
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    -ms-transform: rotateX(0deg);
+    -o-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+}
+
+/*==============================css for Second nav menu End====================*/
+
+
+
+/*   ================CSS for table Start ==============*/
+/*.view {
+    margin: 10px;
+    width: 107%;
+}
+
+@media(max-width:768px) {
+    .view {
+        margin: 10px;
+        width: 90%;
+    }
+}
+
+.wrapper {
+    position: relative;
+    overflow: auto;
+    border: 1px solid black;
+    white-space: nowrap;
+}
+
+.sticky-col {
+    position: -webkit-sticky;
+    position: sticky;
+    background-color: white;
+}
+
+.first-col {
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+    left: 0px;
+}
+
+.second-col {
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+    left: 100px;
+}*/
+
+/*.table {
+    font-size: 80%;
+    font-weight: bold;
+}*/
+
+
+/*======status table css======*/
+/* Apply styling to the table container */
+/*.table-container-sticky {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 400px;*/ /* Set the desired height to enable scrolling */
+    /*position: relative;*/ /* Set position to relative to contain the absolutely positioned header */
+/*}*/
+
+    /* Sticky header styles */
+    /*.table-container-sticky thead.sticky-col {
+        position: sticky;
+        top: 0;
+        background-color: aquamarine;
+        z-index: 999;*/ /* Ensure the header stays on top of other elements */
+    /*}*/
+
+/* Your existing CSS rules */
+
+/* Media query for smaller screens */
+/*@media (max-width: 768px) {*/
+/* Adjust the styles here for smaller screens */
+/*.table {
+        font-size: 70%;*/ /* Decrease font size for smaller screens */
+/*}
+
+    .table-container-sticky {
+        height: auto;*/ /* Adjust the height to fit content */
+/*}*/
+
+/* Hide the sticky columns on smaller screens */
+/*.sticky-col {
+        display: none;
+    }*/
+
+/* Adjust the width of columns for smaller screens */
+/*.first-col {
+        width: 80px;*/ /* Adjust width for smaller screens */
+/*min-width: 80px;
+        max-width: 80px;
+    }
+
+    .second-col {
+        width: 120px;*/ /* Adjust width for smaller screens */
+/*min-width: 120px;
+        max-width: 120px;
+    }*/
+
+/* You might want to further adjust the table layout and behavior for small screens */
+/*}*/
+
+
+
+
+/*==============================*/
+/*   ================CSS for table End ==============*/
+
+/*============CSS for Button cancel/Clear/Hold/ClearAll start================*/
+@media(max-width: 768px) {
+    .btn {
+        width: 50%;
+    }
+    /*.btnHold{
+        margin-top:-5%;
+    }
+    .btnClearAll {
+        margin-top: -5%;
+    }
+    .btnNot{
+        margin-top:5%;
+    }*/
+}
+/*============CSS for Button cancel/Clear/Hold/ClearAll End==================*/
+
+/*  ============css for Status button Rotate Start========*/
+
+.btn-image {
+    /* margin-right: 2px;*/
+    float: left;
+    /* order: -100;*/
+    height: 2%;
+    width: 2%;
+    transition: transform 0.3s ease; /* Optional: Add smooth transition */
+}
+
+    .btn-image.rotated-down {
+        /* Styles for the image when rotated downward */
+        transform: rotate(90deg); /* Rotate the image 180 degrees (or any desired amount) */
+    }
+
+@media(max-width:768px) {
+    .btn-image {
+        margin-top: 8px;
+    }
+}
+
+.btn-imageRM {
+    margin-right: 2px;
+    float: left;
+    order: -100;
+    height: 2%;
+    width: 2%;
+    transition: transform 0.3s ease;
+}
+
+    .btn-imageRM.rotated-downRM {
+        transform: rotate(90deg);
+    }
+
+
+@media(max-width:768px) {
+    .btn-imageRM {
+        margin-top: 8px;
+    }
+}
+
+.btn-imagePM {
+    margin-right: 2px;
+    float: left;
+    order: -100;
+    height: 2%;
+    width: 2%;
+    transition: transform 0.3s ease;
+}
+
+    .btn-imagePM.rotated-downPM {
+        transform: rotate(90deg);
+    }
+
+@media(max-width:768px) {
+    .btn-imagePM {
+        margin-top: 8px;
+    }
+}
+
+.btn-imageProd {
+    margin-right: 2px;
+    float: left;
+    order: -100;
+    height: 2%;
+    width: 2%;
+    transition: transform 0.3s ease;
+}
+
+    .btn-imageProd.rotated-downProd {
+        transform: rotate(90deg);
+    }
+
+@media(max-width:768px) {
+    .btn-imageProd {
+        margin-top: 8px;
+    }
+}
+
+.btn-imagePack {
+    margin-right: 2px;
+    float: left;
+    order: -100;
+    height: 2%;
+    width: 2%;
+    transition: transform 0.3s ease;
+}
+
+    .btn-imagePack.rotated-downPackS {
+        transform: rotate(90deg);
+    }
+
+@media(max-width:768px) {
+    .btn-imagePack {
+        margin-top: 8px;
+    }
+}
+
+.btn-imageTests {
+    margin-right: 2px;
+    float: left;
+    order: -100;
+    height: 2%;
+    width: 2%;
+    transition: transform 0.3s ease;
+}
+
+    .btn-imageTests.rotated-downTest {
+        transform: rotate(90deg);
+    }
+
+@media(max-width:768px) {
+    .btn-imageTests {
+        margin-top: 8px;
+    }
+}
+
+.btn-imageInvo {
+    margin-right: 2px;
+    float: left;
+    order: -100;
+    height: 2%;
+    width: 2%;
+    transition: transform 0.3s ease;
+}
+
+    .btn-imageInvo.rotated-downInv {
+        transform: rotate(90deg);
+    }
+
+@media(max-width:768px) {
+    .btn-imageInvo {
+        margin-top: 8px;
+    }
+}
+
+.btn-imagePay {
+    margin-right: 2px;
+    float: left;
+    order: -100;
+    height: 2%;
+    width: 2%;
+    transition: transform 0.3s ease;
+}
+
+    .btn-imagePay.rotated-downPay {
+        transform: rotate(90deg);
+    }
+
+@media(max-width:768px) {
+    .btn-imagePay {
+        margin-top: 8px;
+    }
+}
+/*  ============css for Status button End========*/
+/*============================================================================================*/
+
+/*--------------------------------------------------------------
+# Services
+--------------------------------------------------------------*/
+.services .icon-box {
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 40px 0;
+    background: #fff;
+    box-shadow: 0 10px 29px 0 rgba(68, 88, 144, 0.1);
+    transition: all 0.3s ease-in-out;
+    border-radius: 35px;
+    text-align: center;
+    border-bottom: 6px solid #fff;
+}
+
+    .services .icon-box:hover {
+        transform: translateY(-5px);
+        border-color: #5b38e8;
+    }
+
+.services .icon i {
+    font-size: 48px;
+    line-height: 1;
+    margin-bottom: 15px;
+    color: #5b38e8;
+}
+
+.services .title {
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+    .services .title a {
+        color: #111;
+    }
+
+.services .description {
+    font-size: 15px;
+    line-height: 28px;
+    margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Portfolio
+--------------------------------------------------------------*/
+.portfolio .portfolio-item {
+    margin-bottom: 30px;
+}
+
+.portfolio #portfolio-flters {
+    padding: 0;
+    margin: 0 0 35px 0;
+    list-style: none;
+    text-align: center;
+}
+
+    .portfolio #portfolio-flters li {
+        cursor: pointer;
+        margin: 0 15px 15px 0;
+        display: inline-block;
+        padding: 5px;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 20px;
+        color: #5b38e8;
+        margin-bottom: 5px;
+        transition: all 0.3s ease-in-out;
+    }
+
+        .portfolio #portfolio-flters li:hover,
+        .portfolio #portfolio-flters li.filter-active {
+            color: #eb5d1e;
+        }
+
+        .portfolio #portfolio-flters li:last-child {
+            margin-right: 0;
+        }
+
+.portfolio .portfolio-wrap {
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+    .portfolio .portfolio-wrap::before {
+        content: "";
+        background: rgba(122, 105, 96, 0.6);
+        position: absolute;
+        left: 100%;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        transition: all ease-in-out 0.3s;
+        z-index: 2;
+    }
+
+    .portfolio .portfolio-wrap img {
+        transition: 0.3s;
+        position: relative;
+        z-index: 1;
+    }
+
+    .portfolio .portfolio-wrap .portfolio-links {
+        opacity: 0;
+        left: 0;
+        right: 0;
+        top: calc(50% - 32px);
+        text-align: center;
+        z-index: 3;
+        position: absolute;
+        transition: all ease-in-out 0.3s;
+    }
+
+        .portfolio .portfolio-wrap .portfolio-links a {
+            color: #eb5d1e;
+            margin: 0 4px;
+            line-height: 0;
+            background-color: #fff;
+            padding-top: 6px;
+            padding-right: 1px;
+            border-radius: 50px;
+            text-align: center;
+            width: 32px;
+            height: 32px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+            .portfolio .portfolio-wrap .portfolio-links a i {
+                line-height: 0;
+                font-size: 20px;
+            }
+
+            .portfolio .portfolio-wrap .portfolio-links a:hover {
+                background: #eb5d1e;
+                color: #fff;
+            }
+
+    .portfolio .portfolio-wrap .portfolio-info {
+        opacity: 0;
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+        right: 0;
+        text-align: center;
+        z-index: 3;
+        transition: all ease-in-out 0.3s;
+    }
+
+        .portfolio .portfolio-wrap .portfolio-info h4 {
+            font-size: 20px;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .portfolio .portfolio-wrap .portfolio-info p {
+            color: #ffffff;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+    .portfolio .portfolio-wrap:hover::before {
+        left: 0;
+    }
+
+    .portfolio .portfolio-wrap:hover .portfolio-links {
+        opacity: 1;
+        top: calc(50% - 16px);
+    }
+
+    .portfolio .portfolio-wrap:hover .portfolio-info {
+        opacity: 1;
+        bottom: 0;
+    }
+
+/*--------------------------------------------------------------
+# Portfolio Details
+--------------------------------------------------------------*/
+.portfolio-details {
+    padding-top: 40px;
+}
+
+    .portfolio-details .portfolio-details-slider img {
+        width: 100%;
+    }
+
+    .portfolio-details .portfolio-details-slider .swiper-pagination {
+        margin-top: 20px;
+        position: relative;
+    }
+
+        .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background-color: #fff;
+            opacity: 1;
+            border: 1px solid #eb5d1e;
+        }
+
+        .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
+            background-color: #eb5d1e;
+        }
+
+    .portfolio-details .portfolio-info {
+        padding: 30px;
+        box-shadow: 0px 0 30px rgba(122, 105, 96, 0.08);
+    }
+
+        .portfolio-details .portfolio-info h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .portfolio-details .portfolio-info ul {
+            list-style: none;
+            padding: 0;
+            font-size: 15px;
+        }
+
+            .portfolio-details .portfolio-info ul li + li {
+                margin-top: 10px;
+            }
+
+    .portfolio-details .portfolio-description {
+        padding-top: 30px;
+    }
+
+        .portfolio-details .portfolio-description h2 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-details .portfolio-description p {
+            padding: 0;
+        }
+
+/*--------------------------------------------------------------
+# Team
+--------------------------------------------------------------*/
+.team {
+    background: #fff;
+    padding: 60px 0;
+}
+
+    .team .member {
+        text-align: center;
+        margin-bottom: 20px;
+        background: #343a40;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .team .member .member-info {
+            opacity: 0;
+            position: absolute;
+            bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            transition: 0.2s;
+        }
+
+        .team .member .member-info-content {
+            position: absolute;
+            left: 50px;
+            right: 0;
+            bottom: 0;
+            transition: bottom 0.4s;
+        }
+
+            .team .member .member-info-content h4 {
+                font-weight: 700;
+                margin-bottom: 2px;
+                font-size: 18px;
+                color: #fff;
+            }
+
+            .team .member .member-info-content span {
+                font-style: italic;
+                display: block;
+                font-size: 13px;
+                color: #fff;
+            }
+
+        .team .member .social {
+            position: absolute;
+            left: -50px;
+            top: 0;
+            bottom: 0;
+            width: 50px;
+            transition: left ease-in-out 0.3s;
+            background: rgba(78, 64, 57, 0.6);
+            text-align: center;
+        }
+
+            .team .member .social a {
+                transition: color 0.3s;
+                display: block;
+                color: #fff;
+                margin-top: 15px;
+            }
+
+                .team .member .social a:hover {
+                    color: #eb5d1e;
+                }
+
+            .team .member .social i {
+                font-size: 18px;
+                margin: 0 2px;
+            }
+
+        .team .member:hover .member-info {
+            background: linear-gradient(0deg, rgba(78, 64, 57, 0.95) 0%, rgba(78, 64, 57, 0.95) 15%, rgba(255, 255, 255, 0) 100%);
+            opacity: 1;
+            transition: 0.4s;
+        }
+
+        .team .member:hover .member-info-content {
+            bottom: 30px;
+            transition: bottom 0.4s;
+        }
+
+        .team .member:hover .social {
+            left: 0;
+            transition: left ease-in-out 0.3s;
+        }
+
+/*--------------------------------------------------------------
+# Contact Us
+--------------------------------------------------------------*/
+.contact .info {
+    border-top: 3px solid #5b38e8;
+    border-bottom: 3px solid #5b38e8;
+    padding: 30px;
+    background: #fff;
+    width: 100%;
+    box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);
+}
+
+    .contact .info i {
+        font-size: 20px;
+        color: #eb5d1e;
+        float: left;
+        width: 44px;
+        height: 44px;
+        background: #fdf1ec;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .contact .info h4 {
+        padding: 0 0 0 60px;
+        font-size: 22px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #7a6960;
+    }
+
+    .contact .info p {
+        padding: 0 0 10px 60px;
+        margin-bottom: 20px;
+        font-size: 14px;
+        color: #ab9d95;
+    }
+
+    .contact .info .email p {
+        padding-top: 5px;
+    }
+
+    .contact .info .social-links {
+        padding-left: 60px;
+    }
+
+        .contact .info .social-links a {
+            font-size: 18px;
+            display: inline-block;
+            background: #333;
+            color: #fff;
+            line-height: 1;
+            padding: 8px 0;
+            border-radius: 50%;
+            text-align: center;
+            width: 36px;
+            height: 36px;
+            transition: 0.3s;
+            margin-right: 10px;
+        }
+
+            .contact .info .social-links a:hover {
+                background: #eb5d1e;
+                color: #fff;
+            }
+
+    .contact .info .email:hover i,
+    .contact .info .address:hover i,
+    .contact .info .phone:hover i {
+        background: #5b38e8;
+        color: #fff;
+    }
+
+.contact .php-email-form {
+    width: 100%;
+    border-top: 3px solid #eb5d1e;
+    border-bottom: 3px solid #eb5d1e;
+    padding: 30px;
+    background: #fff;
+    box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);
+}
+
+    .contact .php-email-form .form-group {
+        padding-bottom: 8px;
+    }
+
+    .contact .php-email-form .error-message {
+        display: none;
+        color: #fff;
+        background: #ed3c0d;
+        text-align: left;
+        padding: 15px;
+        font-weight: 600;
+    }
+
+        .contact .php-email-form .error-message br + br {
+            margin-top: 25px;
+        }
+
+    .contact .php-email-form .sent-message {
+        display: none;
+        color: #fff;
+        background: #18d26e;
+        text-align: center;
+        padding: 15px;
+        font-weight: 600;
+    }
+
+    .contact .php-email-form .loading {
+        display: none;
+        background: #fff;
+        text-align: center;
+        padding: 15px;
+    }
+
+        .contact .php-email-form .loading:before {
+            content: "";
+            display: inline-block;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            margin: 0 10px -6px 0;
+            border: 3px solid #18d26e;
+            border-top-color: #eee;
+            -webkit-animation: animate-loading 1s linear infinite;
+            animation: animate-loading 1s linear infinite;
+        }
+
+    .contact .php-email-form input,
+    .contact .php-email-form textarea {
+        border-radius: 0;
+        box-shadow: none;
+        font-size: 14px;
+    }
+
+    .contact .php-email-form input {
+        height: 44px;
+    }
+
+    .contact .php-email-form textarea {
+        padding: 10px 12px;
+    }
+
+    .contact .php-email-form button[type=submit] {
+        background: #eb5d1e;
+        border: 0;
+        padding: 10px 24px;
+        color: #fff;
+        transition: 0.4s;
+        border-radius: 4px;
+    }
+
+        .contact .php-email-form button[type=submit]:hover {
+            background: #ef7f4d;
+        }
+
+@-webkit-keyframes animate-loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes animate-loading {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

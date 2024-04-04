@@ -1,0 +1,232 @@
+﻿@model IEnumerable<AmritsarClub.Models.Inquiry>
+@{
+    ViewBag.Title = "Inquiry_Quotation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+    .ribbon {
+
+        justify-content: right;
+        align-items: center;
+        position: relative;
+        background-color: #94a2b1;
+        color: white;
+        padding: 10px;
+    }
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        background-color: transparent;
+    }
+
+        .table th,
+        .table td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+
+    @@media (max-width: 575.98px) {
+        .table-responsive {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+        }
+
+            .table-responsive > .table {
+                margin-bottom: 0;
+                background-color: transparent;
+            }
+
+                .table-responsive > .table > thead > tr > th,
+                .table-responsive > .table > tbody > tr > th,
+                .table-responsive > .table > tfoot > tr > th,
+                .table-responsive > .table > thead > tr > td,
+                .table-responsive > .table > tbody > tr > td,
+                .table-responsive > .table > tfoot > tr > td {
+                    white-space: nowrap;
+                }
+
+            .table-responsive > .table-bordered {
+                border: 0;
+            }
+
+                .table-responsive > .table-bordered > thead > tr > th:first-child,
+                .table-responsive > .table-bordered > tbody > tr > th:first-child,
+                .table-responsive > .table-bordered > tfoot > tr > th:first-child,
+                .table-responsive > .table-bordered > thead > tr > td:first-child,
+                .table-responsive > .table-bordered > tbody > tr > td:first-child,
+                .table-responsive > .table-bordered > tfoot > tr > td:first-child {
+                    border-left: 0;
+                }
+
+                .table-responsive > .table-bordered > thead > tr > th:last-child,
+                .table-responsive > .table-bordered > tbody > tr > th:last-child,
+                .table-responsive > .table-bordered > tfoot > tr > th:last-child,
+                .table-responsive > .table-bordered > thead > tr > td:last-child,
+                .table-responsive > .table-bordered > tbody > tr > td:last-child,
+                .table-responsive > .table-bordered > tfoot > tr > td:last-child {
+                    border-right: 0;
+                }
+
+                .table-responsive > .table-bordered > tbody > tr:last-child > th,
+                .table-responsive > .table-bordered > tfoot > tr:last-child > th,
+                .table-responsive > .table-bordered > tbody > tr:last-child > td,
+                .table-responsive > .table-bordered > tfoot > tr:last-child > td {
+                    border-bottom: 0;
+                }
+    }
+</style>
+<div class="content-wrapper">
+    <h2 style="text-align:center">
+        <span>INQUIRY LIST</span>
+    </h2>
+    <div class="container-fluid ribbon">
+        <div class="row ml-2">
+            @using (Html.BeginForm("Inquiry_Quotation", "SaleAdmin"))
+            {
+
+            <div>
+                <input type="text" name="SearchText" id="SearchText" value="@ViewBag.SearchText" placeholder="Inquiry Code" />
+                <input class="btn btn-primary btn-info" type="submit" value="Search" />
+            
+                <select class="align-content-end" id="inquiryforquotation">
+                    <option>Select Type </option>
+                    <option value="All">All</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Approved">Approved</option>
+                </select>
+
+            </div>
+
+
+            }
+        </div>
+
+
+
+        </div>
+    
+   
+<div class="table-responsive">
+    @if (Model != null && Model.Count() > 0)
+    {
+        <table class="table table-bordered table-hover" style="width: 100%">
+            <tr>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Inquiry Code
+                </th>
+
+                <th>
+                    Inquiry Date
+                </th>
+                <th>
+                    Party Name
+                </th>
+                <th>
+                    Country
+                </th>
+                <th>
+                    Air Port
+                </th>
+                <th>
+                    Sea Port
+                </th>
+                <th>Details</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr style="font-size:11px;">
+                    @if (item.Status == "Pending")
+                    {
+                        <td style="background-color:#d11f1f">
+
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                    }
+                    else
+                    {
+                        <td style="background-color:#4cff00">
+
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+
+                    }
+
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.Party_Enq_Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EnquiryDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Party_Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.des_con)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.des_air)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.des_sea)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Item Details", "ItemListQuotation", "SaleAdmin", new { id = item.Party_Enq_Code }, new { @style = "color: Blue;" })
+                        @* @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                        @*  @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+
+        @Html.Partial("~/Views/Shared/_Pager.cshtml", (AmritsarClub.Models.Pager)ViewBag.Pager);
+
+    }
+    else
+    {
+        <div class="container pt-5 pb-5">
+            No Record Found!
+        </div>
+    }
+</div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('#inquiryforquotation').change(function () {
+            var selectedValue = $(this).val();
+            window.location.href = '/SaleAdmin/Inquiry_Quotation?selectedValue=' + selectedValue;
+            @*$.ajax({
+                url: '@Url.Action("Inquiry_Quotation", "SaleAdmin")',
+                type: 'GET',
+                data: { selectedValue: selectedValue},
+                success: function(result) {
+
+                },
+                error: function() {
+
+                    console.error('Error occurred.');
+                }
+            });*@
+        });
+    });
+</script>

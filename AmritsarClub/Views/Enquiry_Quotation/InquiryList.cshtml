@@ -1,0 +1,318 @@
+﻿@model IEnumerable<AmritsarClub.Models.Inquiry>
+
+@{
+    ViewBag.Title = "InquiryList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var customIdentity = (AmritsarClub.Models.CustomIdentity)Session["customIdentity"];
+}
+
+<style>
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1024px; /* Adjust as needed */
+        margin: 10px 20px; /* Center the buttons */
+        /*background-color:yellow;*/
+    }
+
+    .table-container {
+        width: 100%;
+        height: 500px;
+        overflow: auto; /* Enable scroll bars */
+        border: 1px solid #ccc; /* Optional: Add border for visual clarity */
+    }
+
+    thead {
+        position: sticky;
+        top: 0;
+        /* Optional: Add background color for visual clarity */
+    }
+
+    .update-button {
+        background-color: #9EA1D4; /* Add your desired background color here */
+    }
+
+    .custom-row {
+        height: 50px; /* Set your desired row height in pixels */
+    }
+
+    #resultTable td:nth-child(1), #resultTable th:nth-child(1) {
+        width: 50px; /* Set your desired width in pixels for the first column */
+    }
+
+    /* Set fixed pixel values for other columns as needed */
+    #resultTable td:nth-child(2), #resultTable th:nth-child(2) {
+        width: 100px; /* Set your desired width in pixels for the second column */
+    }
+
+    #resultTable td:nth-child(3), #resultTable th:nth-child(3) {
+        width: 100px; /* Set your desired width in pixels for the second column */
+    }
+
+    #resultTable td:nth-child(4), #resultTable th:nth-child(4) {
+        width: 100px; /* Set your desired width in pixels for the second column */
+    }
+
+    #resultTable td:nth-child(5), #resultTable th:nth-child(5) {
+        width: 100px; /* Set your desired width in pixels for the second column */
+    }
+
+    /*select {*/
+    /*appearance: none;*/
+    /*-webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: #3498db;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        select:hover {
+            background-color: #297db4;
+        }
+
+        select:focus {
+            outline: none;
+        }
+
+        select option {
+            background-color: #3498db;
+            color: #fff;
+        }*/
+    .form-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .or-line {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        width: 80%;
+    }
+
+        .or-line hr {
+            flex-grow: 1;
+            border: none;
+            height: 2px;
+            background-color: #ccc;
+        }
+
+    .or-text {
+        margin: 0 10px;
+        color: #555;
+    }
+
+    .ribbon {
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        position: relative;
+        background-color: #94a2b1;
+        color: white;
+        padding: 10px;
+    }
+    .table-responsive {
+        overflow-x: auto;
+    }
+
+    .table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        background-color: transparent;
+    }
+
+        .table th,
+        .table td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+
+    @@media (max-width: 575.98px) {
+        .table-responsive {
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            -ms-overflow-style: -ms-autohiding-scrollbar;
+        }
+
+            .table-responsive > .table {
+                margin-bottom: 0;
+                background-color: transparent;
+            }
+
+                .table-responsive > .table > thead > tr > th,
+                .table-responsive > .table > tbody > tr > th,
+                .table-responsive > .table > tfoot > tr > th,
+                .table-responsive > .table > thead > tr > td,
+                .table-responsive > .table > tbody > tr > td,
+                .table-responsive > .table > tfoot > tr > td {
+                    white-space: nowrap;
+                }
+
+            .table-responsive > .table-bordered {
+                border: 0;
+            }
+
+                .table-responsive > .table-bordered > thead > tr > th:first-child,
+                .table-responsive > .table-bordered > tbody > tr > th:first-child,
+                .table-responsive > .table-bordered > tfoot > tr > th:first-child,
+                .table-responsive > .table-bordered > thead > tr > td:first-child,
+                .table-responsive > .table-bordered > tbody > tr > td:first-child,
+                .table-responsive > .table-bordered > tfoot > tr > td:first-child {
+                    border-left: 0;
+                }
+
+                .table-responsive > .table-bordered > thead > tr > th:last-child,
+                .table-responsive > .table-bordered > tbody > tr > th:last-child,
+                .table-responsive > .table-bordered > tfoot > tr > th:last-child,
+                .table-responsive > .table-bordered > thead > tr > td:last-child,
+                .table-responsive > .table-bordered > tbody > tr > td:last-child,
+                .table-responsive > .table-bordered > tfoot > tr > td:last-child {
+                    border-right: 0;
+                }
+
+                .table-responsive > .table-bordered > tbody > tr:last-child > th,
+                .table-responsive > .table-bordered > tfoot > tr:last-child > th,
+                .table-responsive > .table-bordered > tbody > tr:last-child > td,
+                .table-responsive > .table-bordered > tfoot > tr:last-child > td {
+                    border-bottom: 0;
+                }
+    }
+</style>
+
+<div class="content-wrapper">
+    <h2 style="text-align:center">
+        <span>INQUIRY LIST</span>
+    </h2>
+    <div class="container-fluid ribbon">
+        <div class="container">
+            <div class="row">
+                <div class="justify-content-center">
+                    @using (Html.BeginForm("InquiryList", "Enquiry_Quotation"))
+                    {
+                        <span class="btn-group col-sm-12" style="display:flex;">
+                            <input type="text" name="SearchText" value="@ViewBag.SearchText" placeholder="Inquiry Code" />
+                            <input type="hidden" name="userID" value="@ViewBag.UserID" />
+                            <input class="p-1 ml-2 btn btn-primary btn-info" type="submit" value="Search" />
+
+                        </span>
+
+                    }
+
+                </div>
+
+            </div>
+        </div>
+        @*<button id="searchButton" class="btn btn-primary" style="background-Color: #9EA1D4;">Search Inquiry</button>*@
+        <a class="btn btn-primary" style="margin-left: 5px;" href="/Enquiry_Quotation/Inquiry" >Add New Inquiry</a>
+        @*<button id="toggleButton" class="btn btn-primary" style="background-Color: #9EA1D4;" disabled>Generate Inquiry</button>*@
+        <button id="InquiryListing" class="btn btn-primary" style="margin-left: 5px;;">Inquiry List</button>
+        @*<button id="UpdateAllButton" class="btn btn-primary" style="margin: 5px; background-Color: #9EA1D4;" title="Update Inquiry">Update Inquiry</button>*@
+        @*<button id="Inquiryhistory" class="btn btn-primary" style="margin: 5px; background-Color: #9EA1D4;" title="History" onclick="window.location.href='@Url.Action("InquiryHistory","Home")'">Inquiry History</button>*@
+        <button id="Quotation" class="btn btn-primary" style="margin-left: 5px;" title="History">Quotation</button>
+
+    </div>
+   
+    
+    @*<div class="col-sm-6 d-flex justify-content-end align-items-center">
+            <p class="mb-0">
+                <input class="p-1 ml-2 btn btn-sm btn-info" type="button" value="Create New" />
+
+            </p>
+        </div>*@
+<div class="table-responsive">
+    @if (Model != null && Model.Count() > 0)
+    {
+        <table class="table table-bordered table-hover" id="inquiryListtbl" style="border:1px solid lightblue;width:100%">
+            <tr>
+                <th>
+                    Status
+                </th>
+                <th>
+                    Inquiry Code
+                </th>
+                <th>
+                    Inquiry Date
+                </th>
+                <th>
+                    Country
+                </th>
+                <th>
+                    Air Port
+                </th>
+                <th>
+                    Sea Port
+                </th>
+                <th>Details</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @if (item.Status == "Pending")
+                    {
+                        <td style="background-color:#d11f1f">
+
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                    }
+                    else
+                    {
+                        <td style="background-color:#4cff00">
+
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+
+                    }
+
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.Party_Enq_Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EnquiryDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.des_con)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.des_air)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.des_sea)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Item Details", "InquiryItemList", new { id = item.Party_Enq_Code }, new { @style = "color: Blue;" })
+                        @* @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                        @*  @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+
+        @Html.Partial("~/Views/Shared/_Pager.cshtml", (AmritsarClub.Models.Pager)ViewBag.Pager);
+
+    }
+    else
+    {
+        <div class="container pt-5 pb-5">
+            No Record Found!
+        </div>
+    }
+</div>
+
+   
+
+</div>
+
+  

@@ -1,0 +1,234 @@
+﻿@model IEnumerable<AmritsarClub.Models.Product>
+
+@{
+    ViewBag.Title = "InquiryItemList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string partyCode = (string)Session["UserID"];
+}
+<style>
+    .ribbon {
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        position: relative;
+        background-color: #94a2b1;
+        color: white;
+        padding: 10px;
+    }
+    .table-responsive {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+@@media (max-width: 575.98px) {
+    .table-responsive {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+
+    .table-responsive > .table {
+        margin-bottom: 0;
+        background-color: transparent;
+    }
+
+    .table-responsive > .table > thead > tr > th,
+    .table-responsive > .table > tbody > tr > th,
+    .table-responsive > .table > tfoot > tr > th,
+    .table-responsive > .table > thead > tr > td,
+    .table-responsive > .table > tbody > tr > td,
+    .table-responsive > .table > tfoot > tr > td {
+        white-space: nowrap;
+    }
+
+    .table-responsive > .table-bordered {
+        border: 0;
+    }
+
+    .table-responsive > .table-bordered > thead > tr > th:first-child,
+    .table-responsive > .table-bordered > tbody > tr > th:first-child,
+    .table-responsive > .table-bordered > tfoot > tr > th:first-child,
+    .table-responsive > .table-bordered > thead > tr > td:first-child,
+    .table-responsive > .table-bordered > tbody > tr > td:first-child,
+    .table-responsive > .table-bordered > tfoot > tr > td:first-child {
+        border-left: 0;
+    }
+
+    .table-responsive > .table-bordered > thead > tr > th:last-child,
+    .table-responsive > .table-bordered > tbody > tr > th:last-child,
+    .table-responsive > .table-bordered > tfoot > tr > th:last-child,
+    .table-responsive > .table-bordered > thead > tr > td:last-child,
+    .table-responsive > .table-bordered > tbody > tr > td:last-child,
+    .table-responsive > .table-bordered > tfoot > tr > td:last-child {
+        border-right: 0;
+    }
+
+    .table-responsive > .table-bordered > tbody > tr:last-child > th,
+    .table-responsive > .table-bordered > tfoot > tr:last-child > th,
+    .table-responsive > .table-bordered > tbody > tr:last-child > td,
+    .table-responsive > .table-bordered > tfoot > tr:last-child > td {
+        border-bottom: 0;
+    }
+}
+</style>
+<div class="content-wrapper">
+    <h2 style="text-align:center">
+        <span>INQUIRY ITEM LIST</span>
+    </h2>
+    <div id="actionButtons" class="ribbon" style="">
+
+        @Html.ActionLink("Inquiry List", "InquiryList", new { userID = partyCode }, new { @class = "btn btn-primary", @style = "" })
+
+
+        <button onclick="printTable()" class="btn btn-primary" style="margin: 5px;">Print</button>
+        @*<button type="submit" onclick="location.href='@Url.Action("ExportToExcel", "YourController")'">Export to Excel</button>*@
+        @Html.ActionLink("Excel", "ExportToExcel", new { id = @ViewBag.patyEnqCode }, new { @class = "btn btn-primary", @style = "" })
+
+
+        @* <button onclick="exportToExcel()" class="btn btn-primary" style="background-Color: #9EA1D4;">Export to Excel</button>*@
+        <button onclick="exportToPDF()" class="btn btn-primary" style="margin-left: 5px;">Export to PDF</button>
+    </div>
+    <div class="table-responsive">
+        @if (Model != null && Model.Count() > 0)
+        {
+            <table class="table table-bordered table-hover" id="InquiryItemTable" style="border: solid 1px lightblue;">
+                <tr style="background-color:#ba84d1">
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.item_code)
+                    </th>*@
+                    <th>
+                        S. No.
+                        @*@Html.DisplayNameFor(model => model.Party_Enq_Code)*@
+                    </th>
+                    <th>
+                        Date
+
+                    </th>
+                    <th>
+                        Inquiry Status
+
+                    </th>
+
+                    <th>
+                        Item Name
+
+                    </th>
+                    <th>
+                        Dose Form
+                    </th>
+                    <th>
+                        Unit
+
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Size)
+                    </th>
+                    <th>
+                        Qty. Per Pack
+
+                    </th>
+                    <th>
+                        No of Pack
+
+                    </th>
+                    <th>
+                        Total Unit
+
+                    </th>
+                    <th>
+                        Image
+
+                    </th>
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.qtation_status)
+                    </th>*@
+                    @*<th>
+                        @Html.DisplayNameFor(model => model.item_status)
+                    </th>*@
+
+
+                </tr>
+                @{
+                    int serialNumber = 1;
+                }
+
+                @foreach (var item in Model)
+                {
+
+                    <tr>
+
+                        <td>
+                            @serialNumber
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Enquiry_Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Party_item_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.dsg_form)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.unit)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Size)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Qtydosg_unit_perpack)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.No_of_pack)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Total_unit)
+                        </td>
+                        <td>
+                            <img src="@($"data:image/*;base64,{item.Imagedata}")" height="40" width="40" alt="No Image Found" />
+
+                            @*  <img src="@item.Imagedata" height="40" width="40" alt="No Image Found" />*@
+
+                        </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.qtation_status)
+                        </td>*@
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.item_status)
+                        </td>*@
+
+
+
+                    </tr>
+                    serialNumber++;
+                }
+
+            </table>
+        }
+        else
+        {
+            <div class="container pt-5 pb-5">
+                No Record Found!
+            </div>
+        }
+    </div>
+   
+</div>

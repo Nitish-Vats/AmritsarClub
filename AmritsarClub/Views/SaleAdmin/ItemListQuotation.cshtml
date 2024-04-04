@@ -1,0 +1,1274 @@
+﻿@model IEnumerable<AmritsarClub.Models.ItemQuotation>
+
+@{
+    ViewBag.Title = "ItemListQuotation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #imageBox {
+        border: 1px solid #ccc;
+    }
+
+    .table-party {
+        border: 1px solid #ccc;
+        background-color: white;
+    }
+
+    .ribbon {
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        position: relative;
+        background-color: #333;
+        color: white;
+        padding: 10px;
+    }
+
+   
+
+    .selected-row {
+        background-color: #ddf79b; /* Change to your desired background color */
+    }
+
+    .table1 th:nth-child(5),
+    .table1 td:nth-child(5),
+    .table1 th:nth-child(7),
+    .table1 td:nth-child(7) {
+        position: sticky;
+        z-index: 1;
+    }
+    .table1 td:nth-child(5),
+    .table1 td:nth-child(7) {
+        background-color: #fff;
+    }
+
+
+
+    .table1 th:nth-child(5) {
+        left: 0;
+        width: 75px; /* Set the width of the column if necessary */
+        /*border-right: 1px solid #000000;
+        border-left: 1px solid #000000;*/
+    }
+
+    .table1 td:nth-child(5) {
+        left: 0;
+        border-right: 1px solid #000000;
+        border-left: 1px solid #000000;
+    }
+
+    .table1 th:nth-child(7) {
+        left: 75px; /* Adjust the left position based on the width of the previous column */
+        width: 70px; /* Set the width of the column if necessary 
+        border-right: 1px solid #000000;
+        border-left: 1px solid #000000;*/
+    }
+
+    .table1 td:nth-child(7) {
+        left: 75px; /* Adjust the left position based on the width of the previous column */
+        border-right: 1px solid #000000;
+        border-left: 1px solid #000000;
+    }
+
+  
+</style>
+@*<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">*@
+
+<div class="content-wrapper">
+
+
+
+    <section id="ItemList">
+
+        <h2 style="text-align:center">
+            <span>INQUIRY ITEM LIST</span>
+        </h2>
+        <div id="actionButtons" class="ribbon" style="">
+            @Html.ActionLink("Inquiry List", "Inquiry_Quotation", "SaleAdmin", new { @class = "btn btn-primary"})
+        </div>
+        <div id="InquiryDetails" class="table-result" style="position:relative;z-index:1;overflow:auto;">
+
+
+            @if (Model != null && Model.Count() > 0)
+            {
+                <table id="ItemTable" class="table table-bordered table-hover table1" style="overflow:auto;height: 75vh;font-family:Cambria, Georgia;">
+                    <tr>
+                        <th style="position: static;">
+                            Select
+                        </th>
+                        <th style="position: static;">
+                            Quotation Status
+                        </th>
+                        <th style="position: static;">
+                            Inquiry Code
+                        </th>
+                        <th style="position: static;">
+                            Item Code
+                        </th>
+                        <th style="position: static;">
+                            Item Name
+                        </th>
+                        <th style="position: static;">
+                            Item Type
+                        </th>
+                        <th style="position: static;">
+                            Dose Form
+                        </th>
+                        <th style="position: static;">
+                            Corr Gen Name
+                        </th>
+
+                        <th style="position: static;">
+                            Packing Type
+                        </th>
+                        <th style="position: static;">
+                            Size
+                        </th>
+                        <th style="position: static;">
+                            Unit
+                        </th>
+                        <th style="position: static;">
+                            Qty Per Pack
+                        </th>
+                        <th style="position: static;">
+                            No of Pack
+                        </th>
+                        <th style="position: static;">
+                            Total Unit
+                        </th>
+                        <th style="position: static;">
+                            Image
+                        </th>
+                        <th style="position: static;">
+                            Add Description
+                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.Proposed_Price)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ApprovedCost)
+                            </th>*@
+                        <th style="position: static;">
+                            Qty Shiper
+                        </th>
+                        <th style="position: static;">
+                            Wt. of Shiper
+                        </th>
+                        <th style="position: static;">
+                            Vol per Shiper
+                        </th>
+                        <th style="position: static;">
+                            Length
+                        </th>
+                        <th style="position: static;">
+                            Breadth
+                        </th>
+                        <th style="position: static;">
+                            Height
+                        </th>
+                        <th style="position: static;">
+                            Total Shiper
+                        </th>
+                        <th style="position: static;">
+                            Total Weight
+                        </th>
+                        <th style="position: static;">
+                            Total Volume
+                        </th>
+                        <th style="position: static;">
+                            Add Costing
+                        </th>
+                        <th style="position: static;">
+                            Formulation Cost
+                        </th>
+                        <th style="position: static;">
+                            Component Cost
+                        </th>
+                        <th style="position: static;">
+                            Unit Price
+                        </th>
+                        <th style="position: static;">
+                            Total Amount
+                        </th>
+                        <th style="position: static;">
+                            Total Amount in USD
+                        </th>
+                        <th style="position: static;">
+                            Update
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tbody>
+                            <tr style="font-size: 11px; max-height: 50px; overflow: hidden;">
+                                <td style="max-height: 50px; overflow: hidden;">
+                                    <input type="checkbox" id="itemcheck" class="row-checkbox" />
+                                </td>
+                                @if (item.QuotationStatus == "Quotation Is Not Given")
+                                {
+                                    <td style="background-color: #d11f1f; max-height: 100px; overflow: hidden; ">
+
+                                        @Html.DisplayFor(modelItem => item.QuotationStatus)
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td style="background-color: #4cff00; max-height: 100px; overflow: hidden; ">
+
+                                        @Html.DisplayFor(modelItem => item.QuotationStatus)
+                                    </td>
+
+                                }
+                                <td style="max-height: 50px; overflow: hidden; ">
+                                    @Html.DisplayFor(modelItem => item.InquiryCode)
+                                </td>
+                                <td style="max-height: 50px; overflow: hidden; ">
+                                    @Html.DisplayFor(modelItem => item.ItemCode)
+                                </td>
+                                <td style="max-height: 10px; overflow: hidden;">
+                                    @Html.DisplayFor(modelItem => item.PartyItemName)
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DropDownListFor(modelItem => item.ItemType, new SelectList(new[]
+                                    {
+                                        new SelectListItem { Text = "Existing", Value = "Existing" },
+                                        new SelectListItem { Text = "New", Value = "New" }
+                                    }, "Value", "Text"))
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.DrugDossageForm)
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.CorrGenName)
+                                </td>
+
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.PackingType)
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.Size)
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.Unit)
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.QtyPerPack)
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.NoOfPack)
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.TotalUnit)
+                                </td>
+                                <td style="height:50px;">
+                                    <a href="@($"data:image/*;base64,{item.Imagedata}")" target="_blank">
+                                        <img src="@($"data:image/*;base64,{item.Imagedata}")" height="40" width="40" alt="No Image Found" />
+                                    </a>
+                                </td>
+                                @*<td>
+                                        @Html.DisplayFor(modelItem => item.Proposed_Price)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ApprovedCost)
+                                    </td>*@
+                                <td style="height:50px;">
+                                    <input type="button" class="btn btn-primary description-btn" value="Description"/>
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.Qty_shipr)
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.WtOfShipr)
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.VolPershipr)
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.length)
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.breath)
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.height)
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.tot_shipr)
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.tot_wt)
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.tot_vol)
+                                </td>
+                                <td style="height:50px;">
+                                    <input type="button" class="btn btn-primary costing-btn" value="Costing"/>
+                                </td>
+
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.FormulationUnit)
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.ComponentPerUnit)
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.Ex_fact_price)
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.Total_val)
+                                </td>
+                                <td style="height:50px;">
+                                    @Html.DisplayFor(modelItem => item.Val_in_usd)
+                                </td>
+                                <td style="height:50px;">
+                                    @{
+                                        // Concatenate the two values into a single string
+                                        string combinedValues = $"{item.ItemCode}@{item.InquiryCode}";
+                                    }
+                                    <input type="button" class="btn btn-primary btn-update" href="/SaleAdmin/UpdateItem/id=@combinedValues" value="Update"/>
+                                   @* @Html.ActionLink("Update", "UpdateItem", "SaleAdmin", new { @class = "btn btn-primary", id = combinedValues })*@
+                                </td>
+                            </tr>
+                        </tbody>
+                    }
+
+                </table>
+            }
+            else
+            {
+                <div class="container pt-5 pb-5">
+                    No Record Found!
+                </div>
+            }
+
+        </div>
+        @Html.Partial("~/Views/Shared/_Pager.cshtml", (AmritsarClub.Models.Pager)ViewBag.Pager)
+    </section>
+
+    <section id="Description" style="display:none;">
+       
+            <h2 style="text-align:center">
+                <span>DESCRIPTION</span>
+            </h2>
+            <div id="actionButtons" class="ribbon" style="">
+                @Html.ActionLink("Inquiry List", "Inquiry_Quotation", "SaleAdmin", new { @class = "btn btn-primary" })
+            </div>
+          
+
+
+                <div class="row">
+
+                    <div class="table col-md-3 ml-0" style="background-color:lightgray; overflow:overlay; height: 30vh;font-family: Cambria, Georgia; font-size: 11px;">
+                        <table id="partylist" class="table table-bordered table-hover">
+
+                            <thead class="gradient-custom" style="position:sticky;">
+                                <tr>
+                                    <th style="position: sticky;">Parties Ordered Same Item </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div id="imageBox" class="col-md-3 .image-container">
+                        <canvas id="dynamicImage" src="" alt="Product Image"></canvas>
+                    </div>
+
+                </div>
+                <div id="OrderDetails" class="table-party" style="overflow:auto; height: 50vh; font-family: Cambria, Georgia; font-size: 11px;">
+
+                    <table id="orderDetail" class="table table-bordered table-hover">
+                        <thead class="gradient-custom" style="position:sticky;">
+                            <tr>
+                                <th style="position:sticky;"> Select                         </th>
+                                <th style="position:sticky;"> Work Order                     </th>
+                                <th style="position:sticky;"> Description Code               </th>
+                                <th style="position:sticky;"> Description                    </th>
+                                <th style="position:sticky;"> Party Code                </th>
+                                <th style="position:sticky;"> Pack Type                  </th>
+                                <th style="position:sticky;"> Qty Per Pack             </th>
+                                <th style="position:sticky;"> No. Unit Per Shipper                           </th>
+                                <th style="position:sticky;"> Gross Wt.                           </th>
+                                <th style="position:sticky;"> Gross Vol.                   </th>
+                                <th style="position:sticky;"> Size Per Shipper                   </th>
+                                <th style="position:sticky;"> Base Price                    </th>
+                                <th style="position:sticky;"> Price Per Unit                     </th>
+                                <th style="position:sticky;"> Currency          </th>
+                                <th style="position:sticky;"> Order Date</th>
+                                <th style="position:sticky;"> Assign Description                         </th>
+
+
+
+                                <!-- Add more columns as needed -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+
+                </div>
+        <br />
+
+                <input type="button" value="Back To List" class="btn btn-primary" style="margin-left:40%;" onclick="closepanel()" />
+
+
+
+
+   
+
+    </section>
+
+</div>
+<script>
+
+    $(document).ready(function () {
+        $('#ItemTable').on('click', '.description-btn', function () {
+            var row = $(this).closest('tr');
+
+            updateDescription(row);
+            // Perform tasks specific to the Description button
+
+        });
+
+        $('#ItemTable').on('click', '.costing-btn', function () {
+            var row = $(this).closest('tr');
+            AddCosting(row);
+           // var data1 = row.find('td:eq(0)').text();
+            //var data2 = row.find('td:eq(1)').text();
+
+
+        });
+    });
+
+    function updateDescription(row) {
+        const rowCells = row.find('td');
+        const dropdownSelectedValue = rowCells.eq(7).find('select').val();
+        $.ajax({
+            url: '/SaleAdmin/GetPartyListDescription?GenCode=' + dropdownSelectedValue,
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify({ GenCode: dropdownSelectedValue }),
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                $("#Description").show();
+                $("#ItemList").hide();
+                //console.log(data);
+                const tableBody = $('#partylist tbody');
+                tableBody.empty();
+                data.forEach(row => {
+                    const valueToDisplay = row.PARTY_NAME;
+                    const newRow = $('<tr>').append($('<td>').append($('<a>').text(valueToDisplay).css('background-color', '#eaeaea')));
+
+                    Object.values(row).forEach(value => {
+                        newRow.append($('<td>').text(value).hide());
+                    });
+
+
+                    tableBody.append(newRow);
+
+                });
+
+            },
+            error: function (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'So Sad!!',
+                    text: 'First Select the Row and then Correct Generic Name',
+                });
+
+
+            }
+        });
+
+    }
+
+    function AddCosting(row) {
+        var workOrder = sessionStorage.getItem("WorkOrder");
+        if (workOrder !== null) {
+            $.ajax({
+                url: '/SaleAdmin/GetCosting?WorkOrder=' + workOrder,
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify({ WorkOrder: workOrder }),
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+
+
+                    if (data != null) {
+                        $('#ItemTable input[type="checkbox"]').each(function (index, checkbox) {
+
+                            if ($(checkbox).is(':checked')) {
+                                // Get the closest row to the checked checkbox
+                                var row = $(checkbox).closest('tr');
+                                row.find('td:eq(26)').css('background-color', 'lightblue');
+                                row.find('td:eq(27)').css('background-color', 'lightblue');
+                                row.find('td:eq(28)').css('background-color', 'lightblue');
+                                row.find('td:eq(29)').css('background-color', 'lightblue');
+                                row.find('td:eq(30)').css('background-color', 'lightblue');
+
+                                // Example: Get the ID and Name from the checked row
+                                row.find('td:eq(26)').text(data['ComponentCosting']);
+                                row.find('td:eq(27)').text(data['FormulationCosting']);
+                                row.find('td:eq(28)').text(data['TotalCosting']);
+
+                                var total_unit = parseInt(row.find('td:eq(13)').text());
+                                var Tot_Val = total_unit / data['TotalCosting'];
+                                var Val_in_USD = Tot_Val / 75;
+
+
+                                row.find('td:eq(29)').text(Tot_Val);
+                                row.find('td:eq(30)').text(Val_in_USD);
+                            }
+                        })
+                    }
+                },
+                error: function (xhr, textStatus, errorThrown) {
+
+                    if (errorThrown === 'net::ERR_CERT_AUTHORITY_INVALID') {
+                        console.log('SSL certificate authority invalid.');
+
+                    }
+                    else {
+                        console.log('Other error: ' + errorThrown);
+                    }
+                }
+            });
+        }
+        else {
+            swal.fire({
+                title: "Error",
+                text: "Please Select Description First",
+                icon: "error"
+            });
+
+        }
+        
+
+
+
+    }
+
+    $(document).on('click', '#partylist tbody td', function () {
+        // Get the entire row when a cell is clicked
+        const clickedRow = $(this).closest('tr');
+
+        // Now you have the entire row, and you can access its data as needed
+        const rowData = [];
+        clickedRow.find('td').each(function () {
+            rowData.push($(this).text());
+        });
+
+        //console.log(rowData);
+
+        var DrugDossageForm = sessionStorage.getItem("DrugDossageForm");
+
+
+
+
+        var Username = "SampleUser";
+        var PasswordHash = "SamplePasswordHash";
+        var base64Credentials = btoa(Username + ":" + PasswordHash);
+        $.ajax({
+            
+            type: 'GET',
+            url: 'https://192.168.5.40/testapi/Demo/GetanotherImages?GEN_CODE=' + rowData[1] + '&Party_CODE=' + rowData[2],
+
+            //url: 'https://192.168.5.40/testapi/Demo/Get_ImageByPartyAndGenCode?GEN_CODE=' + rowData[3] + '&Party_CODE=' + rowData[2],
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            //data: JSON.stringify([{
+
+            //    "GEN_CODE": rowData[3],
+            //    "Party_CODE": rowData[2]
+
+            //}]),
+            headers: {
+                "Authorization": "Basic " + base64Credentials
+            },
+
+            success: function (data) {
+                //debugger;
+                //console.log(data);
+
+                var canvas = document.getElementById('dynamicImage');
+                var ctx = canvas.getContext('2d');
+                var img = new Image();
+                img.onload = function () {
+                    ctx.drawImage(img, 0, 0, 200, 150);
+                };
+                img.src = "data:image/*;base64," + data.image;
+
+
+
+                //var imgElement = document.getElementById("dynamicImage");
+                //imgElement.src = "data:image/jpeg;base64," + data.image;
+
+
+            },
+            error: function (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Image Not Found!!',
+                    text: 'No Image found' + error,
+                });
+
+
+            }
+        });
+
+
+
+
+        //$.ajax({
+        //    url: '/SaleAdmin/GetWOListtoAssign?party_code=' + rowData[2] + '&dsg_form=' + DrugDossageForm + '&gen_code=' + rowData[1],
+        //    type: 'POST',
+        //    dataType: 'json',
+        //    data: JSON.stringify({
+        //        party_code: rowData[2],
+        //        dsg_form: DrugDossageForm,
+        //        gen_code: rowData[1]
+        //    }),
+        //    contentType: "application/json; charset=utf-8",
+
+
+        $.ajax({
+            type: 'GET',
+            url: 'https://192.168.5.40/testapi/Demo/Get_DataByGenCodeLIst?party_code=' + rowData[2] + '&dsg_form=' + DrugDossageForm + '&gen_code=' + rowData[1],
+            /* url: 'https://192.168.5.40/testapi/Demo/Get_DatabyGenCodeList?GenCode=' + dropdownSelectedValue,*/
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify([{
+
+                "party_code": rowData[2],
+                "dsg_form": DrugDossageForm,
+                "gen_code": rowData[1]
+
+            }]),
+            headers: {
+                "Authorization": "Basic " + base64Credentials
+            },
+
+            success: function (data) {
+                //$("#partyorder").show();
+                //$("#inquiryserch").hide();
+
+                data = JSON.parse(data);
+                const tableBody = $('#orderDetail tbody');
+                tableBody.empty();
+
+                data.forEach(row => {
+                    const newRow = $('<tr>').addClass('custom-row');
+
+                    const checkbox = $('<input>').attr('type', 'checkbox').change(function () {
+
+                        handleCheckboxChange($(this), row);
+                    });
+                    const checkboxCell = $('<td>').append(checkbox);
+                    newRow.append(checkboxCell);
+
+                    Object.values(row).forEach(value => {
+                        newRow.append($('<td>').text(value));
+                    });
+
+                    const AssigndescriptionButton = $('<button>').text('Assign').css("font-size", "11px").addClass('btn btn-primary update-button').click(function () {
+                        AssignDescription(checkbox, row);
+
+                    });
+                    const buttonCellD = $('<td>').append(AssigndescriptionButton);
+                    newRow.append(buttonCellD);
+                    tableBody.append(newRow);
+                });
+
+            },
+            error: function (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'So Sad!!',
+                    text: 'No Work Order Found For this Party',
+                });
+
+
+            }
+        });
+
+    });
+    function handleCheckboxChange(checkbox, row) {
+        if (checkbox.prop('checked')) {
+           if (row) {
+                row.find('input[type="checkbox"]').prop('checked', false);
+            }
+
+       
+            row = checkbox.closest('tr');
+        } else {
+       
+            row = null;
+        }
+
+       
+
+    }
+
+
+    $(document).ready(function () {
+        // Handle row selection
+        $('#ItemTable').on('change', '.row-checkbox', function () {
+            var isChecked = $(this).prop('checked');
+
+            if (isChecked) {
+                $('.row-checkbox').not(this).prop('checked', false);
+
+                $('#ItemTable tbody tr').removeClass('selected-row');
+                // Enable editing of cells in selected row
+                $(this).closest('tr').addClass('selected-row');
+
+                const row = $(this).closest('tr');
+                //console.log(row);
+
+                enableEditItem(isChecked, row)
+
+
+                //$(this).closest('tr').find('td').each(function () {
+                //    $(this).addClass('editable-cell');
+                //    var value = $(this).text().trim();
+                //    $(this).html('<input type="text" class="editable-field" value="' + value + '" />');
+                //});
+            } else {
+
+                $(this).closest('tr').removeClass('selected-row');
+                const row = $(this).closest('tr');
+                var rowCells = row.find('td');
+                var edit16 = rowCells.eq(16);
+                edit16.attr('contenteditable', 'False');
+                var edit17 = rowCells.eq(17);
+                edit17.attr('contenteditable', 'False');
+                var edit18 = rowCells.eq(18);
+                edit18.attr('contenteditable', 'False');
+                var edit19 = rowCells.eq(19);
+                edit19.attr('contenteditable', 'False');
+                var edit20 = rowCells.eq(20);
+                edit20.attr('contenteditable', 'False');
+                var edit21 = rowCells.eq(21);
+                edit21.attr('contenteditable', 'False');
+                var edit22 = rowCells.eq(22);
+                edit22.attr('contenteditable', 'False');
+                var edit23 = rowCells.eq(23);
+                edit23.attr('contenteditable', 'False');
+                var edit24 = rowCells.eq(24);
+                edit24.attr('contenteditable', 'False');
+
+                var edit26 = rowCells.eq(26);
+                edit26.attr('contenteditable', 'False');
+                var edit27 = rowCells.eq(27);
+                edit27.attr('contenteditable', 'False');
+                var edit28 = rowCells.eq(28);
+                edit28.attr('contenteditable', 'False');
+                var edit29 = rowCells.eq(29);
+                edit29.attr('contenteditable', 'False');
+                var edit30 = rowCells.eq(30);
+                edit30.attr('contenteditable', 'False');
+                let button15 = rowCells.eq(15).find('input[type="button"]');
+                button15.attr('disabled', 'disabled');
+
+                let button25 = rowCells.eq(25).find('input[type="button"]');
+                button25.attr('disabled', 'disabled');
+
+
+
+
+
+            }
+        });
+    });
+
+    function AssignDescription(check, row) {
+        sessionStorage.setItem("WorkOrder", row.work_order_no);
+        sessionStorage.setItem("DescCode", row.DESC_CODE);
+
+        var Username = "SampleUser";
+        var PasswordHash = "SamplePasswordHash";
+        var base64Credentials = btoa(Username + ":" + PasswordHash);
+
+        $.ajax({
+            //url: '/SaleAdmin/GetDescription?WorkOrder=' + row.work_order_no,
+            //type: 'POST',
+            //dataType: 'json',
+            //data: JSON.stringify({ WorkOrder: row.work_order_no }),
+            //contentType: "application/json; charset=utf-8",
+
+
+
+            type: 'GET',
+            url: 'https://192.168.5.40/testapi/Demo/PackingListByWorkOrder?Work=' + row.work_order_no,
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify({ "WorkOrder": row.work_order_no }),
+            headers: {
+                "Authorization": "Basic " + base64Credentials
+            },
+
+            success: function (data) {
+
+                if (data != null) {
+                    //console.log(data.qty_per_ship);
+
+                    $('#ItemTable input[type="checkbox"]').each(function (index, checkbox) {
+
+                        if ($(checkbox).is(':checked')) {
+                            // Get the closest row to the checked checkbox
+                            var row = $(checkbox).closest('tr');
+                            row.find('td:eq(16)').css('background-color', 'lightblue');
+                            row.find('td:eq(17)').css('background-color', 'lightblue');
+                            row.find('td:eq(18)').css('background-color', 'lightblue');
+                            row.find('td:eq(19)').css('background-color', 'lightblue');
+                            row.find('td:eq(20)').css('background-color', 'lightblue');
+                            row.find('td:eq(21)').css('background-color', 'lightblue');
+                            row.find('td:eq(22)').css('background-color', 'lightblue');
+                            row.find('td:eq(23)').css('background-color', 'lightblue');
+                            row.find('td:eq(24)').css('background-color', 'lightblue');
+                            // Example: Get the ID and Name from the checked row
+                            row.find('td:eq(16)').text(parseFloat(data[0].qty_per_ship));
+                            row.find('td:eq(17)').text(parseFloat(data[0].gross_wt));
+                            row.find('td:eq(18)').text(parseFloat(data[0].vol_ship));
+                            row.find('td:eq(19)').text(data[0].length);
+                            row.find('td:eq(20)').text(data[0].breadth);
+                            row.find('td:eq(21)').text(data[0].height);
+                            var total_unit = parseInt(row.find('td:eq(13)').text());
+                            var shipr = total_unit / parseFloat(data[0].qty_per_ship);
+                            var tot_wt = parseFloat(data[0].gross_wt) * shipr;
+                            var tot_vol = shipr * parseFloat(data[0].vol_ship);
+                            row.find('td:eq(22)').text(shipr.toFixed(2));
+                            row.find('td:eq(23)').text(tot_wt.toFixed(2));
+                            row.find('td:eq(24)').text(tot_vol.toFixed(2));
+
+                            // row.find('td:eq(1)').text();
+                            $("#Description").hide();
+                            $("#ItemList").show();
+                            const tableBody = $('#orderDetail tbody');
+                            tableBody.empty();
+                            const tableBodyP = $('#partylist tbody');
+                            tableBodyP.empty();
+                            $('#imageBox').empty();
+                        }
+                    });
+                }
+                else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'So Sad!!',
+                        text: 'Select another record to assign!',
+                    });
+
+                }
+
+
+
+
+            },
+            error: function (xhr, textStatus, errorThrown) {
+
+                if (errorThrown === 'net::ERR_CERT_AUTHORITY_INVALID') {
+                    console.log('SSL certificate authority invalid.');
+
+                }
+                else {
+                    console.log('Other error: ' + errorThrown);
+                }
+            }
+        });
+
+
+
+
+
+    }
+
+    function enableEditItem(checkbox, row) {
+        // console.log(row);
+
+
+        var rowCells = row.find('td');
+        var edit16 = rowCells.eq(16);
+        edit16.attr('contenteditable', 'true');
+        var edit17 = rowCells.eq(17);
+        edit17.attr('contenteditable', 'true');
+        var edit18 = rowCells.eq(18);
+        edit18.attr('contenteditable', 'true');
+        var edit19 = rowCells.eq(19);
+        edit19.attr('contenteditable', 'true');
+        var edit20 = rowCells.eq(20);
+        edit20.attr('contenteditable', 'true');
+        var edit21 = rowCells.eq(21);
+        edit21.attr('contenteditable', 'true');
+        var edit22 = rowCells.eq(22);
+        edit22.attr('contenteditable', 'true');
+        var edit23 = rowCells.eq(23);
+        edit23.attr('contenteditable', 'true');
+        var edit24 = rowCells.eq(24);
+        edit24.attr('contenteditable', 'true');
+
+        var edit26 = rowCells.eq(26);
+        edit26.attr('contenteditable', 'true');
+        var edit27 = rowCells.eq(27);
+        edit27.attr('contenteditable', 'true');
+        var edit28 = rowCells.eq(28);
+        edit28.attr('contenteditable', 'true');
+        var edit29 = rowCells.eq(29);
+        edit29.attr('contenteditable', 'true');
+        var edit30 = rowCells.eq(30);
+        edit30.attr('contenteditable', 'true');
+        let button15 = rowCells.eq(15).find('input[type="button"]');
+        button15.removeAttr('disabled');
+
+        let button25 = rowCells.eq(25).find('input[type="button"]');
+        button25.removeAttr('disabled');
+
+        //var dropdownCell7 = rowCells.eq(7);
+        var dropdownCell6 = rowCells.eq(6);
+        var dropdownCell7 = rowCells.eq(7);
+        var dropdownCell8 = rowCells.eq(8);
+
+        //let dropdown6 = rowCells.eq(6).find('select');
+        //let corGenName = dropdown7.find('option:selected').text();
+
+
+        let dropdown7 = rowCells.eq(7).find('select');
+        let corGenName = dropdown7.find('option:selected').text();
+
+        let dropdown8 = rowCells.eq(8).find('select');
+        let packType = dropdown8.find('option:selected').text();
+
+        var dosform = rowCells.eq(6).text().trim();
+        sessionStorage.setItem("DrugDossageForm", dosform);
+
+        //editableCell.html($('<input>').attr('type', 'text').val(editableCell.text()));
+        dropdownCell7.empty();
+        dropdownCell8.empty();
+      
+        // Create a new select element
+        const selectElementDosage = $('<select>');
+        const selectElement = $('<select>');
+        const selectElementPack = $('<select>');
+        $.ajax({
+            url: '/SaleAdmin/GetCorGenName?DosForm=' + dosform,
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify({ DosForm: dosform }),
+            contentType: "application/json; charset=utf-8",
+
+
+            success: function (data) {
+
+                $.each(data, function (index, item) {
+                    const option = $('<option>', {
+                        value: item.gen_code,
+                        text: item.cor_gen_name
+                    });
+
+                    // Set the selected attribute for the matching option
+                    if (item.cor_gen_name === corGenName) {
+                        option.prop('selected', true);
+                    }
+                    selectElement.append(option);
+                });
+                //selectElement.text(row.CorrGenName);
+                //console.log(row.CorrGenName);
+                //console.log("Selected value:", selectElement.text());
+
+                dropdownCell7.append(selectElement);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+
+                if (errorThrown === 'net::ERR_CERT_AUTHORITY_INVALID') {
+                    console.log('SSL certificate authority invalid.');
+
+                }
+                else {
+                    console.log('Other error: ' + errorThrown);
+                }
+            }
+        });
+        $.ajax({
+            url: '/SaleAdmin/GetPackType?DosForm=' + dosform,
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify({ DosForm: dosform }),
+            contentType: "application/json; charset=utf-8",
+
+            success: function (data) {
+                //console.log(data);
+                $.each(data, function (index, item) {
+                    const option = $('<option>', {
+                        value: item.pack_code,
+                        text: item.pack_type
+                    });
+
+                    // Set the selected attribute for the matching option
+                    if (item.pack_type === packType) {
+                        option.prop('selected', true);
+                    }
+
+                    selectElementPack.append(option);
+                });
+                //selectElement.text(row.CorrGenName);
+                //console.log(row.CorrGenName);
+                //console.log("Selected value:", selectElement.text());
+
+                dropdownCell8.append(selectElementPack);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+
+                if (errorThrown === 'net::ERR_CERT_AUTHORITY_INVALID') {
+                    console.log('SSL certificate authority invalid.');
+
+                }
+                else {
+                    console.log('Other error: ' + errorThrown);
+                }
+            }
+        });
+        $.ajax({
+            url: '/Enquiry_Quotation/GetDoseForm',
+            type: 'POST',
+            contentType: 'application/json',
+            success: function (data) {
+                $.each(data, function (index, item) {
+                    const option = $('<option>', {
+                        value: item.dsg_code,
+                        text: item.dsg_form
+                    });
+
+                    // Set the selected attribute for the matching option
+                    if (item.dsg_form === dosform) {
+                        option.prop('selected', true);
+                    }
+
+                    selectElementDosage.append(option);
+
+                });
+                selectElementDosage.change(function () {
+                   
+                    var selectedText = $(this).find('option:selected').text();
+                    CorGenNameFu(selectedText, row);
+                    PackTypeFu(selectedText, row);
+                });
+                dropdownCell6.empty();
+                dropdownCell6.append(selectElementDosage);
+            },
+            error: function (error) {
+                console.error('Error fetching data:', error);
+            }
+        });    
+    }
+
+
+    function CorGenNameFu(selectedText, row) {
+        var rowCells = row.find('td');
+
+        var dropdownCell7 = rowCells.eq(7);
+        let dropdown7 = rowCells.eq(7).find('select');
+        let corGenName = dropdown7.find('option:selected').text();
+        dropdownCell7.empty();
+        const selectElement = $('<select>');
+        $.ajax({
+            url: '/SaleAdmin/GetCorGenName?DosForm=' + selectedText,
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify({ DosForm: selectedText }),
+            contentType: "application/json; charset=utf-8",
+
+
+            success: function (data) {
+
+                $.each(data, function (index, item) {
+                    const option = $('<option>', {
+                        value: item.gen_code,
+                        text: item.cor_gen_name
+                    });
+
+                    // Set the selected attribute for the matching option
+                    if (item.cor_gen_name === corGenName) {
+                        option.prop('selected', true);
+                    }
+                    selectElement.append(option);
+                });
+                //selectElement.text(row.CorrGenName);
+                //console.log(row.CorrGenName);
+                //console.log("Selected value:", selectElement.text());
+
+                dropdownCell7.append(selectElement);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+
+                if (errorThrown === 'net::ERR_CERT_AUTHORITY_INVALID') {
+                    console.log('SSL certificate authority invalid.');
+
+                }
+                else {
+                    console.log('Other error: ' + errorThrown);
+                }
+            }
+        });
+    }
+    function PackTypeFu(selectedText, row) {
+        var rowCells = row.find('td');
+        var dropdownCell8 = rowCells.eq(8);
+        let dropdown8 = rowCells.eq(8).find('select');
+        let packType = dropdown8.find('option:selected').text();
+        dropdownCell8.empty();
+        const selectElementPack = $('<select>');
+
+        $.ajax({
+            url: '/SaleAdmin/GetPackType?DosForm=' + selectedText,
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify({ DosForm: selectedText }),
+            contentType: "application/json; charset=utf-8",
+
+            success: function (data) {
+                //console.log(data);
+                $.each(data, function (index, item) {
+                    const option = $('<option>', {
+                        value: item.pack_code,
+                        text: item.pack_type
+                    });
+
+                    // Set the selected attribute for the matching option
+                    if (item.pack_type === packType) {
+                        option.prop('selected', true);
+                    }
+
+                    selectElementPack.append(option);
+                });
+                //selectElement.text(row.CorrGenName);
+                //console.log(row.CorrGenName);
+                //console.log("Selected value:", selectElement.text());
+
+                dropdownCell8.append(selectElementPack);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+
+                if (errorThrown === 'net::ERR_CERT_AUTHORITY_INVALID') {
+                    console.log('SSL certificate authority invalid.');
+
+                }
+                else {
+                    console.log('Other error: ' + errorThrown);
+                }
+            }
+        });
+    }
+
+
+    $(document).ready(function () {
+        $('.btn-update').click(function () {
+            var row = $(this).closest('tr');
+            //var id = row.data('id');
+            var QuotationStatus = row.find('td:eq(1)').text();
+            var InquiryCode = row.find('td:eq(2)').text();
+            var ItemCode = row.find('td:eq(3)').text();
+            var PartyItemName = row.find('td:eq(4)').text();
+            var ItemType = row.find('td:eq(5) select').val();
+            var DrugDossageForm = row.find('td:eq(6) select').val();
+            var CorrGenName = row.find('td:eq(7) select').val();
+            var PackingType = row.find('td:eq(8) select').val();
+            var Size = row.find('td:eq(9)').text();
+            var Unit = row.find('td:eq(10)').text();
+            var QtyPerPack = row.find('td:eq(11)').text();
+            var NoOfPack = row.find('td:eq(12)').text();
+            var TotalUnit = row.find('td:eq(13)').text();
+            var Qty_shipr = row.find('td:eq(16)').text();
+            var WtOfShipr = row.find('td:eq(17)').text();
+            var VolPershipr = row.find('td:eq(18)').text();
+            var length = row.find('td:eq(19)').text();
+            var breath = row.find('td:eq(20)').text();
+            var height = row.find('td:eq(21)').text();
+            var tot_shipr = row.find('td:eq(22)').text();
+            var tot_wt = row.find('td:eq(23)').text();
+           var tot_vol=row.find('td:eq(24)').text();
+           var FormulationUnit=row.find('td:eq(26)').text();
+           var ComponentPerUnit=row.find('td:eq(27)').text();
+           var Ex_fact_price=row.find('td:eq(28)').text();
+           var Total_val=row.find('td:eq(29)').text();
+           var Val_in_usd=row.find('td:eq(30)').text();
+
+
+
+            var data = {
+               
+                QuotationStatus: QuotationStatus,
+                InquiryCode: InquiryCode,
+                ItemCode: ItemCode,
+                PartyItemName: PartyItemName,
+                ItemType: ItemType,
+                DrugDossageForm: DrugDossageForm,
+                CorrGenName: CorrGenName,
+                PackingType: PackingType,
+                Size: Size,
+                Unit: Unit,
+                QtyPerPack: QtyPerPack,
+                NoOfPack: NoOfPack,
+                TotalUnit: TotalUnit,
+                Qty_shipr: Qty_shipr,
+                WtOfShipr: WtOfShipr,
+                VolPershipr: VolPershipr,
+                length: length,
+                breath: breath,
+                height: height,
+                tot_shipr: tot_shipr,
+                tot_wt: tot_wt,
+                tot_vol: tot_vol,
+                FormulationUnit: FormulationUnit,
+                ComponentPerUnit: ComponentPerUnit,
+                Ex_fact_price: Ex_fact_price,
+                Total_val: Total_val,
+                Val_in_usd: Val_in_usd
+               
+
+            };
+
+            $.ajax({
+                url: '@Url.Action("UpdateItem", "SaleAdmin")',
+                type: 'POST',
+                dataType: 'json',
+                data: JSON.stringify(data),
+                contentType: 'application/json; charset=utf-8',
+                success: function (result) {
+                    if (result.success == true) {
+                        swal.fire({
+                            title: "Success",
+                            text: "Row updated successfully",
+                            icon: "success",
+
+                            onClose: function () {
+                                // var userID = UserID; // Replace with your actual userID
+                                location.reload();
+                            }
+
+
+                        });
+                    }
+                    else {
+                        swal.fire({
+                            title: "Error",
+                            text: "No Row updated",
+                            icon: "error"
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    swal.fire({
+                        title: "Error",
+                        text: "Row Not updated",
+                        icon: "Error"
+                    });
+                }
+            });
+        });
+    });
+
+
+</script>

@@ -1,0 +1,573 @@
+﻿.searching {
+    background-color: #003a66;
+    padding: 12px;
+}
+
+    .searching .form-group {
+        margin-bottom: 0;
+    }
+
+    .searching .form-control, #Advanced-Searching .form-control {
+        display: block;
+        width: 100%;
+        height: 35px;
+        min-height: 35px;
+        padding: 5px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #ffffff;
+        background-color: rgba(255, 255, 255, 0);
+        background-clip: border-box;
+        border: 1px solid #ffffff;
+        border-radius: 0;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        border-width: 1px 1px 1px 1px;
+        border-spacing: 0px;
+        border-collapse: collapse;
+    }
+
+    .searching .btn {
+        text-align: center;
+        vertical-align: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        padding: 5px;
+        font-size: 14px;
+        line-height: 1.5;
+        border-radius: 0;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        height: 35px;
+        min-height: 35px;
+    }
+
+    .searching .row {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .searching select option {
+        color: #000;
+    }
+
+    .searching .row div[class^="col-"] {
+        padding: 0;
+    }
+
+    .searching .form-group .field-placeholder {
+        font-size: 11px;
+        position: absolute;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        color: #ffffff;
+        left: 8px;
+        padding: 0 8px;
+        -webkit-transition: transform 150ms cubic-bezier(0.4,0,0.2,1),opacity 150ms cubic-bezier(0.4,0,0.2,1);
+        transition: transform 150ms cubic-bezier(0.4,0,0.2,1),opacity 150ms cubic-bezier(0.4,0,0.2,1);
+        z-index: 1;
+        text-align: left;
+        width: 80%;
+        top: -8px;
+    }
+
+        .searching .form-group .field-placeholder span {
+            background: #013a65;
+            padding: 0px 8px;
+        }
+
+.form-control label {
+    height: 20px;
+    line-height: 1.5;
+    display: block;
+}
+
+.searching label {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.searching .btn-outline-primary {
+    color: #013a65;
+    border-color: #ffffff;
+    background: #fff;
+}
+
+
+.searching .label {
+    color: #fff;
+    font-size: 16px;
+    line-height: 25px;
+    cursor: pointer;
+    transition: 0.15s all ease-out;
+    margin-right: 12px;
+    vertical-align: middle;
+}
+
+    .searching .label::before {
+        content: "";
+        height: 20px;
+        width: 20px;
+        float: left;
+        border: 2px solid #fdfdfd;
+        transition: 0.15s all ease-out;
+        border-radius: 50%;
+        margin: 3px 5px 5px 0;
+    }
+
+#Advanced-Searching, .row.advanced {
+    margin-top: 15px;
+}
+
+    #Advanced-Searching .row:last-child {
+        margin-bottom: 0px;
+    }
+
+    #Advanced-Searching .row div[class^="col-"], .searching .row div[class^="col-"] {
+        padding: 0 3px !important;
+    }
+
+        #Advanced-Searching .row div[class^="col-"]:first-child, .searching .row div[class^="col-"]:first-child {
+            padding: 0 3px 0 0;
+        }
+
+        #Advanced-Searching .row div[class^="col-"]:last-child, .searching .row div[class^="col-"]:last-child {
+            padding: 0 0 0 3px;
+        }
+
+    #Advanced-Searching .row {
+        margin-bottom: 12px;
+    }
+
+/*searching-light*/
+
+.searching-light {
+    background-image: linear-gradient(to bottom, #ffffff 0%, #dff4ff 100%);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe5f3fa', GradientType=0);
+    padding: 10px;
+}
+
+    .searching-light .form-group {
+        margin-bottom: 0;
+        position: relative;
+    }
+
+    .searching-light .form-control, .searching-light #Advanced-Searching .form-control {
+        display: block;
+        width: 100%;
+        height: 28px;
+        min-height: 28px;
+        padding: 5px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.5;
+        /* background-color: rgba(255, 255, 255, 0); */
+        background-clip: border-box;
+        border: 1px solid #c1bbbb;
+        border-radius: 3px;
+        transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        border-width: 1px 1px 1px 1px;
+        border-spacing: 0px;
+        border-collapse: collapse;
+        color: #000000;
+    }
+
+    .searching-light textarea.form-control, .searching-light #Advanced-Searching textarea.form-control {
+        height: auto;
+    }
+
+    .searching-light .btn {
+        text-align: center;
+        vertical-align: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        padding: 5px;
+        font-size: 14px;
+        line-height: 1.5;
+        border-radius: 0;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        height: 35px;
+    }
+
+    .searching-light .row {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .searching-light select option {
+        color: #000;
+    }
+
+    .searching-light .row div[class^="col-"] {
+        padding: 0;
+    }
+
+    .searching-light .form-group .field-placeholder {
+        font-size: 12px;
+        position: absolute;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        color: #000000;
+        left: 0px;
+        padding: 0 8px;
+        -webkit-transition: transform 150ms cubic-bezier(0.4,0,0.2,1),opacity 150ms cubic-bezier(0.4,0,0.2,1);
+        transition: transform 150ms cubic-bezier(0.4,0,0.2,1),opacity 150ms cubic-bezier(0.4,0,0.2,1);
+        z-index: 1;
+        text-align: left;
+        width: 100%;
+        top: -7px;
+        line-height: 1.2;
+    }
+
+        .searching-light .form-group .field-placeholder span {
+            background: #ffffff;
+            padding: 0px 8px;
+            font-weight: 600;
+            color: #000;
+            border-radius: 20px;
+        }
+
+.form-control.multiple {
+    padding: 0;
+}
+
+    .form-control.multiple select.multiple, .form-control.multiple input.multiple {
+        border: none;
+        background: inherit;
+        height: 25px;
+        float: left;
+    }
+
+
+.searching-light label {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.searching-light .btn-outline-primary {
+    color: #000000;
+    border-color: #cccc;
+    background: #ccc;
+}
+
+
+
+.searching-light .label {
+    color: #4f4e4e;
+    font-size: 12px;
+    line-height: 23px;
+    cursor: pointer;
+    transition: 0.15s all ease-out;
+    margin-right: 12px;
+    font-weight: bold;
+}
+
+    .searching-light .label::before {
+        content: "";
+        height: 14px;
+        width: 14px;
+        float: left;
+        border: 2px solid #000000;
+        transition: 0.15s all ease-out;
+        border-radius: 50%;
+        margin: 3px 5px 3px 0;
+    }
+
+.searching-light #Advanced-Searching {
+    margin-top: 12px;
+}
+
+    .searching-light #Advanced-Searching .row:last-child {
+        margin-bottom: 0px;
+    }
+
+    .searching-light #Advanced-Searching .row div[class^="col-"], .searching-light .row div[class^="col-"] {
+        padding: 0 3px !important;
+    }
+
+        .searching-light #Advanced-Searching .row div[class^="col-"]:first-child, .searching-light .row div[class^="col-"]:first-child {
+            padding: 0 3px 0 0;
+        }
+
+        .searching-light #Advanced-Searching .row div[class^="col-"]:last-child, .searching-light .row div[class^="col-"]:last-child {
+            padding: 0 0 0 3px;
+        }
+
+    .searching-light #Advanced-Searching .row {
+        margin-bottom: 12px;
+    }
+
+@media(max-width:425px) {
+    .searching .form-group, .searching-light .form-group {
+        margin-bottom: 12px;
+    }
+
+    .searching-light #Advanced-Searching .row div[class^="col-"], .searching-light #Advanced-Searching .row div[class^="col-"]:first-child, .searching .row div[class^="col-"]:first-child, .searching-light #Advanced-Searching .row div[class^="col-"]:last-child, .searching .row div[class^="col-"]:last-child {
+        padding: 0;
+    }
+
+    .searching .btn, .searching-light .btn {
+        margin-bottom: 5px;
+    }
+
+    .searching-light div.form-control, .searching-light #Advanced-Searching div.form-control {
+        height: auto;
+    }
+
+       
+}
+
+@media(max-width:768px) {
+    .searching .form-group, .searching-light .form-group {
+        margin-bottom: 12px;
+    }
+}
+
+ul {
+    margin-bottom: 0;
+}
+
+.addMaster td.header {
+    box-shadow: none;
+}
+
+
+.searching-btn {
+    text-align: right;
+}
+
+.Select_Card_Type_td {
+    width: 250px;
+}
+
+.searching-light.page-light {
+    background: #e6f4fa;
+}
+
+    .searching-light.page-light .form-group {
+        margin-bottom: 12px;
+        background: #e6f4fa;
+        display: block;
+        float: left;
+        width: 100%;
+    }
+
+
+.searching-light .select2-container .select2-choice {
+    font-size: 0.875em;
+}
+
+.searching-light .select2-container.select2-container-multi .select2-choices .select2-search-field input {
+    font-size: 0.875em;
+    background-color: #FFFFFF;
+    color: #555555;
+    display: block;
+    font-size: 13px;
+    height: 34px;
+    padding: 6px 12px;
+    -webkit-transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    vertical-align: middle;
+}
+
+.searching-light .select2-container.select2-container-multi .select2-choices {
+    border-color: #ccc;
+}
+
+.searching-light .select2-container-multi .select2-choices {
+    background-image: none !important;
+    border-color: #e7ebee !important;
+    border-radius: 3px;
+}
+
+.searching-light .select2-container.select2-container-multi .select2-choices .select2-search-choice {
+    background: none repeat scroll 0 0 #3498db;
+    border: medium none;
+    border-radius: 4px;
+    box-shadow: none;
+    color: #fff;
+    font-size: 0.875em;
+    font-weight: 400;
+    line-height: 20px;
+    margin: 5px 0 5px 5px;
+}
+
+.searching-light .select2-container.select2-container-multi .select2-search-choice-close {
+    top: 8px;
+}
+
+.searching-light .select2-container-active .select2-choice,
+.searching-light .select2-container-active .select2-choices {
+    border-color: rgba(52, 151, 219, 0.6) !important;
+    border-radius: 3px 3px 0 0;
+}
+
+.searching-light .select2-container .select2-choice {
+    border-radius: 0 !important;
+    background: rgba(255, 255, 255, 0) !important;
+    border-color: rgba(231, 235, 238, 0) !important;
+    height: auto !important;
+    line-height: 1.2 !important;
+}
+
+    .searching-light .select2-container .select2-choice .select2-arrow {
+        border-radius: 0 !important;
+        background: rgba(238, 238, 238, 0) !important;
+        border-color: rgba(231, 235, 238, 0) !important;
+        width: 0px !important;
+    }
+
+        .searching-light .select2-container .select2-choice .select2-arrow b {
+            background-position: 3px 4px !important;
+        }
+
+.searching-light .select2-dropdown-open.select2-drop-above .select2-choice,
+.searching-light .select2-dropdown-open.select2-drop-above .select2-choices {
+    border-color: rgba(0, 0, 0, 0) rgba(52, 151, 219, 0.6) rgba(52, 151, 219, 0.6) !important;
+    border-radius: 0 0 3px 3px;
+}
+
+.searching-light .select2-drop.select2-drop-above.select2-drop-active {
+    border-top: 1px solid rgba(52, 151, 219, 0.6) !important;
+}
+
+.searching-light .select2-drop-active {
+    border-color: rgba(52, 151, 219, 0.6) rgba(52, 151, 219, 0.6) !important;
+}
+
+.searching-light .select2-container .select2-choice > .select2-chosen {
+    font-size: 14px;
+}
+
+.searching-light .select2-container-active .select2-choice, .searching-light .select2-container-active .select2-choices {
+    border: none;
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+
+
+.searching-light input[type="button"], .searching-light input.btn {
+    height: 28px;
+    min-height: 28px;
+    line-height: 1;
+    border: 2px solid #0c5486;
+    background: #fff;
+    color: #0c5486;
+    border-radius: 5px;
+    padding: 5px;
+    width: auto;
+}
+
+    .searching-light input[type="button"]:hover, .searching-light input.btn:hover {
+        background: #0c5486;
+        color: #ffffff;
+    }
+
+.searching-light.page-light .field-placeholder span {
+    background: #e6f4fa;
+}
+
+.row.form-page-light {
+    padding: 20px 0 0 0;
+    border: 1px solid #0c5486;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+label.form-page-light-label {
+    position: absolute;
+    top: -5px;
+    left: 5px;
+    font-size: 12px;
+    background: #e6f4fa;
+    font-weight: 600;
+    padding: 0 5px;
+    color: #ff7600;
+}
+
+.searching-light.page-light .form-control {
+    border: 1px solid #484848;
+}
+/*table{
+    border-collapse: separate !important;
+    border-spacing: 0px !important;
+    table-layout: fixed !important;
+}*/
+.dataTables_wrapper.dt-bootstrap4.no-footer {
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+
+#cssmenu {
+    z-index: 999 !important;
+}
+
+.center {
+    text-align: center;
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: #e9ecef;
+    opacity: 1;
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: #F5F5F5;
+    opacity: 1;
+}
+
+.form-control.mandatory:disabled, .form-control.mandatory[readonly] {
+    background: rgb(255,204,204);
+}
+
+.infographic-box .headline {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+th.no_sorting.sorting_asc:before, th.no_sorting.sorting_asc:after {
+    display: none !important;
+}
+
+div#ui-datepicker-div {
+    position: fixed !important;
+}
+
+.PopUp_container {
+    background: #fff;
+}
+
+
+
+.dataTables_length {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 10px;
+    float: none;
+}
+
+.dataTables_filter {
+    float: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: 10px;
+}
+
+.footer_desktop div.dataTables_paginate {
+    text-align: center;
+}
+
+div.dataTables_wrapper div.dataTables_info {
+    padding-top: 7px !important;
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+    margin-right: 10px !important;
+}

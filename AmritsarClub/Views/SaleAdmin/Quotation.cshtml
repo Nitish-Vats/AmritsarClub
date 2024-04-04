@@ -1,0 +1,217 @@
+﻿
+@{
+    ViewBag.Title = "Quotation";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<style>
+    thead th {
+        background: linear-gradient(to right, rgba(172, 135, 197), rgba(172, 135, 197));
+    }
+
+
+    #imageBox {
+        border: 1px solid #ccc;
+    }
+
+    .table-party {
+        border: 1px solid #ccc;
+        background-color: white;
+    }
+
+    thead th {
+        background: linear-gradient(to right, rgba(172, 135, 197), rgba(172, 135, 197));
+    }
+</style>
+<div class="content-wrapper">
+
+
+
+    <section class="container-fluid" id="inquiryserch">
+        <div class="form-group row">
+            <div class="col-md-7">
+                <label for="Searchparty" style="margin:10px; font-size:11px;">SELECT PARTY NAME <sup style="color:red;font-size:15px;">*</sup> </label>
+                <select id="Searchparty" style="font-size: 11px;"></select>
+            </div>
+            <div class="col-md-3">
+                <label for="Searchinquiry" style="margin: 10px; font-size: 11px;">SELECT INQUIRY CODE</label>
+                <select id="Searchinquiry" style="font-size: 11px;">
+                    <option>Select Inquiry Code</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label for="Searchinquiry" style="margin: 10px;font-size: 11px;">SELECT TYPE</label>
+                <select id="SearchAllpendinginquiry" style="font-size: 11px;">
+                    <option>Select Type </option>
+                    <option value="All">All</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Approved">Approved</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="form-group row">
+
+
+
+            <div class="col-md-5">
+                <label for="Searchdosewise" style="margin: 10px; font-size: 11px;">SELECT DOSAGE FORM</label>
+                <select id="Searchdosewise" style="margin-top:10px; font-size: 11px;"></select>
+
+            </div>
+            <div class="form-group col-md-7">
+                <label for="startDate" style="margin: 10px; font-size: 11px;">From Date:</label>
+                <input type="date" id="startDate" style="font-size: 11px;">
+
+                <label for="endDate" style="margin: 10px; font-size: 11px;">To Date:</label>
+                <input type="date" id="endDate" style="font-size: 11px;">
+
+                <button class="btn btn-primary" style="margin: 5px; background-Color: #9EA1D4; font-size: 11px;" onclick="getDateRange()">Get Inquiry</button>
+
+            </div>
+        </div>
+
+
+    </section>
+
+    <section id="outputtable">
+        <div id="divLoader" style="display: none;">
+
+            <img src="~/Content/img/Hourglass.gif" style="text-align:center" alt="Loader" />
+
+        </div>
+        <div id="InquiryDetails" class="table-result" style="position:relative;z-index:1;">
+
+            <table id="resultTable" class="table" border="1" style="overflow:auto;height: 50vh;font-family:Cambria, Georgia;font-size:11px;">
+                <thead>
+                    <tr>
+                        <th> Select                         </th>
+                        <th> Quotation Status               </th>
+                        <th> Inquiry Code                   </th>
+                        <th> Item Code                      </th>
+                        <th> Party Item Name                </th>
+                        <th> Item Type                      </th>
+                        <th> Corr Gen Name                  </th>
+                        <th> Drug Dossage Form              </th>
+                        <th> Size                           </th>
+                        <th> Unit                           </th>
+                        <th> Packing Type                   </th>
+                        <th> Qty Per Pack                   </th>
+                        <th> No Of Pack                     </th>
+                        <th> Total Unit                     </th>
+                        <th> Party Proposed Price           </th>
+                        <th> Approved Price Per Unit        </th>
+                        <th> Add Description                </th>
+                        <th>Quantity Per Shipr</th>
+                        <th>Weight of Shipr</th>
+                        <th>Volume Per Shipr</th>
+                        <th>Length</th>
+                        <th>Breadth</th>
+                        <th>Height</th>
+                        <th>Total Shipr</th>
+                        <th>Total Weight</th>
+                        <th>Total Volume</th>
+                        <th>Add Costing</th>
+                        <th>Formulation Cost Per Unit</th>
+                        <th>Comonent Cost Per Unit</th>
+                        <th>Unit Price</th>
+                        <th>Total Value</th>
+                        <th>Value in USD</th>
+                        <th> update                         </th>
+
+
+
+
+                        <!-- Add more columns as needed -->
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+    </section>
+
+    <section id="Description" style="display:none;">
+        <div class="card">
+            <div class="card-title">
+                <CENTER>
+                    <span>DESCRIPTION</span>
+                </CENTER>
+            </div>
+
+            <section id="partyorder" class="container-fluid" style="width:100%;">
+
+
+                <div class="row">
+
+                    <div class="table-party col-md-2" style="background-color: white; overflow:auto; height: 30vh;font-family: Cambria, Georgia; font-size: 11px;">
+                        <table id="partylist" class="table">
+
+                            <thead class="gradient-custom" style="position:sticky;">
+                                <tr>
+                                    <th>Parties Ordered Same Item </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                        @*<label for="Searchparty" style="margin: 10px;">SELECT PARTY NAME <sup style="color:red;font-size:20px;">*</sup> </label>
+                            <select id="Searchsameorderparty" style="margin:10px;"></select>*@
+                    </div>
+                    <div id="imageBox" class="col-md-2 .image-container">
+                        <canvas id="dynamicImage" src="" alt="Product Image"></canvas>
+                    </div>
+
+                </div>
+                <div id="OrderDetails" class="table-party" style="overflow:auto; height: 50vh; font-family: Cambria, Georgia; font-size: 11px;">
+
+                    <table id="orderDetail" class="table">
+                        <thead class="gradient-custom" style="position:sticky;background-color:cornflowerblue">
+                            <tr>
+                                <th> Select                         </th>
+                                <th> Work Order                     </th>
+                                <th> Description Code               </th>
+                                <th> Description                    </th>
+                                <th> Party Code                </th>
+                                <th> Pack Type                  </th>
+                                <th> Qty Per Pack             </th>
+                                <th> No. Unit Per Shipper                           </th>
+                                <th> Gross Wt.                           </th>
+                                <th> Gross Vol.                   </th>
+                                <th> Size Per Shipper                   </th>
+                                <th> Base Price                    </th>
+                                <th> Price Per Unit                     </th>
+                                <th> Currency          </th>
+                                <th> Order Date</th>
+                                <th> Assign Description                         </th>
+
+
+
+                                <!-- Add more columns as needed -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+                <input type="button" value="close" onclick="closepanel()" />
+
+            </section>
+
+
+
+        </div>
+
+    </section>
+</div>
+
+

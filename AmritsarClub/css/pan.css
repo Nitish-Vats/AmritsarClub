@@ -1,0 +1,121 @@
+        .panWrapper {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color:rgba(255, 255, 255, 0.7);
+        z-index: 99999;
+        left: 0;
+        top: 0;
+        display: none;
+        cursor: move;
+        }
+
+        .panWrapper * {
+        -moz-user-select: -moz-none;
+
+        -webkit-user-select: none;
+
+        user-select: none;
+        }
+
+        .panWrapper a.controls {
+        background-size: 100%;
+        width: 32px;
+        height: 32px;
+        display: block;
+        position: absolute;
+        left: 50%;
+        z-index: 99999;
+        bottom: 30px;
+        cursor: pointer;
+        }
+
+
+        .panWrapper .in:focus, .panWrapper .in:hover {
+        color: #fff;
+        text-decoration: none;
+        opacity: 1;
+        background: #3596dc;
+        }
+
+        .panWrapper a.controls.in {
+        background-image: url('../Images/zoomIn.png');
+        margin-left: -30px;
+        border-radius: 20px;
+        background-size: contain;
+
+        }
+
+
+        
+
+
+        .panWrapper a.controls.out {
+
+        background-image: url('../Images/zoomOut.png');  
+        margin-left: 30px;
+        border-radius: 20px;
+
+        }
+
+        .out:focus, .out:hover {
+        color: #fff;
+        text-decoration: none;
+        opacity: 1;
+        background: #3596dc;
+        }
+
+        /*.panWrapper a.controls.close {
+
+        background-image: url('../Images/closebtn.png');
+        left: auto;
+        right: 30px;
+        top: 30px;
+        }*/
+
+        .panWrapper .loading {
+        z-index:99999;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin: -50px 0 0 -50px;
+        width: 100px;
+        height: 100px;
+        background-image: url(img/loading.gif);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        display: block;
+        }
+
+        .panWrapper img {
+
+        position: absolute;
+        max-width: 500%;
+        left: 180.5px;
+        top: 38px;
+        border-radius:14px;
+        }
+
+
+        /*.panWrapper a.controls.close {
+        background-image: url(img/close.png);
+        left: auto;
+        right: 30px;
+        top: 30px;
+
+        #dc354b
+        }*/
+
+        .panWrapper a.controls.close {
+        background-image: url('../Images/closebtn.png');
+        left: auto;
+        right: 30px;
+        top: 30px;
+        width: 33px;
+        border-radius: 6px;
+        }
+
+
+
+

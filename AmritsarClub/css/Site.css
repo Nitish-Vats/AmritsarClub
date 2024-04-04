@@ -1,0 +1,73 @@
+﻿/* vSMS Grid CSS*/
+/* End of vSMS Grid CSS*/
+.V3MGrid {font-family: Arial, Helvetica, sans-serif;font-size: 11px;position: relative;/*border: 1px solid #d4e5ed;*/overflow: hidden;color: #000000;/*text-transform:capitalize;*/}
+    .V3MGrid .headerTd { vertical-align: top; height: 25px; }
+
+    .V3MGrid .headerTable th {background: #286f9e url(images/fhbg.gif) repeat-x bottom;background-color: #286f9e;position: relative;border: 1px solid #286f9e;overflow: hidden;height: 27px;padding: 2px;color: #ffffff;vertical-align: middle;line-height: 22px;font-size: 12px;}
+
+    .V3MGrid table.bodyTable { /*border: 1px solid #ccc;
+    border-top: 0px;
+    background: #fff;
+    overflow: auto;
+    position: relative;*/ }
+
+        .V3MGrid table.bodyTable tr td {height: 27px;border-top: 0px;vertical-align: middle;}
+
+    .V3MGrid .bodyTable tr.selectedrow td { background-color: #fffdbc; /*background-color: #F4FF9A;*/ background-color: #FFECB3; }
+
+    .V3MGrid table tr:hover td { background-color: #FFECB3; /*cursor:pointer;
+      background-color: #fff2c3;cursor:pointer;*/ color: #000000; }
+
+
+
+
+    .V3MGrid .bodyTable tr { border: 1px solid rgba(40, 111, 158, 0.15); border-left: 0px solid rgba(40, 111, 158, 0.15); border-right: 0px solid rgba(40, 111, 158, 0.15); /*border:0px solid black;
+    border-bottom:1px solid black;
+    border-right:1px solid black;*/ }
+
+    .V3MGrid .bodyTable td {border: 1px solid rgba(40, 111, 158, 0.15);}
+
+    .V3MGrid .bodyTable .left {padding-left: 4px;text-align: left;line-height: 14px;/* white-space: normal; */}
+
+    .V3MGrid .bodyTable .center { padding: 0; text-align: center; }
+
+    .V3MGrid .bodyTable .right { padding-left: 0; padding-right: 4px; text-align: right; }
+
+    .V3MGrid th.sorting_asc { background: #8f8f8f no-repeat center right; text-align: center; color: #fff; }
+
+    .V3MGrid th.sorting_desc { background: #8f8f8f no-repeat center right; text-align: center; color: #fff; }
+
+    .V3MGrid th.sorting { background: #8f8f8f no-repeat center right; text-align: center; color: #fff; }
+
+    .V3MGrid th.sorting_asc_disabled { background: #8f8f8f no-repeat center right; text-align: left; color: #fff; }
+
+    .V3MGrid th.sorting_desc_disabled { background: #8f8f8f no-repeat center right; text-align: left; color: #fff; }
+
+    .V3MGrid th.cellHover { cursor: pointer; }
+
+.disableRow { background-color: #95A5A6; }
+
+.VTDetails td { font-family: Arial, Helvetica, sans-serif; font-size: 12px; position: relative; overflow: hidden; color: #000; border-bottom: 1px solid black; border-left: 1px solid black; padding-left: 5px; height: 20px; }
+
+.VTDetails table { font-family: Arial, Helvetica, sans-serif; font-size: 12px; position: relative; overflow: hidden; color: #000; /*border:0px solid black;*/ top: 0px; left: 0px; width: 548px; /*border-collapse: collapse;
+            border-spacing: 0px;*/ }
+
+.VTDetails2 td { font-family: Arial, Helvetica, sans-serif; font-size: 12px; position: relative; overflow: hidden; color: #000; border: 1px solid lightgrey; height: 18px; padding-left: 3px; padding-right: 3px; border-color: lightgrey; /*border-spacing: 0px;*/ }
+
+.VTDetails2 table {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    position: relative;
+    overflow: hidden;
+    color: #000; /*border:0px solid black;*/;
+    top: 0px;
+    left: 0px; /*border-collapse: collapse;
+            border-spacing: 0px;
+            cellspacing: "0";*/
+}
+
+.headerTD { /*background-color:#e5dddd;*/ background-color: whitesmoke; text-align: center; font-weight: bold; font-size: 14px; }
+
+.boldText { font-weight: bold; }
+
+.auto-style1 { width: 70px; height: 70px; }

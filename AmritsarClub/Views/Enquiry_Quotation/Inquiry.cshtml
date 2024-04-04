@@ -1,0 +1,1286 @@
+﻿
+@{
+    ViewBag.Title = "Inquiry";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var customIdentity = (AmritsarClub.Models.CustomIdentity)Session["customIdentity"];
+}
+
+<style>
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1024px; /* Adjust as needed */
+        margin: 10px 20px; /* Center the buttons */
+        /*background-color:yellow;*/
+    }
+
+    .table-container {
+        width: 100%;
+        height: 500px;
+        overflow: auto; /* Enable scroll bars */
+        border: 1px solid #ccc; /* Optional: Add border for visual clarity */
+    }
+
+    thead {
+        position: sticky;
+        top: 0;
+        /* Optional: Add background color for visual clarity */
+    }
+
+    .update-button {
+        background-color: #9EA1D4; /* Add your desired background color here */
+    }
+
+    .custom-row {
+        height: 50px; /* Set your desired row height in pixels */
+    }
+
+    #resultTable td:nth-child(1), #resultTable th:nth-child(1) {
+        width: 50px; /* Set your desired width in pixels for the first column */
+    }
+
+    /* Set fixed pixel values for other columns as needed */
+    #resultTable td:nth-child(2), #resultTable th:nth-child(2) {
+        width: 100px; /* Set your desired width in pixels for the second column */
+    }
+
+    #resultTable td:nth-child(3), #resultTable th:nth-child(3) {
+        width: 100px; /* Set your desired width in pixels for the second column */
+    }
+
+    #resultTable td:nth-child(4), #resultTable th:nth-child(4) {
+        width: 100px; /* Set your desired width in pixels for the second column */
+    }
+
+    #resultTable td:nth-child(5), #resultTable th:nth-child(5) {
+        width: 100px; /* Set your desired width in pixels for the second column */
+    }
+
+    /*select {*/
+    /*appearance: none;*/
+    /*-webkit-appearance: none;
+        -moz-appearance: none;
+        background-color: #3498db;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        color: #fff;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        select:hover {
+            background-color: #297db4;
+        }
+
+        select:focus {
+            outline: none;
+        }
+
+        select option {
+            background-color: #3498db;
+            color: #fff;
+        }*/
+    .form-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .or-line {
+        display: flex;
+        align-items: center;
+        text-align: center;
+        width: 80%;
+    }
+
+        .or-line hr {
+            flex-grow: 1;
+            border: none;
+            height: 2px;
+            background-color: #ccc;
+        }
+
+    .or-text {
+        margin: 0 10px;
+        color: #555;
+    }
+
+    .ribbon {
+        display: flex;
+        justify-content: right;
+        align-items: center;
+        position: relative;
+        background-color: #94a2b1;
+        color: white;
+        padding: 10px;
+    }
+</style>
+<div class="content-wrapper">
+    <h2 style="text-align:center">
+        <span>INQUIRY MANAGEMENT</span>
+    </h2>
+
+    <div class="container-fluid ribbon">
+        <button id="searchButton" class="btn btn-primary" style="margin-left: 5px;">Search Old Inquiry</button>
+        <button id="AddNew" class="btn btn-primary" style="margin-left: 5px;">Add New Inquiry</button>
+        @*<button id="toggleButton" class="btn btn-primary" style="background-Color: #9EA1D4;" disabled>Generate Inquiry</button>*@
+        <a id="InquiryListBtn" class="btn btn-primary" href="/Enquiry_Quotation/InquiryList?userId=@customIdentity.UserID" style="margin-left: 5px;">Inquiry List</a>
+        @*<button id="UpdateAllButton" class="btn btn-primary" style="margin: 5px; background-Color: #9EA1D4;" title="Update Inquiry">Update Inquiry</button>*@
+        @*<button id="Inquiryhistory" class="btn btn-primary" style="margin: 5px; background-Color: #9EA1D4;" title="History" onclick="window.location.href='@Url.Action("InquiryHistory","Home")'">Inquiry History</button>*@
+        <button id="Quotation" class="btn btn-primary" style="margin-left:5px;" title="History">Quotation</button>
+
+    </div>
+    <section class="container-fluid" id="inquiryserch">
+        @*<div class="or-line">
+                <hr>
+                <span class="or-text">Search Inquiry Code Wise</span>
+                <hr>
+            </div>*@
+
+
+        <div class="form-group row" style="margin-top:10px;">
+            <div class="col-md-3">
+                <label for="Searchinquiry" style="">SELECT TYPE</label>
+                <select id="SearchAllpendinginquiry" style="">
+                    <option value="">--Select Type-- </option>
+                    <option value="All">All</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Approved">Approved</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="Searchinquiry" style="">SELECT INQUIRY</label>
+                <select id="Searchinquiry" style="">
+                    <option value="">
+                        --Select Inquiry--
+                    </option>
+                </select>
+            </div>
+            <!--<select class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="Searchinquiry">-->
+            <!-- Options will be dynamically added here -->
+            <!--</select-->
+            <div class="col-md-5">
+                <label for="Searchinquirydosewise" style="">SELECT DOSE</label>
+                <select id="Searchinquirydosewise" style="">
+                    <option value="">
+                        --Select Dose Type--
+                    </option>
+                </select>
+
+            </div>
+
+        </div>
+        <div class="form-group col-md-12 row" style="margin-top:10px;">
+            <label for="startDate" style="margin-right:5px;">FROM DATE</label>
+            <input type="date" id="startDate">
+
+            <label for="endDate" style="margin-right: 5px;margin-left:10px;">TO DATE</label>
+            <input type="date" id="endDate">
+            <br>
+            <button class="btn btn-primary" style="margin: 5px;" onclick="getDateRange()">Get Inquiry</button>
+            <button class="btn btn-primary" style="margin: 5px;" onclick="clearAll()">Clear</button>
+            <span style="color:red;font-weight:bold;">*Note:- Clear Before Every Search</span>
+
+        </div>
+
+        @*<div class="or-line">
+                <hr>
+                <span class="or-text">Search Inquiry Dossage Form Wise</span>
+                <hr>
+            </div>*@
+
+        <div id="divLoader" style="display: none; text-align-last: center;margin-top:15%;">
+
+            <img src="~/Content/img/Hourglass.gif" alt="Loader" />
+
+        </div>
+
+        <div id="InquiryDetails" class="table-container" style="overflow-x: auto; display:none;position:relative;z-index:1;">
+            <div class="result-container">
+                <table id="resultTable" class="table table-bordered table-hover" border="1">
+                    <thead id="theadserch">
+                        <tr>
+                            <th> Sr No.                         </th>
+                            <th> Quotation Status               </th>
+                            <th> Inquiry Code                   </th>
+                            <th> Party Item Name                </th>
+                            <th> Drug Dossage Form              </th>
+                            <th> Size                           </th>
+                            <th> Unit                           </th>
+                            <th> Packing Type                   </th>
+                            <th> Qty Per Pack                   </th>
+                            <th> No Of Pack                     </th>
+                            <th> Total Unit                     </th>
+                            <th> Proposed Price                 </th>
+
+
+
+
+                            <!-- Add more columns as needed -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br />
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+
+
+    </section>
+    <section id="addPartydetails" style="display:none;">
+        <div class="container-fluid">
+            <form>
+                <div class="row">
+                    <div class="col-md-4">
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="input1" style="margin:0px 10px;">Party Code</label>
+                                <input type="text" id="input1" name="input1" class="form-control" value="@customIdentity.UserID" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="input2" style="margin: 0px 10px;">Inquiry Code</label>
+                                <input type="text" id="input2" name="input2" class="form-control" value="@ViewBag.PartyEnqCode" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="input3" style="margin: 0px 10px;">Inquiry Date</label>
+                                <input type="text" id="input3" name="input3" class="form-control" value="@DateTime.Now.Date" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="input4" style="margin: 0px 10px;">Destination Country</label>
+                                @Html.DropDownList("Country", new SelectList(ViewBag.country, "ID", "coun_name"), "--Select Country--", new { @class = "form-control", id = "country" })
+
+                                @*<select type="text" id="country" name="input4" class="form-control"></select>*@
+                            </div>
+
+                            <div class="form-group">
+                                <label for="input5" style="margin: 0px 10px;">Destination Airport</label>
+                                <select id="air" name="input5" class="form-control"></select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="input6" style="margin: 0px 10px;">Destination Seaport</label>
+                                <select id="sea" name="input6" class="form-control"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+        <button type="button" class="btn btn-primary align-content-center" style="margin-left:40%;" onclick="savePartyDetails()">Save Details</button>
+    </section>
+
+
+    <section id="partyitemsection" style="display:none;">
+
+        <!-- Big Text Area -->
+        <div class="container-fluid">
+
+            <span style="font-weight:900;margin:5px;">COPY ITEMS NAME IN TEXT AREA</span>
+            <br>
+            <textarea id="myTextArea" class="" rows="5" cols="150"></textarea>
+            <br>
+            <button onclick="copyTextToTable()" id="copy" class="btn btn-primary" style="margin: 5px;" title="Copy Item Name from text area to Table">Copy Text to Table</button>
+            <button onclick="manualEntry()" class="btn btn-primary" style="margin: 5px;" title="Add New Row">Manual Entry</button>
+            <img style="width:50px;height:30px;" src="~/Content/img/left-arrow.gif" /> Click to Add New Row
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button id="delete-row-button" class="btn btn-primary" style="margin: 5px;" title="Delete Row From Table">Delete Row</button>
+        </div>
+        <!-- Table Header -->
+        <span class="text-danger" style="margin-left:20px;">
+            *All the Fields are Mandatory
+        </span>
+        <div class="table-container" style="overflow-x: auto;">
+            <table class="table table-bordered table-hover" id="myTable" border="1">
+                <thead id="myTableHead" class="gradient-custom" style="position:sticky;">
+                    <tr style="background-color:#ba84d1">
+                        <th>Select</th>
+                        <th>Enquiry Code</th>
+                        <th>Enquiry Date</th>
+
+                        <th>Item No</th>
+                        <th>Party Item Name</th>
+                        @*<th>Item Status</th>*@
+
+                        <th>Drug Dosage Form</th>
+                        @*<th>Correct Generic Name</th>*@
+                        <th>Unit</th>
+
+                        <th>Size</th>
+                        <th>Qty Dosage Unit Per Pack</th>
+                        <th>No of Pack</th>
+
+                        <th>Total Unit</th>
+                        <th>Upload Image (If Available)</th>
+                        @*<th>Packing Type</th>*@
+                        @*<th>Suggested per Unit Price</th>*@
+                        @*<th>Suggested Total Price</th>*@
+                        @*<th>Save</th>
+                            <th>Update</th>*@
+
+                    </tr>
+                </thead>
+                <tbody id="myTableBody">
+                    <!-- Table content will go here -->
+                </tbody>
+            </table>
+        </div>
+        <br />
+        @*<div class="container-fluid">
+                <label for="totalSum">Total Suggested Amount:</label>
+                <input type="text" id="totalSum" disabled>INR
+            </div>*@
+        <br />
+        <div class="container-fluid">
+            <button id="saveAllButton" class="btn btn-primary" style="margin-left: 40%;" title="Save Inquiry for all the Items">Save All</button>
+        </div>
+        <br />
+        <div class="container-fluid">
+            <div id="newTableContainer"></div>
+            <div id="actionButtons" style="display: none;">
+                <button onclick="printTable()" class="btn btn-primary" style="margin: 5px; background-Color:#9EA1D4;">Print</button>
+                <button onclick="exportToExcel()" class="btn btn-primary" style="margin: 5px; background-Color: #9EA1D4;">Export to Excel</button>
+                <button onclick="exportToPDF()" class="btn btn-primary" style="margin: 5px; background-Color: #9EA1D4;">Export to PDF</button>
+            </div>
+        </div>
+    </section>
+
+
+</div>
+
+
+
+<script>
+    $('#country').change(function () {
+
+        var countryname = $('#country').val();
+        console.log(countryname)
+
+        getAirport(countryname);
+        getSeaPort(countryname);
+    });
+    function getAirport(countryname) {
+          $.ajax({
+                url: '@Url.Action("GetAirPort", "Enquiry_Quotation")',
+                type: 'POST',
+                data: JSON.stringify({ country: countryname }),
+                contentType: 'application/json',
+              success: function (data) {
+                  var ddl_PartyName = $('#air');
+                  //console.log(selectedItem);
+                  ddl_PartyName.empty().append($('<option>', { value: '', text: '--Select Airport--' }));
+                  $.each(data, function (index, item) {
+                      ddl_PartyName.append($('<option>', {
+                          value: item.dest_coun_code,
+                          text: item.dest_airport_name
+
+                      }));
+                  });
+              },
+              error: function (error) {
+                  console.error('Error fetching data:', error);
+              }
+            });
+    }
+    function getSeaPort(countryname) {
+           $.ajax({
+                url: '@Url.Action("GetSeaPort", "Enquiry_Quotation")',
+                type: 'POST',
+                data: JSON.stringify({ country: countryname }),
+                contentType: 'application/json',
+              success: function (data) {
+                  var SeaList = $('#sea');
+                  //console.log(selectedItem);
+                  SeaList.empty().append($('<option>', { value: '', text: '--Select Seaport--' }));
+                  $.each(data, function (index, item) {
+                      SeaList.append($('<option>', {
+                          value: item.seaport_code,
+                          text: item.dest_seaport
+
+                      }));
+                  });
+              },
+              error: function (error) {
+                  console.error('Error fetching data:', error);
+              }
+           });
+
+
+
+    }
+    document.getElementById('myTable').addEventListener('change', function (event) {
+        if (event.target.type === 'file') {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const imageData = e.target.result;
+                const imagePreview = event.target.parentNode.querySelector('img');
+                imagePreview.src = imageData;
+                imagePreview.width = 50;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    function manualEntry() {
+        document.getElementById("copy").disabled = true
+        let dateObj = new Date();
+        let month = String(dateObj.getMonth() + 1)
+            .padStart(2, '0');
+
+        let day = String(dateObj.getDate())
+            .padStart(2, '0');
+
+        let year = dateObj.getFullYear();
+        let output = day + '/' + month + '/' + year;
+
+        var tableBody = document.getElementById('myTableBody');
+        var i = tableBody.rows.length;
+        //console.log(i);
+        i = i + 1;
+        //console.log(i);
+
+
+
+        var newRow = document.createElement('tr');
+        newRow.className = i % 2 === 1 ? "even" : "odd";
+
+        for (var j = 0; j < 12; j++) {
+            var newCell = document.createElement('td');
+
+            if (j == 0) {
+                var checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                newCell.appendChild(checkbox);
+            }
+
+            else if (j == 1) {
+                setTimeout(EnqCode(newCell), 5000);
+            }
+            else if (j == 6) {
+
+                const dropdownList = document.createElement('select');
+                var unitId = 'unit_' + i;
+                dropdownList.id = unitId;
+                //console.log(dynamicId)
+                setTimeout(unit(unitId), 5000);
+                newCell.appendChild(dropdownList);
+            }
+
+
+
+            else if (j == 5) {
+
+
+
+                const dropdownList = document.createElement('select');
+                var dynamicId = 'ddl_UnitName_' + i;
+                dropdownList.id = dynamicId;
+                //console.log(dynamicId)
+
+                setTimeout(donothing(dynamicId), 5000);
+
+
+
+                newCell.appendChild(dropdownList);
+
+            }
+
+
+            else if (j === 8) {
+
+                const textbox10 = document.createTextNode('');
+                var textcellid = 'textCell10_' + i;
+                textbox10.id = textcellid;
+                newCell.appendChild(textbox10);
+                newCell.contentEditable = true;
+            }
+
+            else if (j === 9) {
+
+                const textbox11 = document.createTextNode('');
+                var textcellid = 'textCell11_' + i;
+                textbox11.id = textcellid;
+                newCell.appendChild(textbox11);
+                newCell.contentEditable = true;
+                newCell.addEventListener('input', updateTotalQty);
+            }
+
+            else if (j === 10) {
+
+                const textbox12 = document.createTextNode(0);
+                var textcellid = 'textCell12_' + i;
+                textbox12.id = textcellid;
+                newCell.appendChild(textbox12);
+                newCell.contentEditable = true;
+
+            }
+            else if (j === 4) {
+                newCell.contentEditable = true;
+                newCell.appendChild(document.createTextNode(''));
+            }
+            else if (j === 2) {
+
+                newCell.appendChild(document.createTextNode(output));
+            }
+            else if (j === 3) {
+                setTimeout(EnqItem(newCell, i), 5000);
+            } else if (j === 11) {
+                var fileInput = document.createElement('input');
+                fileInput.type = 'file';
+
+                // Set up event listener to handle file selection
+                fileInput.addEventListener('change', function (event) {
+                    var file = event.target.files[0];
+                    if (!file) return;
+
+                    // Create a FileReader to read the file
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        // Create an img element to display the selected image
+                        var img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.width = 50; // Set a fixed width for the image
+                        newCell.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                });
+
+                // Append the file input to the cell
+                newCell.appendChild(fileInput);
+            }
+
+            else {
+                newCell.contentEditable = true;
+                newCell.appendChild(document.createTextNode(''));
+            }
+
+            newRow.appendChild(newCell);
+
+        }
+        tableBody.appendChild(newRow);
+    }
+    function copyTextToTable() {
+        // Get the text area content
+        let dateObj = new Date();
+        let month = String(dateObj.getMonth() + 1)
+            .padStart(2, '0');
+
+        let day = String(dateObj.getDate())
+            .padStart(2, '0');
+
+        let year = dateObj.getFullYear();
+        let output = day + '/' + month + '/' + year;
+
+        var textAreaContent = document.getElementById('myTextArea').value;
+
+        // Split the text by lines
+        var lines = textAreaContent.split('\n');
+
+        // Get the table body element
+        var tableBody = document.getElementById('myTableBody');
+
+        // Clear existing table content
+        tableBody.innerHTML = '';
+
+
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i].trim();
+            if (lines !== '') {
+                var columns = line;
+                var newRow = document.createElement('tr');
+                newRow.className = i % 2 === 0 ? "even" : "odd";
+                for (var j = 0; j < 12; j++) {
+                    var newCell = document.createElement('td');
+                    if (j == 0) {
+                        var checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        newCell.appendChild(checkbox);
+                    }
+
+                    else if (j == 1) {
+                        setTimeout(EnqCode(newCell), 5000);
+                    }
+                    else if (j == 6) {
+
+                        const dropdownList = document.createElement('select');
+                        var unitId = 'unit_' + i;
+                        dropdownList.id = unitId;
+                        //console.log(dynamicId)
+                        setTimeout(unit(unitId), 5000);
+                        newCell.appendChild(dropdownList);
+                    }
+
+
+
+                    else if (j == 5) {
+
+
+
+                        const dropdownList = document.createElement('select');
+                        var dynamicId = 'ddl_UnitName_' + i;
+                        dropdownList.id = dynamicId;
+                        //console.log(dynamicId)
+
+                        setTimeout(donothing(dynamicId), 5000);
+
+
+
+                        newCell.appendChild(dropdownList);
+
+                    }
+
+
+                    else if (j === 8) {
+
+                        const textbox10 = document.createTextNode('');
+                        var textcellid = 'textCell10_' + i;
+                        textbox10.id = textcellid;
+                        newCell.appendChild(textbox10);
+                        newCell.contentEditable = true;
+                    }
+
+                    else if (j === 9) {
+
+                        const textbox11 = document.createTextNode('');
+                        var textcellid = 'textCell11_' + i;
+                        textbox11.id = textcellid;
+                        newCell.appendChild(textbox11);
+                        newCell.contentEditable = true;
+                        newCell.addEventListener('input', updateTotalQty);
+                    }
+
+                    else if (j === 10) {
+
+                        const textbox12 = document.createTextNode(0);
+                        var textcellid = 'textCell12_' + i;
+                        textbox12.id = textcellid;
+                        newCell.appendChild(textbox12);
+                        newCell.contentEditable = true;
+
+                    }
+
+                    else if (j === 4) {
+                        newCell.contentEditable = true;
+                        newCell.appendChild(document.createTextNode(columns));
+                    }
+                    else if (j === 2) {
+
+                        newCell.appendChild(document.createTextNode(output));
+                    }
+                    else if (j === 3) {
+
+                        setTimeout(EnqItem(newCell, i + 1), 5000);
+                    } else if (j === 11) {
+                        var fileInput = document.createElement('input');
+                        fileInput.type = 'file';
+
+                        // Set up event listener to handle file selection
+                        const imagePreview = document.createElement('img'); // Create an element for displaying the image
+
+
+
+                        // Append the file input to the cell
+                        newCell.appendChild(fileInput);
+                        newCell.appendChild(imagePreview);
+                    }
+
+                    else {
+                        newCell.contentEditable = true;
+                        newCell.appendChild(document.createTextNode(''));
+                    }
+
+                    newRow.appendChild(newCell);
+
+                }
+                tableBody.appendChild(newRow);
+            }
+
+        }
+
+
+    }
+    function updateTotalQty() {
+        // Get the current row
+        var row = this.parentNode;
+
+        // Get the values from qty_per_pack and no_of_pack cells
+        var qty_per_pack = parseFloat(row.cells[row.cells.length - 4].innerHTML) || 0;
+        var no_of_pack = parseFloat(row.cells[row.cells.length - 3].innerHTML) || 0;
+
+
+        // Calculate the TotalQty
+        var TotalQty = qty_per_pack * no_of_pack;
+
+        // Update the Suggested Total Price cell
+        row.cells[row.cells.length - 2].innerHTML = TotalQty;
+
+        //updateTotalSum();
+    }
+    function EnqItem(newCell, i) {
+
+        $.ajax({
+            url: '/Enquiry_Quotation/GetEnqCode',
+            type: 'POST',
+            contentType: 'application/json',
+            success: function (data) {
+                var enqItm = data + '/' + 'ITEM' + i;
+                newCell.appendChild(document.createTextNode(enqItm));
+            },
+            error: function (error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+    }
+    function EnqCode(newCell) {
+        $.ajax({
+            url: '/Enquiry_Quotation/GetEnqCode',
+            type: 'POST',
+            contentType: 'application/json',
+            success: function (data) {
+                if (data != null) {
+                    newCell.appendChild(document.createTextNode(data));
+                }
+                else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'So Sad!!',
+                        text: data,
+                    });
+                }
+            },
+            error: function (error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+    }
+
+    function unit(unitId) {
+
+        $.ajax({
+            url: '/Enquiry_Quotation/GetUnits',
+            type: 'POST',
+            contentType: 'application/json',
+            success: function (data) {
+                var units = $('#' + unitId);
+                units.empty().append($('<option>', { value: '', text: 'Select Unit' }));
+                $.each(data, function (index, item) {
+                    units.append($('<option>', {
+                        value: item.unit_code,
+                        text: item.unit
+
+                    }));
+                });
+            },
+            error: function (error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+    }
+    function donothing(dynamicId) {
+        $.ajax({
+            url: '/Enquiry_Quotation/GetDoseForm',
+            type: 'POST',
+            contentType: 'application/json',
+            success: function (data) {
+                var dose = $('#' + dynamicId);
+                dose.empty().append($('<option>', { value: '', text: 'Select Dosage Type' }));
+                $.each(data, function (index, item) {
+                    dose.append($('<option>', {
+                        value: item.dsg_code,
+                        text: item.dsg_form
+
+                    }));
+                });
+            },
+            error: function (error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+
+    }
+
+
+    function savePartyDetails() {
+        // Collect form data
+        var formData = {
+            Party_code: $("#input1").val(),
+            Party_Enq_Code: $("#input2").val(),
+            des_con: $("#country").val(),
+            des_air: $("#air").val(),
+            des_sea: $("#sea").val()
+        };
+        $.ajax({
+            type: 'POST',
+            url: '/Enquiry_Quotation/GenerateInquiryFirst',
+            data: JSON.stringify(formData),
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Party Details saved successfully!',
+                    didClose: () => {
+                        document.getElementById("partyitemsection").style.display = "block";
+                        document.getElementById("addPartydetails").style.display = "none";
+                    }
+                });
+                $("#toggleButton").prop("disabled", false);
+                // Handle the success response from the server
+                // console.log('Data saved successfully:', data);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+
+                if (errorThrown === 'net::ERR_CERT_AUTHORITY_INVALID') {
+                    console.log('SSL certificate authority invalid.');
+
+                }
+                else {
+                    console.log('Other error: ' + errorThrown);
+                }
+            }
+        });
+        // Send data to the server using Ajax
+
+    }
+    $(document).ready(function () {
+
+        $('#saveAllButton').on('click', function () {
+            saveAllTableData();
+        });
+    });
+
+    function saveAllTableData() {
+        const productData = [];
+        const rows = document.getElementById('myTable').getElementsByTagName('tr');
+        for (let i = 1; i < rows.length; i++) { // Skip the header row
+            const row = rows[i];
+
+            const Party_Enq_Code = row.cells[1].textContent;
+            const item_code = row.cells[3].textContent;
+            const Party_item_name = row.cells[4].textContent;
+            const Dsg_code = row.cells[5].querySelector('select').value;
+            const Units = row.cells[6].querySelector('select').value;
+            const Size = row.cells[7].textContent;
+            const Qtydosg_unit_perpack = row.cells[8].textContent;
+            const No_of_pack = row.cells[9].textContent;
+            const Total_unit = row.cells[10].textContent;
+            //const imageInput = row.cells[11].querySelector('input[type="file"]');
+            //const imageData = imageInput.files[0];
+
+
+            const imageElement = row.cells[11].querySelector('img[src^="data:image/"]'); // Selects the image with source starting with "data:image/"
+            var imageData = "";
+            if (imageElement) {
+                const base64Data = imageElement.src;
+                imageData = base64Data.split(',')[1];
+            }
+            else {
+                imageData = "";
+            }
+            productData.push({
+                Party_Enq_Code: Party_Enq_Code,
+                item_code: item_code,
+                Party_item_name: Party_item_name,
+                Dsg_code: Dsg_code,
+                Units: Units,
+                Size: Size,
+                Qtydosg_unit_perpack: Qtydosg_unit_perpack,
+                No_of_pack: No_of_pack,
+                Total_unit: Total_unit,
+                Imagedata: imageData
+            });
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/Enquiry_Quotation/GenerateInquirySecond',
+            data: JSON.stringify(productData),
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                if (data === 2) {
+                    //var EnqCode = sessionStorage.getItem("EnqCode");
+                    //sessionStorage.setItem("userID", userID);
+                    //var UserID = sessionStorage.getItem("userID");
+
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Success!',
+                        text: 'Inquiry Saved successfully!\n',
+
+                        onClose: function () {
+                           // var userID = UserID; // Replace with your actual userID
+                            window.location.href = '/Enquiry_Quotation/InquiryList';
+                        }
+
+                    });
+                    // displayNewTable();
+                }
+                else if (data === 1) {
+                    Swal.fire({
+                        icon: 'Error',
+                        title: 'Error!',
+                        text: 'Add & Save New Inquiry Details First then Continue...',
+                        onClose: function () {
+                            var tableBody = document.getElementById('myTableBody');
+
+                            // Clear existing table content
+                            tableBody.innerHTML = '';
+                        }
+                    });
+                }
+                else {
+                    Swal.fire({
+                        icon: 'Error',
+                        title: 'Error!',
+                        text: 'Internal Server Error',
+                    });
+                }
+
+
+                //displayNewTable();
+                // Handle the success response from the server
+                // console.log('Data saved successfully:', data);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+
+                if (errorThrown === 'net::ERR_CERT_AUTHORITY_INVALID') {
+                    console.log('SSL certificate authority invalid.');
+
+                }
+                else {
+                    console.log('Other error: ' + errorThrown);
+                }
+            }
+        });
+
+
+
+    }
+
+
+
+
+
+</script>
+<script>
+    window.onload = function () {
+        $.ajax({
+            type: 'POST',
+            url: '/Enquiry_Quotation/GetEnqCodeList',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+
+
+                var ddl_PartyName = $('#Searchinquiry');
+                //console.log(ddl_PartyName)
+                //ddl_PartyName.empty();
+
+                ddl_PartyName.empty().append($('<option>', { value: '', text: '--Select Inquiry--' }));
+                $.each(data, function (index, item) {
+                    ddl_PartyName.append($('<option>', {
+                        value: item.enq_code,
+                        text: item.enq_code
+
+                    }));
+                });
+            },
+            error: function (xhr, textStatus, errorThrown) {
+
+                if (errorThrown === 'net::ERR_CERT_AUTHORITY_INVALID') {
+                    console.log('SSL certificate authority invalid.');
+
+                }
+                else {
+                    console.log('Other error: ' + errorThrown);
+                }
+            }
+
+
+        });
+        $.ajax({
+            url: '/Enquiry_Quotation/GetDoseForm',
+            type: 'POST',
+            contentType: 'application/json',
+            success: function (data) {
+                var dose = $('#Searchinquirydosewise');
+                dose.empty().append($('<option>', { value: '', text: '--Select Dose Type--' }));
+                $.each(data, function (index, item) {
+                    dose.append($('<option>', {
+                        value: item.dsg_code,
+                        text: item.dsg_form
+
+                    }));
+                });
+            },
+            error: function (error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+
+    }
+
+
+    $('#SearchAllpendinginquiry').change(function () {
+        const inquiryType = $('#SearchAllpendinginquiry').val();
+        $("#divLoader").show();
+        if (inquiryType === "All") {
+            getDataAll();
+        }
+        if (inquiryType === "Pending") {
+            getDataPending();
+        }
+        if (inquiryType === "Approved") {
+            getDataApproved();
+        }
+    });
+    $('#Searchinquiry').change(function () {
+        const inquiryCode = $('#Searchinquiry').val();
+        $("#divLoader").show();
+        getDataEnqCodeWise(inquiryCode);
+    });
+    $('#Searchinquirydosewise').change(function () {
+        const dosageForm = $('#Searchinquirydosewise').val();
+        $("#divLoader").show();
+        getDataDoseWise(dosageForm);
+    });
+    function getDateRange() {
+        const startDate = $('#startDate').val();
+        const endDate = $('#endDate').val();
+        $("#divLoader").show();
+        getDataDateWise(startDate, endDate);
+    }
+    function getDataAll() {
+
+        $.ajax({
+            type: 'POST',
+            url: '/Enquiry_Quotation/OldInquiryList',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                // Process the response and update the table
+                updateTable(response);
+
+                $("#divLoader").hide();
+            },
+            error: function (error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+
+
+    }
+
+    function getDataPending() {
+        $.ajax({
+            type: 'POST',
+            url: '/Enquiry_Quotation/OldInquiryPendingList',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                // Process the response and update the table
+                updateTable(response);
+                $("#divLoader").hide();
+            },
+            error: function (error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+
+
+    }
+    function getDataApproved() {
+        $.ajax({
+            type: 'POST',
+            url: '/Enquiry_Quotation/OldInquiryApprovedList',
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                // Process the response and update the table
+                updateTable(response);
+                $("#divLoader").hide();
+            },
+            error: function (error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+
+    }
+
+    function getDataEnqCodeWise(inquiryCode) {
+        $.ajax({
+            type: 'POST',
+            url: '/Enquiry_Quotation/OldInquiryCodeWiseList?inquiryCode=' + inquiryCode,
+            dataType: 'json',
+            data: JSON.stringify({ inquiryCode: inquiryCode }),
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                // Process the response and update the table
+                updateTable(response);
+                $("#divLoader").hide();
+            },
+            error: function (error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+
+
+    }
+    function getDataDoseWise(dosageForm) {
+
+        $.ajax({
+            type: 'POST',
+            url: '/Enquiry_Quotation/OldInquiryDosformWiseList?dosageForm=' + dosageForm,
+            dataType: 'json',
+            data: JSON.stringify({ dosageForm: dosageForm }),
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                // Process the response and update the table
+                updateTable(response);
+                $("#divLoader").hide();
+            },
+            error: function (error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+
+
+    }
+    function getDataDateWise(startDate, endDate) {
+
+        $.ajax({
+            type: 'POST',
+            url: '/Enquiry_Quotation/OldInquiryDateWiseList?startDate=' + startDate +'&endDate='+endDate,
+            dataType: 'json',
+            data: JSON.stringify({ startDate: startDate, endDate: endDate}),
+            contentType: "application/json; charset=utf-8",
+            success: function (response) {
+                // Process the response and update the table
+                updateTable(response);
+                $("#divLoader").hide();
+            },
+            error: function (error) {
+                console.error('Error fetching data:', error);
+            }
+        });
+
+    }
+
+
+
+    // Function to update the table with the data
+    function updateTable(response) {
+        $('#resultTable tbody').empty();
+        document.getElementById('InquiryDetails').style.display = "block";
+        let serialNumber = 0;
+        if (response && response.length > 0) {
+            table = $('#resultTable').DataTable({
+                data: response,
+                columns: [
+                    {
+                        data: null, render: function () {
+                            serialNumber++;
+                            return serialNumber;
+                        }  },
+                    { data: 'QuotationStatus' },
+                    { data: 'InquiryCode' },
+                    { data: 'PartyItemName' },
+                    { data: 'DrugDossageForm' },
+                    { data: 'Size' },
+                    { data: 'Unit' },
+                    { data: 'PackingType' },
+                    { data: 'QtyPerPack' },
+                    { data: 'NoOfPack' },
+                    { data: 'TotalUnit' },
+                    { data: 'ProposedPrice' }
+                ],
+                select: {
+                    style: 'single'
+                },
+                "columnDefs": [
+                    {
+                        "targets": 0,
+                        "orderable": false
+                    }
+                ],
+                "paging": true,
+                "searching": true,
+                "pageLength": 5,
+                "lengthMenu": [5, 10, 20, 25]
+            });
+        }
+
+
+
+
+
+        //const tableBody = $('#resultTable tbody');
+        //tableBody.empty();
+        //let serialNumber = 1;
+        //data.forEach(row => {
+        //    const newRow = $('<tr>').addClass('custom-row');
+
+        //    //const checkbox = $('<input>').attr('type', 'checkbox').change(function () {
+        //    //    enableEdit($(this), row);
+        //    //});
+        //    //const checkboxCell = $('<td>').append(checkbox);
+        //    //newRow.append(checkboxCell);
+
+        //    const serialNumberCell = $('<td>').text(serialNumber);
+        //    newRow.append(serialNumberCell);
+
+        //    Object.values(row).forEach(value => {
+        //        newRow.append($('<td>').text(value));
+        //    });
+        //    serialNumber++;
+
+            //const updateButton = $('<button>').text('Update').addClass('btn btn-primary update-button').click(function () {
+            //    updateCounterPrice(newRow, row);
+            //});
+            //const buttonCell = $('<td>').append(updateButton);
+            //newRow.append(buttonCell);
+
+
+            //newRow.find('td:nth-child(1)').css('background-color', 'green');
+
+
+            //tableBody.append(newRow);
+    }
+
+
+
+    function clearAll() {
+       
+        $('#SearchAllpendinginquiry').val('');
+        $('#Searchinquiry').val('');
+        $('#Searchinquirydosewise').val('');
+
+        $('#startDate').val('');
+        $('#endDate').val('');
+        $('#resultTable').DataTable().clear().destroy();
+        /*$('#InquiryDetails').style.display = "none";*/
+        document.getElementById('InquiryDetails').style.display = "none";
+    }
+
+</script>

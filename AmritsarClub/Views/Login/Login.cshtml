@@ -1,0 +1,227 @@
+﻿@model AmritsarClub.Models.LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" style="height: 100%;">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>KPL_Portal</title>
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/Login_css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom fonts for this template -->
+    <link href="~/Content/Login_css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- Custom fonts for this template -->
+    <link href="~/Content/Login_css/themify.css" rel="stylesheet" type="text/css" />
+    <!-- Angular Tooltip Css -->
+    <link href="~/Content/Login_css/angular-tooltips.css" rel="stylesheet" />
+    <!-- Page level plugin CSS -->
+    <link href="~/Content/Login_css/animate.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="~/Content/Login_css/glovia.css" rel="stylesheet" />
+    <link href="~/Content/Login_css/glovia-responsive.css" rel="stylesheet" />
+    <!-- Custom styles for Color -->
+    <link href="~/Content/Login_css/default.css" rel="stylesheet" />
+    <link href="~/Content/Login_css/sweetalert.css" rel="stylesheet" />
+</head>
+<body style="height: 100%;">
+    <div class="container-fluid" id="LoginDiv" style="height: 100%;">
+        <div class="row" style="height: 100%;">
+            <div class="hidden-xs hidden-sm col-lg-6 col-md-6 default-bg gridinline">
+                <div class="clearfix">
+                    <div class="logo-title-container login-container text-center" style="padding-top:50px;">
+                        <h2 class="cl-white text-upper">Welcome   To</h2>
+                        <img class="img-responsive" src="~/Content/Login_Image/kpllogo.png" alt="Logo" style="border-radius: 20px; width: 400px;" />
+                        @*<img class="img-responsive" < src="Images/kpllogo.png" alt="Logo" style="border-radius: 20px; width: 400px;" />*@
+                        <div class="copy animated fadeIn">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 login-sidebar gridinline" id="MainDiv">
+                <div class="logo-title-container login-container text-center hidden-lg hidden-md default-bg" style="top:0;position:relative;">
+                    <h2 class="cl-white text-upper">Welcome   To</h2>
+                    <img class="img-responsive" src="~/Content/Login_Image/kpllogo.png" alt="Logo" style="border-radius: 20px; width: 400px;" />
+                    @*<img class="img-responsive" < src="Images/kpllogo.png" alt="Logo" style="border-radius: 20px; width: 400px;" />*@
+                    <div class="copy animated fadeIn">
+                    </div>
+                </div>
+                <div class="login-container clearfix" id="Login_divId">
+                    <h2 class="text-center text-upper">Login</h2>
+                    @if (ViewBag.Message != null)
+                    {
+                        <div style="color:red;font-weight:bold;">
+                            @ViewBag.Message
+                        </div>
+                    }
+                    @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                    {
+                        <form class="validator contactForm animated fadeInRight">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="UserId" id="username" placeholder="UserName" />
+
+                            </div>
+                            <div style="color:red;font-weight:bold;">
+                                @Html.ValidationMessageFor(x => x.UserId)
+                            </div>
+
+                            <div class="form-group help">
+                                <input type="password" class="form-control" name="Password" id="password" runat="server" placeholder="Password" />
+                            </div>
+                            <div style="color: red; font-weight: bold;">
+                                @Html.ValidationMessageFor(x => x.Password)
+                            </div>
+                            <div class="form-group">
+                                <div class="flexbox align-items-center" style="display: none">
+                                    <a href="#" id="forgotUserpasswordId" data-toggle="tooltip" class="primary" data-original-title="Forget Password ">Forget Password ?</a>
+                                </div>
+                            </div>
+                            <div class="form-group mb-0">
+                                <div class="flexbox align-items-center">
+                                    <input class="p-1 ml-2 btn btn-primary btn-info" type="submit" value="Log In" />
+                                    @*<a id="btnLogin" type="submit" class="btn bg-primary login">log in</a>*@
+                                </div>
+                            </div>
+                            <div>
+                            </div>
+                        </form>
+                    }
+                </div>
+                <!-- .login-container -->
+            </div>
+
+        </div>
+        <!-- .row -->
+    </div>
+    <script src="~/Content/Login_JS/jquery.min.js"></script>
+    <script src="~/Content/Login_JS/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="~/Content/Login_JS/jquery.easing.min.js"></script>
+    <!-- Slick Slider Js -->
+    <script src="~/Content/Login_JS/slick.js"></script>
+    <!-- Slim Scroll -->
+    <script src="~/Content/Login_JS/jquery.slimscroll.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="~/Content/Login_JS/glovia.js"></script>
+    <script src="~/Content/Login_JS/jQuery.style.switcher.js"></script>
+    <script src="~/Content/Login_JS/jquery-ui.js"></script>
+    <script src="~/Content/Login_JS/timepicker.js"></script>
+    <script type="text/javascript" src="~/Content/Login_JS/V3MGrid.js"></script>
+
+    @*<a href="JSReasources.ashx">JSReasources.ashx</a>*@
+    <script type="text/javascript" src="~/Content/Login_JS/jquery.alerts.js"></script>
+    <script type="text/jscript" src="~/Content/Login_JS/V3MValidate.js"></script>
+    <script type="text/jscript" src="~/Content/Login_JS/V3MPopUp.js"></script>
+    <script src="~/Content/Login_JS/jquery-ui.js"></script>
+    <script src="~/Content/Login_JS/jquery-1.8.0.js"></script>
+    <link href="~/Content/Login_JS/jquery-ui.css" rel="stylesheet" />
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            $("#btnLogin").on("click", function (event) {
+                var userID = $("#username").val();
+                var password = $("#password").val();
+                partylog(userID, password);
+            });
+        });
+
+      
+
+
+        function Filter_Validation() {
+            if (IsEmpty($("#username")) == false) {
+                jAlert('User name ' + GetResourceValue('Empty'), GetResourceValue('AlertCaption'), function (result) {
+                    $('#username').focus();
+                    $('#username').select();
+                });
+                return false;
+            }
+            else if (IsEmpty($("#password")) == false) {
+                jAlert('Captcha ' + GetResourceValue('Empty'), GetResourceValue('AlertCaption'), function (result) {
+                    $('#password').focus();
+                    $('#password').select();
+                });
+                return false;
+            }
+            else {
+                return true;
+            }
+
+
+            //if ($("#username").val().trim() === "") {
+            //    jAlert('Username ' + GetResourceValue('Empty'), GetResourceValue('AlertCaption'), function (select) {
+            //        $("#username").focus().select();
+            //    });
+            //    return false;
+            //} else if ($("#password").val().trim() === "") {
+            //    jAlert('Password ' + GetResourceValue('Empty'), GetResourceValue('AlertCaption'), function (select) {
+            //        $("#password").focus().select();
+            //    });
+            //    return false;
+            //}
+            //return true;
+        }
+
+        $("#txt_password").on("input", function () {
+            var passwordField = $(this);
+            var showIcon = $("#showIcon");
+            if (passwordField.val().trim().length > 0) {
+                showIcon.css("display", "block");
+            }
+            else {
+                showIcon.css("display", "none");
+            }
+        });
+
+        // Sample definition of GlobalResources
+        var GlobalResources = {
+            'Empty': 'Can not be blank',
+            'AlertCaption': 'Kwality Phrmaceuticals Ltd.',
+            'Error': 'Error Value'
+        };
+
+        // Function to retrieve resource values
+        function GetResourceValue(name) {
+            return GlobalResources[name];
+        }
+
+        // Example failure handler
+        function OnFailure(response) {
+            jAlert('Failure!!! ' + GetResourceValue('Error'), GetResourceValue('AlertCaption'));
+        }
+
+        // Example error handler
+        function OnError(response) {
+            jAlert('Error!!! ' + GetResourceValue('Error'), GetResourceValue('AlertCaption'));
+        }
+
+        function Filter_Validation() {
+            if (IsEmpty($("#username")) == false) {
+                jAlert('Username ' + GetResourceValue('Empty'), GetResourceValue('AlertCaption'), function (select) {
+                    $("#username").focus();
+                    $("#username").select();
+                });
+                return false;
+            } else if (IsEmpty($("#password")) == false) {
+                jAlert('Password ' + GetResourceValue('Empty'), GetResourceValue('AlertCaption'), function (select) {
+                    $("#password").focus();
+                    $("#password").select();
+                });
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+
+    </script>
+</body>
+</html>
+

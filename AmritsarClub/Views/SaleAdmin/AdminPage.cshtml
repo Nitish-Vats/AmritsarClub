@@ -1,0 +1,444 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+
+
+
+
+
+
+@*-----Videos Start-----*@
+<div class="video-wrap mt-10 rounded-2xl overflow-hidden" style="margin-top:-20px;">
+    <video controls="controls" class="banner_video w-[100%]" autoplay="" muted="" loop="" id="myVideo" style="object-fit: contain;">
+        <source src="~/Content/Kwality%20Pharma%202022%20Hi%20Res%20Final%203(1).mp4" type="video/mp4" />
+
+    </video>
+</div>
+@*------Videos End--------*@
+
+@*---=====Latest News Start======---*@
+<div class="topbarx">
+    <div class="container-fluid">
+        <nav class="navbar-expand-md">
+            <div class="navbar-collapse">
+
+                <i class="bi bi-newspaper"></i>
+                <b class="top-bb">
+                </b>
+                @*<img src="~/Content/img/latest.png" style="height:50px;width:40px" title="Latest Update" />*@
+
+                <marquee id="marquee" scrollamount="5" class="navbar-nav mr-auto" onmouseover="this.stop();" onmouseout="this.start(); ">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link " href="#" style="color: #050000; text-decoration: none;transition: all 0.3s ease-in-out;background-color: transparent;margin-top:2%;">
+                                <p>
+                                    <img src="~/Content/img/new-gif-imageAU.gif" style="height:3%; width:3%;" />
+                                    @*<img src="~/Content/img/blinker.gif" />*@<b>Kwality Pharmaceutical Manufacturing Facility in Himachal Pradesh has been approved by ANVISA </b> <img src="~/Content/img/new-gif-imageAU.gif" style="height:3%; width:3%;" /><b>Kwality develops it’s First Implant Injection : Goserelin Acetate Impalnt Injection</b>
+                                </p>
+
+                            </a>
+                        </li>
+
+                    </ul>
+                </marquee>
+            </div>
+        </nav>
+
+    </div>
+</div>
+@*----======Latest News End======-----*@
+
+@*---------Welcome to KPl start---------*@
+<section class="section section-lg bg-default text-center text-sm-left section-lined" id="about">
+    <div class="container-fluid" style="overflow-y:hidden;">
+        <div class="row row-40 rows">
+            <div class="col-lg-7 wow fadeInRight">
+                <img src="~/Content/img/about kpl.png" class="img-thumbnail imag" alt="...">
+            </div>
+            <div class="col-lg-4 wow fadeInRight">
+
+                <div style="margin-top:100px;" class="heading-4 font-weight-bold text-lg-left heads" id="welcom"><b>Welcome to Kwality Pharmaceuticals Limited</b></div>
+                <br>
+                <p id="welcome" class="text-lg-left paragraph-custom-2" style="text-align: center !important; color:black;">
+                    We are manufacturers of finished pharmaceutical
+                    formulations in different dosage forms.
+                    We have our registered office at
+                    Village Nag Kalan, Majitha Road, Amritsar,
+                    Punjab, India. Kwality Pharmaceuticals Ltd.
+                    was incorporated on 4th May 1983 and is
+                    ever progressing in domestic and
+                    international markets based on its
+                    commitment towards high standards
+                    and quality of the products.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+@*---------Welcome to KPl End---------*@
+
+<!-- ======= OUR MISSION & VISION Section start ======= -->
+<section id="services" class="services section-bg">
+    <div class="container-fluid" data-aos="fade-up">
+
+        <div class="section-title" style="text-align:center;">
+            <h4>OUR MISSION & VISION </h4>
+            @*<p>Check out the great services we offer</p>*@
+        </div>
+
+        <div class="row">
+            <div class="col-md-4  d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100" @*style="width:35%;"*@>
+                <div class="icon-box">
+                    <div class="icon"><i class="fa-solid fa-bullseye"></i></div>
+
+                    <h4 class="title"><a href="">Our Vision</a></h4>
+                    <p class="description">Our vision is to become the leading pharmacutical company through strong leadership and excellence in developing sustainable and innovative quality products.</p>
+
+                </div>
+            </div>
+
+            <div class="col-md-4  d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="200" @*style="width:35%;"*@>
+                <div class="icon-box">
+                    <div class="icon"><i class="fa-solid fa-atom"></i></div>
+                    <h4 class="title"><a href="">Knowledge</a></h4>
+                    <p class="description">The main expertise of our knowledge is used in Reverse engineering of immediate off-patent drugs. We are experts in developing testing and manufacturing procedures. The whole process is to achieve safety, efficacy, and quality of the formulation. It is the knowledge which helps in giving customer satisfaction.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4  d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="300" @*style="width:30%;"*@>
+                <div class="icon-box">
+                    <div class="icon"><i class="fas fa-handshake"></i></div>
+                    <h4 class="title"><a href="">Trust</a></h4>
+                    <p class="description">Our Trust is about acting with integrity on the high-value business relationship and its needs to secure the future for both supplier and buyer.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End OUR MISSION & VISION Section -->
+<!-- ======= Portfolio Section ======= -->
+<section id="portfolio" class="portfolio">
+    <div class="container-fluid" data-aos="fade-up">
+
+        <div class="section-title" style="text-align:center;">
+            <h4>PORTFOLIO</h4>
+            <br />
+        </div>
+
+
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <div class="portfolio-wrap">
+                    <img src="~/Content/img/dry-Syrup-botlle-filling-machine.jpeg" style="height:300px;" class="img-fluid" alt="" />
+
+                    <div class="portfolio-links">
+
+                        <a href="~/Content/img/2677.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="ADD">
+                            <i class="fas fa-plus fa-lg text-danger" style="margin-top: 1vh;"></i>
+                        </a>
+                        <a href="##" title="More Details">
+                            <i class="fas fa fa-long-arrow-right fa-lg text-primary" style="margin-top: 1vh;"></i>
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                <div class="portfolio-wrap">
+                    <img src="~/Content/img/capfill-capsule-filling-machine.jpeg" style="height:300px;" class="img-fluid" alt="" />
+
+                    <div class="portfolio-links">
+                        <a href="~/Content/img/2677.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="ADD">
+                            <i class="fas fa-plus fa-lg text-danger" style="margin-top: 1vh;"></i>
+                        </a>
+                        <a href="##" title="More Details">
+                            <i class="fas fa fa-long-arrow-right fa-lg text-primary" style="margin-top: 1vh;"></i>
+                        </a>
+                    </div>
+                    @*<div class="portfolio-info">
+                            <h4>Web 3</h4>
+                            <p>Web</p>
+                        </div>*@
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <div class="portfolio-wrap">
+                    <img src="~/Content/img/bung-processor.jpeg" style="height:300px;" class="img-fluid" alt="" />
+                    @*<img src="assets/img/portfolio/portfolio-3.jpg" class="img-fluid" alt="">*@
+                    <div class="portfolio-links">
+                        <a href="~/Content/img/2677.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="ADD">
+                            <i class="fas fa-plus fa-lg text-danger" style="margin-top: 1vh;"></i>
+                        </a>
+                        <a href="##" title="More Details">
+                            <i class="fas fa fa-long-arrow-right fa-lg text-primary" style="margin-top: 1vh;"></i>
+                        </a>
+                    </div>
+                    @*<div class="portfolio-info">
+                            <h4>App 2</h4>
+                            <p>App</p>
+                        </div>*@
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+                <div class="portfolio-wrap">
+                    <img src="~/Content/img/2677.jpg" class="img-fluid" style="height:300px;" alt="" />
+                    @*<img src="assets/img/portfolio/portfolio-4.jpg" class="img-fluid" alt="">*@
+                    <div class="portfolio-links">
+                        <a href="~/Content/img/2677.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="ADD">
+                            <i class="fas fa-plus fa-lg text-danger" style="margin-top: 1vh;"></i>
+                        </a>
+                        <a href="##" title="More Details">
+                            <i class="fas fa fa-long-arrow-right fa-lg text-primary" style="margin-top: 1vh;"></i>
+                        </a>
+                    </div>
+                    @*<div class="portfolio-info">
+                            <h4>Card 2</h4>
+                            <p>Card</p>
+                        </div>*@
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+                <div class="portfolio-wrap">
+
+                    <img src="~/Content/img/2656.jpg" class="img-fluid" style="height:300px;" alt="" />
+                    @*<img src="assets/img/portfolio/portfolio-5.jpg" class="img-fluid" alt="">*@
+                    <div class="portfolio-links">
+                        <a href="~/Content/img/2677.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="ADD">
+                            <i class="fas fa-plus fa-lg text-danger" style="margin-top: 1vh;"></i>
+                        </a>
+                        <a href="##" title="More Details">
+                            <i class="fas fa fa-long-arrow-right fa-lg text-primary" style="margin-top: 1vh;"></i>
+                        </a>
+                    </div>
+                    @*<div class="portfolio-info">
+                            <h4>Web 2</h4>
+                            <p>Web</p>
+                        </div>*@
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <div class="portfolio-wrap">
+                    <img src="~/Content/img/2677.jpg" class="img-fluid" style="height:300px;" alt="" />
+                    @*<img src="assets/img/portfolio/portfolio-6.jpg" class="img-fluid" alt="">*@
+                    <div class="portfolio-links">
+                        <a href="~/Content/img/2677.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" title="ADD">
+                            <i class="fas fa-plus fa-lg text-danger" style="margin-top: 1vh;"></i>
+                        </a>
+                        <a href="##" title="More Details">
+                            <i class="fas fa fa-long-arrow-right fa-lg text-primary" style="margin-top: 1vh;"></i>
+                        </a>
+                    </div>
+                    @*<div class="portfolio-info">
+                            <h4>App 3</h4>
+                            <p>App</p>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- End Portfolio Section -->
+<!-- ======= Board of Directors Section start======= -->
+<section id="team" class="team">
+    <div class="container">
+
+        <div class="section-title" data-aos="fade-up" style="text-align:center;">
+            <h4>BOARD OF DIRECTORS</h4>
+            @*<p>Our team is always here to help</p>*@
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                <div class="member">
+
+                    <img src="~/Content/img/Ramesh.jpg" class="img-fluid" style="height:300px;" alt="" />
+                    @*<img src="assets/img/team/team-1.jpg" class="img-fluid" alt="">*@
+                    <div class="member-info">
+                        <div class="member-info-content">
+                            <h4>MR. RAMESH ARORA</h4>
+                            <span>MANAGING DIRECTOR</span>
+                        </div>
+                        <div class="social">
+                            <a href="">
+                                <i class="fab fa-twitter fa-lg text-primary"></i>
+                            </a>
+                            <a href=""><i class="fab fa-facebook fa-lg text-primary"></i></a>
+                            <a href="">
+                                <i class="fab fa-instagram fa-lg text-danger"></i>
+                            </a>
+                            <a href="">
+                                <i class="fab fa-linkedin fa-lg text-primary"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                <div class="member">
+
+                    <img src="~/Content/img/Ajay.jpg" class="img-fluid" style="height:300px;" alt="" />
+                    @*<img src="assets/img/team/team-2.jpg" class="img-fluid" alt="">*@
+                    <div class="member-info">
+                        <div class="member-info-content">
+                            <h4>MR. AJAY ARORA</h4>
+                            <span>DIRECTOR</span>
+                        </div>
+                        <div class="social">
+                            <a href="">
+                                <i class="fab fa-twitter fa-lg text-primary"></i>
+                            </a>
+                            <a href=""><i class="fab fa-facebook fa-lg text-primary"></i></a>
+                            <a href="">
+                                <i class="fab fa-instagram fa-lg text-danger"></i>
+                            </a>
+                            <a href="">
+                                <i class="fab fa-linkedin fa-lg text-primary"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                <div class="member">
+
+                    <img src="~/Content/img/Aditya.jpg" class="img-fluid" style="height:300px;" alt="" />
+                    @*<img src="assets/img/team/team-3.jpg" class="img-fluid" alt="">*@
+                    <div class="member-info">
+                        <div class="member-info-content">
+                            <h4>MR. ADITYA ARORA</h4>
+                            <span>DIRECTOR</span>
+                        </div>
+                        <div class="social">
+                            <a href="">
+                                <i class="fab fa-twitter fa-lg text-primary"></i>
+                            </a>
+                            <a href=""><i class="fab fa-facebook fa-lg text-primary"></i></a>
+                            <a href="">
+                                <i class="fab fa-instagram fa-lg text-danger"></i>
+                            </a>
+                            <a href="">
+                                <i class="fab fa-linkedin fa-lg text-primary"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3" data-aos="zoom-in" data-aos-delay="400">
+                <div class="member">
+
+                    <img src="~/Content/img/Anu.jpg" class="img-fluid" style="height:300px;" alt="" />
+                    @*<img src="assets/img/team/team-4.jpg" class="img-fluid" alt="">*@
+                    <div class="member-info">
+                        <div class="member-info-content">
+                            <h4>MRS. ANU ARORA</h4>
+                            <span>DIRECTOR</span>
+                        </div>
+                        <div class="social">
+                            <a href="">
+                                <i class="fab fa-twitter fa-lg text-primary"></i>
+                            </a>
+                            <a href=""><i class="fab fa-facebook fa-lg text-primary"></i></a>
+                            <a href="">
+                                <i class="fab fa-instagram fa-lg text-danger"></i>
+                            </a>
+                            <a href="">
+                                <i class="fab fa-linkedin fa-lg text-primary"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- End Board of Directors Section-->
+<!-- ======= Contact Us Section ======= -->
+<section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title" style="text-align:center;">
+            <h4>CONTACT US</h4>
+            @*<p>Contact us the get started</p>*@
+        </div>
+
+        <div class="row">
+
+            <div class="col-lg-5 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                <div class="info">
+                    <div class="address">
+                        <i class="fas fa-map-marker-alt fa-lg text-danger"></i>
+                        <h4>Location:</h4>
+                        <p>6th Mile Stone, Village Nag Kalan Majitha Road, Punjab 143601</p>
+                    </div>
+
+                    <div class="email">
+                        <i class="fas fa-envelope fa-lg text-primary"></i>
+
+                        <h4>Email:</h4>
+                        <p>Info@kwalitypharma.com</p>
+                    </div>
+
+                    <div class="phone">
+                        <i class="fas fa-phone fa-lg text-success"></i>
+
+                        <h4>Call:</h4>
+                        <p>+91-8558820861</p>
+                    </div>
+
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d108703.58752332634!2d74.83985928678055!3d31.63420330370036!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391964a98e9c2e85%3A0x28b4d85ca56930f5!2sKwality%20Pharmaceutical%20Ltd.!5e0!3m2!1sen!2sin!4v1599126497941!5m2!1sen!2sin" style="width:100%;" height="200" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                </div>
+
+            </div>
+            <div class="col-lg-7  mt-5 mt-lg-0 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                <div class="info">
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="name">Your Name</label>
+                            <input type="text" name="name" class="form-control conHover" id="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group col-md-6 mt-3 mt-md-0">
+                            <label for="name">Your Email</label>
+                            <input type="email" class="form-control conHover" name="email" id="email" placeholder="Your Email" required>
+                        </div>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="name">Subject</label>
+                        <input type="text" class="form-control conHover" name="subject" id="subject" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="name">Message</label>
+                        <textarea class="form-control conHover" name="message" rows="10" required></textarea>
+                    </div>
+                    @*<div class="my-3">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Your message has been sent. Thank you!</div>
+                        </div>*@
+                    <div class="text-center"><button class="text-center sendM" type="submit" style="height:5vh;"><span>Send Message </span></button></div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section><!-- End Contact Us Section -->

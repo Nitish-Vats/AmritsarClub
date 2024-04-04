@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "Membership";
+    Layout = "~/Views/Shared/_LayoutGym.cshtml";
+}
+<style>
+
+
+
+    .mb-32 {
+        margin-bottom: 8px;
+        margin-top: 20px;
+        text-align: left;
+        font-weight: 400;
+        color: #000000;
+    }
+
+    .h1_border_a {
+        height: 4px;
+        width: 10%;
+        background: linear-gradient(to right, #dba507 1%,#f1da36 100%);
+        margin-bottom: 30px;
+    }
+
+    .wht_menu {
+        background-color: #ebebeb;
+        padding: 10px 10px 10px 10px;
+        width: 65%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .list-group {
+        margin-bottom: 20px;
+    }
+
+    .list-group-item {
+        margin-bottom: 0;
+        margin-left: 0px;
+        color: #fff;
+        padding: 14px 12px 10px 12px;
+        background-color: #333;
+        border: 1px solid #333;
+    }
+
+
+    .Membereligibility {
+        border: 14px solid #ebebeb;
+    }
+</style>
+
+
+<div class="container">
+    <div class="col-lg-12">
+        <h2 class="mb-32">Membership Information</h2>
+        <div class="h1_border_a"></div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="list-group list-group-horizontal bhoechie-tab-menu" style="border: solid 2px gray; background-color: #ebebeb;padding:2px 2px 2px 2px;">
+
+                    <button onclick="Eligiblity()" class="butn btn btn-outline-secondary col-md-3" id="Home" style="padding:5px 0 5px 0;">Membership Eligiblity</button>
+
+                    <button onclick="Code()" class="butn btn btn-outline-secondary col-md-3" style="padding: 5px 0 5px 0; ">Code Of Conduct</button>
+
+                    <button onclick="Rate()" class="butn btn btn-outline-secondary col-md-3" style="padding: 5px 0 5px 0; ">Rate of Subscription</button>
+
+                    <button onclick="Article()" class="butn btn btn-outline-secondary col-md-3" style="padding: 5px 0 5px 0; ">Article Of Association</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Article" style="display:none;">
+        @Html.Partial("~/Views/Home/Partial/_ArticleofAssociation.cshtml")
+    </div>
+    <div id="Code" style="display:none;">
+        @Html.Partial("~/Views/Home/Partial/_CodeofConduct.cshtml")
+    </div>
+    <div id="Eligiblity" style="display:block;">
+        @Html.Partial("~/Views/Home/Partial/_Eligiblity.cshtml")
+    </div>
+    <div id="Rate" style="display:none;">
+        @Html.Partial("~/Views/Home/Partial/_RateofSubscription.cshtml")
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#Home').addClass('active-button');
+    });
+    $('.butn').on('click', function () {
+        console.log("Hi I am Active");
+        $('.butn').removeClass('active_button');
+        $(this).addClass('active_button');
+    });
+</script>
+<script>
+    function Eligiblity() {
+        var e = document.getElementById("Eligiblity");
+        var r = document.getElementById("Rate");
+        var c = document.getElementById("Code");
+        var a = document.getElementById("Article");
+        r.style.display = "none";
+        c.style.display = "none";
+        a.style.display = "none";
+        if (e.style.display === "none") {
+            e.style.display = "block";
+        }
+    }
+</script>
+<script>
+    function Code() {
+        var e = document.getElementById("Eligiblity");
+        var r = document.getElementById("Rate");
+        var c = document.getElementById("Code");
+        var a = document.getElementById("Article");
+        r.style.display = "none";
+        e.style.display = "none";
+        a.style.display = "none";
+        if (c.style.display === "none") {
+            c.style.display = "block";
+        }
+    }
+</script>
+<script>
+    function Rate() {
+        var e = document.getElementById("Eligiblity");
+        var r = document.getElementById("Rate");
+        var c = document.getElementById("Code");
+        var a = document.getElementById("Article");
+        c.style.display = "none";
+        e.style.display = "none";
+        a.style.display = "none";
+        if (r.style.display === "none") {
+            r.style.display = "block";
+        }
+    }
+</script>
+<script>
+    function Article() {
+        var e = document.getElementById("Eligiblity");
+        var r = document.getElementById("Rate");
+        var c = document.getElementById("Code");
+        var a = document.getElementById("Article");
+        c.style.display = "none";
+        e.style.display = "none";
+        r.style.display = "none";
+        if (a.style.display === "none") {
+            a.style.display = "block";
+        }
+    }
+</script>

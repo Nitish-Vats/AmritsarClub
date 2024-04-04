@@ -1,0 +1,517 @@
+﻿@{
+    var customIdentity = (AmritsarClub.Models.CustomIdentity)Session["customIdentity"];
+}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="V3M Technlogies" />
+    <title>@ViewBag.Title</title>
+    <!-- Bootstrap core CSS -->
+    <link href="~/Assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom fonts for this template -->
+    <link href="~/Assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Custom fonts for this template -->
+    <link href="~/Assets/plugins/themify/css/themify.css" rel="stylesheet" type="text/css" />
+    <!-- Angular Tooltip Css -->
+    <link href="~/Assets/plugins/angular-tooltip/angular-tooltips.css" rel="stylesheet" />
+    <!-- Morris Charts CSS -->
+    <link href="~/Assets/plugins/morris.js/morris.css" rel="stylesheet" />
+    <!-- Page level plugin CSS -->
+    <link href="~/Assets/dist/css/animate.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="~/Assets/dist/css/glovia.css" rel="stylesheet" />
+    <link href="~/Assets/dist/css/glovia-responsive.css" rel="stylesheet" />
+    <!-- Custom styles for Color -->
+    <link href="~/Assets/plugins/sweetalert/css/sweetalert.css" rel="stylesheet" />
+    <link href="~/AutoJSCSS/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Assets/plugins/select2/select2.min.css" rel="stylesheet" />
+    <link href="~/scripts/NewJS/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Assets/dist/css/bootstrap-multiselect.css" rel="stylesheet" />
+    <link href="~/Assets/dist/css/datepicker.css" rel="stylesheet" />
+    <link href="~/Datejs/datepicker.css" rel="stylesheet" />
+    <script src="~/jquery-3.7.1.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.5/dist/sweetalert2.min.js"></script>
+    <style>
+        .card .show-more {
+            width: 60px;
+            height: 22px;
+            line-height: 22px;
+            background: #057cc7;
+            box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .ui-autocomplete {
+            max-height: 120px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-right: 20px;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        .navbar {
+            background-color: #94a2b1;
+        }
+    </style>
+</head>
+
+<body class="fixed-nav sticky-footer" id="page-top" style="overflow-y:hidden;">
+    <nav class="navbar navbar-expand-lg bb-1 navbar-light fixed-top" id="mainNav">
+        <!-- Start Header -->
+        @*<header class="header-logo" style="background-color: transparent; border-radius: 8px;">
+                <a class="nav-link text-center mr-lg-3 hidden-xs" id="sidenavToggler"><i class="ti-align-left"></i></a>
+                <a class="navbar-brand">
+                    <span id="GD_ApplicationHeaderName">
+                        <img style="height: 50px; border-radius: 8px;" src="~/Content/Login_Image/kpllogo.png" />
+                    </span>
+                </a>
+            </header>*@
+        <header class="header-logo" style="background-color: transparent; border-radius: 8px;">
+            <a class="nav-link text-center mr-lg-3 hidden-xs" id="sidenavToggler"><i class="ti-align-left"></i></a>
+            <a href="/Dashboard/dashboard"> <img src="~/Images/imagekpl.jpg" style="max-width:50px;" /></a>
+           
+            <a class="navbar-brand">
+                <span id="GD_ApplicationHeaderName">
+                    <h3 class="theme-cl">Kwality Pharmaceuticals Ltd.</h3>
+                    @*<img style="height: 50px; border-radius: 8px;" src="../Images/ShroffLogo.png" />*@
+                </span>
+            </a>
+        </header>
+
+
+
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="fa fa-navicon text-white"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+
+            <div class="navbar-side">
+                <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+                    @if (customIdentity.LoginResult == "4")
+                    {
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" id="partyinquiry">
+                            <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#view-Inquiry" id="Admn_HomeButton">
+                                <i class="ti i-cl-9 ti-dashboard"></i>
+                                <span class="nav-link-text">Inquiry Management</span>
+                            </a>
+                            <ul class="sidenav-second-level collapse" id="view-Inquiry">
+                                <li><a href="@Url.Action("Inquiry", "Enquiry_Quotation")">Generate Inquiry</a></li>
+                                <li><a href="@Url.Action("InquiryList", "Enquiry_Quotation",new { userId=customIdentity.UserID})">Inquiry List</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" id="saleinquiry">
+                            <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#view-Users" data-parent="#exampleAccordion">
+                                <i class="ti i-cl-9 ti-truck"></i>
+                                <span class="nav-link-text">Sale Order Management </span>
+                            </a>
+                            <ul class="sidenav-second-level collapse" id="view-Users">
+                                <li><a href="@Url.Action("Order_Status", "OrderStatus")">Order Tracking</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else if (customIdentity.LoginResult == "3")
+                    {
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" id="partypurchase">
+                            <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#Clinical" data-parent="#exampleAccordion">
+                                <i class="ti i-cl-9  fa fa-medkit"></i>
+                                <span class="nav-link-text">Purchase Management</span>
+                            </a>
+
+                            <ul class="sidenav-second-level collapse" id="Clinical">
+
+                                <li><a href="#">Purchase Portal</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else if (customIdentity.LoginResult == "1")
+                    {
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" id="saleAdmin">
+                            <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#view-PatientRecord" data-parent="#exampleAccordion">
+                                <i class="ti i-cl-9 ti-bar-chart"></i>
+                                <span class="nav-link-text">Sale Admin</span>
+                            </a>
+                            <ul class="sidenav-second-level collapse" id="view-PatientRecord">
+                                <li><a href="@Url.Action("Inquiry_Quotation", "SaleAdmin")">Quotation</a></li>
+                                <li><a href="@Url.Action("Inquiry_Quotation", "SaleAdmin")">Inquiry List</a></li>
+                            </ul>
+                        </li>
+                    }
+                    else if (customIdentity.LoginResult == "2")
+                    {
+                        <li class="nav-item" data-toggle="tooltip" data-placement="right" id="purchaseAdmin">
+                            <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#view-Report" data-parent="#exampleAccordion">
+                                <i class="ti i-cl-9 ti-bar-chart"></i>
+                                <span class="nav-link-text">Purchase Admin </span>
+                            </a>
+                            <ul class="sidenav-second-level collapse" id="view-Report">
+                                <li><a href="#">Purchse Admin</a></li>
+
+
+                            </ul>
+                        </li>
+                    }
+                    <li class="nav-item" data-toggle="tooltip" data-placement="right">
+                        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#view-Adminset" data-parent="#exampleAccordion">
+                            <i class="ti i-cl-12 ti-settings"></i>
+                            <span class="nav-link-text">User Management </span>
+                        </a>
+                        <ul class="sidenav-second-level collapse" id="view-Adminset">
+                            <li><a href="#">Change Password</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- =============== End Side Menu ============== -->
+            <!-- =============== Header Rightside Menu ============== -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle mr-lg-0 user-img a-topbar__nav a-nav" id="userDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="~/Images/Admin.jpg" width="36" class="img-bordered-sm" />
+                        <b class="f-size-17" id="GD_headerName"></b>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user animated flipInX" aria-labelledby="userDropdown">
+                        <li class="dropdown-header default-bg">
+                            <div class="header-user-pic">
+                                <img src="~/Images/Admin.jpg" width="36" class="img-bordered-sm" />
+                            </div>
+                            <div class="header-user-det">
+                                <span id="lblUserName_Small" class="a-dropdown__header-title"></span>
+                                <span id="loggedInCompany"></span>
+
+                            </div>
+                        </li>
+                        @*<li><a class="dropdown-item" href=""><i class="fa fa-user"></i> Name:<span id="partyname"></span> </a></li>*@
+                        <li><a class="dropdown-item" href=""><i class="fa fa-id-card"></i> Party Code:<span>@customIdentity.UserID</span> </a></li>
+                        <li><a class="dropdown-item" href="@Url.Action("Logout", "Login")" onclick="Admn_Logout();"><i class="fa fa-power-off"></i> Logout </a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- =============== End Header Rightside Menu ============== -->
+        </div>
+    </nav>
+    <!-- =====================================================
+                        End Navigations
+    ======================================================= -->
+
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
+    <!-- Footer -->
+    <footer class="footer-classic" style="background-color:gray; text-align:center;">
+        <div class="text-center" style="padding-top:1px;margin-top:10px;margin-bottom:2px;">
+            <small class="font-11">
+                <span class="copyright color-text-a">
+                    &copy;Copyright - @DateTime.Now.Year
+                    <a href="https://www.kwalitypharma.com/" style="color: #0080ff;">Kwality Pharmaceuticals Limited.</a> All Rights Reserved.
+                </span>
+
+            </small>
+        </div>
+
+    </footer>
+
+    @RenderSection("scripts", required: false)
+
+    @*<script src="~/scripts/jquery-1.9.0.js"></script>*@
+    @*<script src="~/scripts/jquery-1.9.0.min.js"></script>*@
+    <script src="~/Assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Assets/plugins/jquery-easing/jquery.easing.min.js"></script>
+    <script src="~/Assets/plugins/slick-slider/slick.js"></script>
+    <script src="~/Assets/plugins/slim-scroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Assets/plugins/angular-tooltip/angular.js"></script>
+    <script src="~/Assets/plugins/angular-tooltip/angular-tooltips.js"></script>
+    <script src="~/Assets/plugins/angular-tooltip/index.js"></script>
+    <script src="~/Assets/plugins/raphael/raphael.min.js"></script>
+    <script src="~/Assets/plugins/morris.js/morris.min.js"></script>
+    <script src="~/Assets/dist/js/glovia.js"></script>
+    <script src="~/scripts/NewJS/jquery-ui.js"></script>
+    <script src="~/scripts/jquery-migrate-1.2.1.js"></script>
+    @*<script src="~/AutoJSCSS/jquery-ui.js"></script>
+        <script src="~/scripts/NewJS/jquery-ui.js"></script>*@
+    <script src="~/Alert/jquery.alerts.js"></script>
+    <script src="~/scripts/jquery.alphanum.js"></script>
+    <script src="~/scripts/jquery.layout.js"></script>
+    <script type="text/javascript" src="~/JSResources.ashx"></script>
+    <script src="~/Common.js"></script>
+    <script src="~/scripts/V3MDropDownList.js"></script>
+    <script src="~/scripts/V3MGrid.js"></script>
+    <script src="~/scripts/V3MPopUp.js"></script>
+    <script type="text/javascript" src="~/scripts/V3MValidate.js"></script>
+    <script src="~/Assets/plugins/chart.js/Chart.js"></script>
+    <script src="~/scripts/jquery.canvasjs.min.js"></script>
+    <script src="~/scripts/highcharts.js"></script>
+    <script src="~/scripts/series-label.js"></script>
+    <script src="~/scripts/exporting.js"></script>
+    <script src="~/Assets/plugins/select2/select2.full.min.js"></script>
+    <script src="~/scripts/xmlToJson.js"></script>
+    <script src="~/scripts/bootstrap-multiselect.js"></script>
+    <script src="~/Content/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+
+    @*<script src="~/Assets/plugins/datepicker/bootstrap-datepicker.js"></script>*@
+    @*<script src="~/Datejs/fullcalendar.js"></script>*@
+    @*<script src="~/Datejs/bootstrap-editable.js"></script>*@
+    <script>
+        var ContentDiv = $("#ContentDiv").height();
+        var Alumni = $(".Alumni").height();
+        var cardtable = ContentDiv - Alumni - 2;
+        $('.cardtable').css('height', cardtable);
+
+    </script>
+    <script>
+        $('#navbarResponsive a').click(function (e) {
+            if (!jQuery(this).parent('li').attr('class')) {
+                $('#navbarResponsive').removeClass('show');
+            }
+        });
+    </script>
+    <script>
+        var isLoggedIn = false;
+
+        var LoginResult = sessionStorage.getItem("LoginResult");
+        if (LoginResult === "4") {
+            console.log(LoginResult);
+            $("#inquiryDiv").show();
+            $("#adminDiv").hide();
+            $("#partyinquiry").show();
+            $("#saleinquiry").show();
+
+            $("#partypurchase").hide();
+            $("#saleAdmin").hide();
+            $("#purchaseAdmin").hide();
+
+        }
+        else if (LoginResult === "1") {
+            $("#inquiryDiv").hide();
+            $("#adminDiv").show();
+            $("#partyinquiry").hide();
+            $("#saleinquiry").hide();
+            $("#partypurchase").hide();
+            $("#saleAdmin").show();
+            $("#purchaseAdmin").hide();
+        }
+        else if (LoginResult === "2") {
+            $("#partyinquiry").hide();
+            $("#saleinquiry").hide();
+            $("#partypurchase").hide();
+            $("#saleAdmin").hide();
+            $("#purchaseAdmin").show();
+        }
+        else if (LoginResult === "3") {
+            $("#partyinquiry").hide();
+            $("#saleinquiry").hide();
+            $("#partypurchase").show();
+            $("#saleAdmin").hide();
+            $("#purchaseAdmin").hide();
+
+        }
+        else {
+            //if (!isLoggedIn) {
+            //    window.location.href = "/Login/Login";
+            //    console.log(isLoggedIn);
+
+            //}
+        }
+    </script>
+    <script type="text/javascript">
+        var ActivityList = [];
+        var SerialNo = 1;
+        var glbTestDate = null;
+        var glbMonthNotoBeset = null;
+        $(document).ready(function () {
+            $.ajaxSetup({ cache: false });
+            FillRecords(false);
+        });
+
+        function Admn_Logout() {
+            window.location.replace('../Login.aspx')
+        }
+
+        function GetResourceValue(name) {
+            return GlobalResources[name];
+        }
+
+        function Admin_ReloadDashBoad() {
+            location.reload(true);
+        }
+
+        function MenuClick(menuKey) {
+            $('#ContentDiv').empty();
+            switch (menuKey) {
+
+                case "ViewUsers":
+                    window.location.href = '@Url.Action("Login", "Login")';
+                   isOnDashboad = 0;
+                   break;
+
+                case "view-Userss":
+                    $('#ContentDiv').load("Admin/SaleOrder.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+                case "ViewFinalSheetReport":
+                    $('#ContentDiv').load("Reports/FinalSheetReport.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+                case "ChnagePassword":
+                    $('#ContentDiv').load("Admin/ChangePassword.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+                case "ViewSPH":
+                    $('#ContentDiv').load("Admin/SPH.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+                case "ViewCYL":
+                    $('#ContentDiv').load("Admin/CYL.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+                case "ViewAXIS":
+                    $('#ContentDiv').load("Admin/AXIS.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+                case "ViewVision":
+                    $('#ContentDiv').load("Admin/DistanceMaster.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+                case "ViewOcularComplaintMaster":
+                    $('#ContentDiv').load("Admin/OcularComplaintMaster.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+                case "ViewSystemicDiseases":
+                    $('#ContentDiv').load("Admin/SystemicDiseaseMaster.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+                case "ViewSurgeryMaster":
+                    $('#ContentDiv').load("Admin/SurgeryTypeMaster.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+                case "ViewCataractType":
+                    $('#ContentDiv').load("Admin/ViewCataractType.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+                case "ViewComplicatingComorbidity":
+                    $('#ContentDiv').load("Admin/ViewComplicatingComorbidity.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+                case "ViewPlannedSurgery":
+                    $('#ContentDiv').load("Admin/PlannedSurgery.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+                case "ViewCentre":
+                    $('#ContentDiv').load("Admin/ViewCentre.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+                case "ViewComplication":
+                    $('#ContentDiv').load("Admin/ViewComplication.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+                case "ViewActualSurgery":
+                    $('#ContentDiv').load("Admin/ViewActualSurgery.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+                case "ViewPostopComplication":
+                    $('#ContentDiv').load("Admin/ViewPostopComplication.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+                case "ViewOscarsExamination":
+                    $('#ContentDiv').load("Admin/ViewOscarsExamination.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+                case "OscarsExaminationDetails":
+                    $('#ContentDiv').load("Admin/OscarsExaminationDetails.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+                case "ViewSurgeryReport":
+                    $('#ContentDiv').load("Reports/ViewSurgeryReport.aspx");
+                    isOnDashboad = 0;
+                    break;
+                case "ViewSurgeryTraineeReport":
+                    $('#ContentDiv').load("Reports/ViewSurgeryTraineeReport.aspx");
+                    isOnDashboad = 0;
+                    break;
+                case "QuestionAvgScoreGraph":
+                    $('#ContentDiv').load("Reports/QuestionAvgScoreGraph.aspx");
+                    isOnDashboad = 0;
+                    break;
+                case "MonthlyGraphReport":
+                    $('#ContentDiv').load("Reports/MonthlyGraphReport.aspx");
+                    isOnDashboad = 0;
+                    break;
+                case "TraineePerformance":
+                    $('#ContentDiv').load("Reports/TraineePerformance.aspx");
+                    isOnDashboad = 0;
+                    break;
+                case "FacultyScoreReport":
+                    $('#ContentDiv').load("Reports/FacultyScoreReport.aspx");
+                    isOnDashboad = 0;
+                    break;
+                case "ViewModifyPatient":
+                    $('#ContentDiv').load("PatientRecord/ViewModifyPatient.aspx");
+                    isOnDashboad = 0;
+                    break;
+                case "Faculty Performance":
+                    $('#ContentDiv').load("Reports/FacultyReport.aspx");
+                    isOnDashboad = 0;
+                    break;
+
+            }
+        }
+
+        function FillRecords(IsBlankCall) {
+            var Status = -1;
+
+            $("#DASH_tblRecord").V3MGrid({
+                url: 'DoctorsDashboard.aspx/GetRecordListForDashboard',
+                data: "{ }",
+                blank: IsBlankCall,
+                colModel: [
+                    { display: '', name: 'FieldOne', width: '20%', align: 'left', columnType: 'text' },
+                    { display: 'NEW', name: 'FieldTwo', width: '20%', align: 'center', columnType: 'text' },
+                    { display: 'REVIEW', name: 'FieldThree', width: '20%', align: 'center', columnType: 'text' },
+                    { display: 'TOTAL', name: 'FieldFour', width: '20%', align: 'center', columnType: 'text' },
+                    { display: 'Examined Patient', name: 'FieldFive', width: '20%', align: 'center', columnType: 'text' },
+                ]
+            },
+                function (result) {
+                    if (result) {
+                    }
+                });
+        }
+
+    </script>
+</body>
+</html>

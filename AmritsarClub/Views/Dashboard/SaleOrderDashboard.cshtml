@@ -1,0 +1,603 @@
+﻿@{
+    ViewBag.Title = "SaleOrderDashboard";
+    Layout = null;
+}
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" />
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  
+    <script src="~/Scripts/jquery-3.7.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>@ViewBag.Title--KwalityCRM</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        .page-content {
+            flex: 1;
+        }
+
+        body {
+            height: 100vh;
+            background-color: var(--body-color);
+        }
+
+            body.dark {
+                --body-color: #18191A;
+                --nav-color: #242526;
+                --side-nav: #242526;
+                --text-color: #CCC;
+                --search-bar: #242526;
+            }
+
+        .nav-bar .darkLight-searchBox {
+            display: flex;
+            align-items: center;
+        }
+
+        .darkLight-searchBox .dark-light,
+        .darkLight-searchBox .searchToggle {
+            height: 40px;
+            width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+        }
+
+        .dark-light i,
+        .searchToggle i {
+            position: absolute;
+            color: var(--text-color);
+            font-size: 22px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+            .dark-light i.sun {
+                opacity: 0;
+                pointer-events: none;
+                background-color: aqua;
+            }
+
+        .dark-light.active i.sun {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .dark-light.active i.moon {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        body.dark .search-field input {
+            color: var(--text-color);
+        }
+
+
+        body.dark .search-field i {
+            color: var(--text-color);
+        }
+
+        #custom-margin-top {
+            margin-top: -60px; /* Default margin-top value */
+        }
+        /* Media query for mobile devices */
+        @@media (max-width: 767px) {
+            #custom-margin-top {
+                margin-left: 299px;
+            }
+
+            .header_in {
+                margin-left: -20px;
+            }
+
+            .brand_logo {
+                margin-left: -20px;
+            }
+        }
+
+
+
+        .branfooter {
+            width: 100px;
+            height: 100px;
+            padding: 10px;
+            border-radius: 60px;
+        }
+
+        .brand_logo {
+            width: 40px;
+            height: 40px;
+        }
+
+        .brand_logos {
+            width: 65px;
+            height: 65px;
+            border-radius: 10px;
+        }
+
+        body {
+            background: #e1e1e1;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding: 50px;
+            margin: 30px;
+        }
+
+        .header {
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            padding: 15px 20px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9;
+        }
+
+        button {
+            background: transparent;
+            border: none;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            outline: 0;
+        }
+
+        .toggle span {
+            width: 100%;
+            height: 3px;
+            background: #555;
+            display: block;
+            position: relative;
+            cursor: pointer;
+        }
+
+            .toggle span:before,
+            .toggle span:after {
+                content: '';
+                position: absolute;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: #555;
+                transition: all 0.3s ease-out;
+            }
+
+            .toggle span:before {
+                top: -8px;
+            }
+
+            .toggle span:after {
+                top: 8px;
+            }
+
+            .toggle span.toggle {
+                background: transparent;
+            }
+
+                .toggle span.toggle:before {
+                    top: 0;
+                    transform: rotate(-45deg);
+                    background: #4CAF50;
+                }
+
+                .toggle span.toggle:after {
+                    top: 0;
+                    transform: rotate(45deg);
+                    background: #4CAF50;
+                }
+
+        .sidebar {
+            background-color: white;
+            width: 230px;
+            position: fixed;
+            top: 0;
+            left: -235px;
+            height: 100%;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            padding-top: 90px;
+            transition: all 0.3s ease-out;
+        }
+
+            .sidebar ul {
+                list-style: none;
+            }
+
+                .sidebar ul li {
+                    display: block;
+                }
+
+                    .sidebar ul li a {
+                        padding: 8px 15px;
+                        font-size: 16px;
+                        color: #222;
+                        font-family: arial;
+                        text-decoration: none;
+                        display: block;
+                        position: relative;
+                        z-index: 1;
+                        transition: all 0.3s ease-out;
+                        font-weight: 500;
+                    }
+
+                        .sidebar ul li a:before {
+                            content: '';
+                            position: absolute;
+                            bottom: 0;
+                            left: 50%;
+                            right: 50%;
+                            transform: translate(-50%,-50%);
+                            width: 0;
+                            height: 1px;
+                            background: #4CAF50;
+                            z-index: -1;
+                            transition: all 0.3s ease-out;
+                        }
+
+                        .sidebar ul li a:hover:before {
+                            width: 100%;
+                        }
+
+                        .sidebar ul li a:hover {
+                            color: #4CAF50;
+                        }
+
+        .sidebarshow {
+            left: 0;
+        }
+
+        .footer {
+            background-color: white;
+            color: black;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .topnav {
+            overflow: hidden;
+            bottom: 20%;
+        }
+
+            .topnav a {
+                float: left;
+                color: black;
+                text-align: right;
+                padding: 14px 29px;
+                text-decoration: none;
+                font-size: 13px;
+            }
+
+                .topnav a:hover {
+                    background-color: #ddd;
+                    color: black;
+                }
+
+                .topnav a.active {
+                    background-color: whitesmoke;
+                    color: black;
+                    font-weight: bold;
+                    font-size: 15px;
+                    height: 40px;
+                    padding: 10px;
+                    margin-left: 360px;
+                    font-family: Cambria, Georgia;
+                }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $('#logout-link').click(function (e) {
+                e.preventDefault();
+                window.location.href = '@Url.Action("Login", "Login")';
+            });
+        });
+    </script>
+</head>
+<body>
+    <header class="header" style="background-color: #CECECE;">
+        <div class="header_in">
+            <div class="brand" style="display: flex; align-items: center;">
+                <button type="button" class="toggle" id="toggle">
+                    <span></span>
+                </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a>
+                    <img src="~/Pictures/logo kpl.bmp" class="brand_logo" alt="Your Brand Logo">
+                </a>
+                <p style="font-size: 18px; font-family: Cambria, Georgia; color: black; font-weight: bold; margin-left: 10px;">
+                    Kwality <span style="color: orange; font-weight: bold;">Pharmaceuticals Ltd.</span>
+                </p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <h style="font-size: 22px; color: #71797E; font-weight: bold;" id="MainHeading">
+
+
+                </h>
+            </div>
+            <div class="navbar-right" id="custom-margin-top">
+                <p class="navbar-text">
+                    <a href="#" id="logout-link">
+                        <i class="fa fa-user-circle" style="font-size: 30px;"></i>
+                        <b class="icon-name">Sign Out</b>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </header>
+    <div class="sidebar" id='sidebar'>
+
+        <ul class="nav-item">
+            <li><a href="#">Home &nbsp; <i class="fa fa-tachometer" aria-hidden="true"></i> </a></li>
+            <li class="nav-item dropdown" style=" font-size: 26px;" id="partyInquiry">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownHome" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Inquiry Portal  &nbsp;<i class="fas fa-caret-down"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownHome">
+                    <a class="dropdown-item" href="@Url.Action("InquiryList", "Enquiry_Quotation")">Generate Inquiry </a>
+                    <a class="dropdown-item" id="InquiryList" href="@Url.Action("InquiryList", "Enquiry_Quotation", new { userID = "__USERID__" })">List of Inquiry </a>
+                    <a class="dropdown-item" href="#">Reporting</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown" style=" font-size: 26px;" id="AdminInquiry">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownHome" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Admin Portal  &nbsp;<i class="fas fa-caret-down"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownHome">
+                    <a class="dropdown-item" href="@Url.Action("Inquiry_Quotation", "SaleAdmin")">List of Inquiry </a>
+                    <a class="dropdown-item" href="@Url.Action("Inquiry_Quotation", "SaleAdmin")"> Quotation</a>
+                    <a class="dropdown-item" href="#">Reporting</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown" style=" font-size: 26px;" id="PurchaseAdmin">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownHome" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Purchase Admin  &nbsp;<i class="fas fa-caret-down"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownHome">
+                    <a class="dropdown-item" href="#">Purchase Order </a>
+                    <a class="dropdown-item" href="#">Reporting</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown" style=" font-size: 26px;" id="PurchaseParty">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownHome" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Party Purchase  &nbsp;<i class="fas fa-caret-down"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownHome">
+                    <a class="dropdown-item" href="#">Purchase </a>
+                    <a class="dropdown-item" href="#">Reporting</a>
+                </div>
+            </li>
+            <li><a href="#">Profile &nbsp;&nbsp; <i class="fa fa-user" aria-hidden="true"></i> </a></li>
+        </ul>
+    </div>
+    <div class="container">
+        <div id="main">
+            @*<div class="row">
+                        <div class="col-md-12" style="height:70px;background-color:white;border-radius:10px;">
+                            <div class="col-md-4" style="height: 70px;">
+                                <h3 style="font-size: 26px; color: #3498db; font-weight: bold;">
+                                    Sales Order Dashboard
+                                </h3>
+                            </div>
+                            <div class="col-md-4" style="height:70px;">
+                            </div>
+                            <div class="col-md-4" id="calendar" style="height: 70px; font-size: 26px; color: #3498db; font-weight: bold; padding: 25px; background-color: white; border-radius: 20px;">
+                                <strong>@DateTime.Now.ToString("MMMM dd, yyyy")</strong>
+                            </div>
+                        </div>
+                </div>*@
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-md-4">
+                        <div style="width: 90%; max-width: 600px; height: 90px; background-color: #797979; border-radius: 10px; display: flex; justify-content: center; align-items: center;">
+                            <strong><b style="font-weight: bold; font-size: 25px; color: white; font-weight: bold; ">Total Sales</b></strong>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div style="width: 90%; max-width: 600px; height: 90px; background-color: #73A16C; border-radius: 10px;display: flex; justify-content: center; align-items: center;">
+                            <strong><b style="font-weight: bold; font-size: 25px; color: white; font-weight: bold; ">Monthly Sales</b></strong>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div style="width: 90%; max-width: 600px; height: 90px; background-color: white; border-radius: 10px; display: flex; justify-content: center; align-items: center;">
+                            <strong><b style="font-weight: bold; font-size: 25px; color: #71797E; font-weight: bold; ">@DateTime.Now.ToString("MMMM dd, yyyy").ToUpper()</b></strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="col-md-6">
+                        <canvas id="chart1" style="width: 100%; max-width: 700px; height: 350px; background-color: #EEEEEE; border-radius: 10px;"></canvas>
+                    </div>
+                    <div class="col-md-6">
+                        <canvas id="chart2" style="width: 100%; max-width: 700px; height: 360px; background-color: #EEEEEE; border-radius: 10px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            &nbsp;
+        </div>
+    </div>
+    <hr />
+    <br />
+    <br />
+    <br />
+    <br />
+    <footer id="foots">
+        <div class="container-fluid">
+            <div class="footer-cta pt-3 pb-3">
+                <!
+                <div class="row">
+                    <div class="footer">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="col-md-3">
+                                    <div class="logo-section">
+                                        <img src="~/Pictures/logo kpl.bmp" class="brand_logos">
+                                    </div>
+                                </div>
+                                <div class="col-md-6" style="margin-top:1%;">
+                                    <a href="https://www.kwalitypharma.com/" style="color:#eb5d1e; font-weight: bold;"> <strong>Kwality Pharmaceuticals Limited.</strong></a>&nbsp;&nbsp;<b>Copyright.All Rights Reserved.</b>&nbsp; &nbsp; &nbsp;  @*<strong>@DateTime.Now.ToString("MMMM dd, yyyy")</strong>*@<strong>Version. 0.01</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script type="text/javascript">
+    var btn = document.querySelector('.toggle');
+    var btnst = true;
+    function toggleSidebar() {
+      var sidebar = document.getElementById("sidebar");
+      var mainContent = document.getElementById("foots");
+      var anotherElement = document.getElementById("main");
+      if (btnst) {
+        document.querySelector('.toggle span').classList.add('toggle');
+        sidebar.classList.add('sidebarshow');
+        mainContent.style.marginLeft = "150px";
+        anotherElement.style.marginLeft = "150px";
+      }
+      else {
+        document.querySelector('.toggle span').classList.remove('toggle');
+        sidebar.classList.remove('sidebarshow');
+        mainContent.style.marginLeft = "-90px";
+        anotherElement.style.marginLeft = "-90px";
+      }
+      btnst = !btnst;
+    }
+
+    toggleSidebar();
+
+    btn.onclick = function () {
+      toggleSidebar();
+    };
+
+    modeToggle.addEventListener("click", () => {
+      modeToggle.classList.toggle("active");
+      body.classList.toggle("dark");
+
+      if (!body.classList.contains("dark")) {
+        localStorage.setItem("mode", "light-mode");
+      } else {
+        localStorage.setItem("mode", "dark-mode");
+      }
+    });
+    </script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var data = {
+        labels: ["Yearly Sales", "Monthly Sales", "Day Sales"],
+        datasets: [{
+          data: [30, 40, 30],
+          backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        }],
+      };
+      var ctx = document.getElementById('chart1').getContext('2d');
+      var myPieChart = new Chart(ctx, {
+        type: 'pie',
+        data: data,
+        options: {
+          maintainAspectRatio: false,
+          aspectRatio: 0.5,  // Adjust this value to control the aspect ratio (height/width)
+        },
+      });
+    });
+    </script>
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var data = {
+        labels: ["January", "February", "March", "April", "May", "June"],
+        datasets: [{
+          label: "Monthly Sales",
+          data: [20, 35, 25, 45, 30, 50],
+          fill: false,
+          borderColor: "#4CAF50",
+          borderWidth: 2,
+        }],
+      };
+
+      var ctx = document.getElementById('chart2').getContext('2d');
+
+      var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    });
+    </script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script>
+    var isLoggedIn = false;
+
+    var LoginResult = sessionStorage.getItem("LoginResult");
+    if (LoginResult === "4") {
+      $("#partyInquiry").show();
+      $("#AdminInquiry").hide();
+      $("#PurchaseAdmin").hide();
+      $("#PurchaseParty").hide();
+      var mainHeading = document.getElementById("MainHeading");
+      mainHeading.textContent = "Party Dashboard";
+    }
+    else if (LoginResult === "1") {
+      $("#partyInquiry").hide();
+      $("#AdminInquiry").show();
+      $("#PurchaseAdmin").hide();
+      $("#PurchaseParty").hide();
+      var mainHeading = document.getElementById("MainHeading");
+      mainHeading.textContent = "Admin Dashboard";
+    }
+    else if (LoginResult === "2") {
+      $("#partyInquiry").hide();
+      $("#AdminInquiry").hide();
+      $("#PurchaseAdmin").show();
+      $("#PurchaseParty").hide();
+      var mainHeading = document.getElementById("MainHeading");
+      mainHeading.textContent = "Admin Purchase Dashboard";
+    }
+    else if (LoginResult === "3") {
+      $("#partyInquiry").hide();
+      $("#AdminInquiry").hide();
+      $("#PurchaseAdmin").hide();
+      $("#PurchaseParty").show();
+      var mainHeading = document.getElementById("MainHeading");
+      mainHeading.textContent = "Party Purchase Dashboard";
+    }
+    else {
+      if (!isLoggedIn) {
+        window.location.href = "/Login/Login";
+        console.log(isLoggedIn);
+
+      }
+    }
+    </script>
+    <script>
+    document.getElementById("InquiryList").addEventListener("click", function () {
+      var userId = sessionStorage.getItem("userID");
+      var url = document.getElementById("InquiryList").getAttribute("href");
+      url = url.replace("__USERID__", userId);
+      document.getElementById("InquiryList").setAttribute("href", url);
+    });
+    </script>
+</body>
+</html>
